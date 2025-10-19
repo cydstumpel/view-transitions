@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-// Speaker data from the website
+Speaker data from the website
 const speakers = [
   {
     name: 'Stephen Hay',
@@ -145,7 +145,7 @@ const speakers = [
   }
 ]
 
-// Function to generate speaker pages
+Function to generate speaker pages
 function generateSpeakerPages() {
   const templatePath = join(__dirname, 'css-day', 'speakers', 'template.html')
   const template = readFileSync(templatePath, 'utf8')
@@ -153,7 +153,7 @@ function generateSpeakerPages() {
   speakers.forEach(speaker => {
     const speakerSlug = speaker.name.toLowerCase().replace(/\s+/g, '-')
     const firstName = speaker.name.split(' ')[0].toLowerCase()
-    
+
     let content = template
       .replace(/{ speaker name }/g, speaker.name)
       .replace(/{ speaker name replace spaces with dash }/g, speakerSlug)
@@ -170,5 +170,5 @@ function generateSpeakerPages() {
   })
 }
 
-// Run the generator
+Run the generator
 generateSpeakerPages()
