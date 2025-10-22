@@ -333,16 +333,16 @@ details>summary::-webkit-details-marker {
 /* Hier! */
 
 .schedule-header {
-  /* 1. adding container name and type for style queries */
-  /* container-name: sticky-heading;
-    container-type: scroll-state; */
-
   @media (prefers-reduced-motion: no-preference) {
-    /* 2. adding a sticky position to the heading when it's stuck to the top */
+    /* 1. adding a sticky position to the heading when it's stuck to the top */
     /* position: sticky;
       top: 0;
       z-index: 1; */
   }
+  /* 2. adding container name and type for style queries */
+  /* container-name: sticky-heading;
+    container-type: scroll-state; */
+
   /* 3. adding a transform to the heading when it's stuck to the top */
   /* @media (prefers-reduced-motion: no-preference) {
     @container sticky-heading scroll-state(stuck: top) {
