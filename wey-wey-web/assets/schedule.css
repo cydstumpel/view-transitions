@@ -389,8 +389,8 @@ details>summary::-webkit-details-marker {
     /* 6. allow discrete transitions for the details content (animating to height auto) */
     /* transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete; */
   }
-  height: 0;
-  overflow: clip;
+  /* height: 0;
+  overflow: clip; */
 }
 
 /* Browser supports interpolate-size */
