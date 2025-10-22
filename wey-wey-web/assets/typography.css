@@ -1,0 +1,16 @@
+@font-face {
+  font-family: Chillax;
+  src: url('./fonts/Chillax-Variable.woff2') format(woff2);
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: Tabular;
+  src: url('./fonts/Tabular-Variable.woff2') format(woff2);
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}

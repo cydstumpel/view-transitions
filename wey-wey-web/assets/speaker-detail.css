@@ -1,0 +1,59 @@
+.speaker-header {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--padding);
+  padding: var(--padding);
+  max-width: 1600px;
+  margin: 0 auto;
+  .speaker-header-image {
+    grid-column: 1 / span 5;
+    img {
+      display: block;
+      aspect-ratio: 1;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  .speaker-header-text {
+    grid-column: span 6;
+  }
+}
+
+.speaker-events {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--padding);
+  padding: var(--padding);
+  max-width: 1600px;
+  margin: 0 auto;
+  .large-heading {
+    grid-column: 3 / span 8;
+  }
+  .speaker-events-list {
+    grid-column: 3 / span 8;
+    list-style-type: '';
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+  }
+  .event {
+    grid-column: span 4;
+    border-radius: var(--padding);
+    padding: var(--padding);
+    &.event-talk {
+      background-color: var(--accent-color-main);
+    }
+    &.event-workshop {
+      background-color: var(--accent-color-secondary);
+      color: var(--background-color);
+    }
+    .labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+  }
+}

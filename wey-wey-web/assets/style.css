@@ -1,0 +1,232 @@
+@import 'typography.css';
+@import 'schedule.css';
+@import 'speaker-detail.css';
+@import 'speaker-overview.css';
+@import 'view-transitions.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Variables: */
+:root {
+  --background-color: #14041e;
+  --accent-color-main: #fc0378;
+  --accent-color-secondary: #4dd9e5;
+  --color: #fff;
+  --background: var(--background-color);
+  --padding: clamp(0.75rem, 1.6vw, 1.5rem);
+  --padding-small: 0.5rem;
+  --design-size: 1440;
+  --ease: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+body {
+  padding: 0;
+  font-family: 'Chillax', sans-serif;
+  background-color: var(--background);
+  color: var(--color);
+}
+
+
+/* Typography: */
+.tabular {
+  font-family: 'Tabular', monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button {
+  text-wrap: pretty;
+  letter-spacing: -0.04em;
+}
+
+a,
+button {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+
+.xlarge-heading {
+  font-size: clamp(2rem, calc(96 / var(--design-size) * 100vw), 8rem);
+  font-weight: 600;
+  font-variation-settings:
+    'wght' 600;
+  line-height: 1.1;
+}
+
+.large-heading {
+  font-size: clamp(1.1rem, calc(60 / var(--design-size) * 100vw), 5rem);
+  font-weight: 600;
+  font-variation-settings:
+    'wght' 600;
+  line-height: 1.1;
+}
+
+.medium-heading {
+  font-size: clamp(1.5rem, calc(32 / var(--design-size) * 100vw), 2.7rem);
+  font-weight: 600;
+  font-variation-settings:
+    'wght' 600;
+  line-height: 1.1;
+}
+
+.small-heading {
+  font-size: clamp(1.3rem, calc(28 / var(--design-size) * 100vw), 2rem);
+  font-weight: 600;
+  font-variation-settings:
+    'wght' 600;
+  line-height: 1.1;
+}
+
+.large-body {
+  font-size: clamp(1.2rem, calc(24 / var(--design-size) * 100vw), 2rem);
+  font-weight: 500;
+  font-variation-settings:
+    'wght' 500;
+  line-height: 1.1;
+}
+
+.medium-body {
+  font-size: clamp(1.1rem, calc(18 / var(--design-size) * 100vw), 1.5rem);
+  font-weight: 400;
+  font-variation-settings:
+    'wght' 400;
+  line-height: 1.5;
+}
+
+.small-body {
+  font-size: clamp(0.8rem, calc(16 / var(--design-size) * 100vw), 1.33rem);
+  font-weight: 400;
+  font-variation-settings:
+    'wght' 400;
+  line-height: 1.5;
+}
+
+.xsmall-body {
+  font-size: clamp(0.75rem, calc(14 / var(--design-size) * 100vw), 1rem);
+  font-weight: 400;
+  font-variation-settings:
+    'wght' 400;
+  line-height: 1.5;
+}
+
+.label {
+  font-size: 0.75rem;
+  background-color: var(--color);
+  color: var(--background-color);
+  padding: 0.15rem 0.25rem 0.25rem;
+  border-radius: 0.25rem;
+  width: max-content;
+  font-variation-settings:
+    'wght' 600;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.p {
+  hr {
+    margin: 1em 0;
+    border: none;
+    border-top: 1px solid currentColor;
+    color: inherit;
+  }
+  p+p {
+    margin-top: 1em;
+  }
+
+  p {
+
+    +h1,
+    +h2,
+    +h3,
+    +h4,
+    +h5,
+    +h6 {
+      margin-top: 1em;
+    }
+
+    +p,
+    +ul,
+    +ol {
+      margin-top: 0.5em;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+
+    +p,
+    +ul,
+    +ol {
+      margin-top: 0.5em;
+    }
+
+    +h1,
+    +h2,
+    +h3,
+    +h4,
+    +h5,
+    +h6 {
+      margin-top: 1em;
+    }
+  }
+}
+
+.header {
+  padding: var(--padding);
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--padding);
+  a {
+    grid-column: 1 / span 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.footer {
+  padding: var(--padding);
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--padding);
+  align-items: center;
+  .logo {
+    grid-column: span 2;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  p {
+    grid-column: span 6 / -1;
+    text-align: right;
+
+  }
+}
