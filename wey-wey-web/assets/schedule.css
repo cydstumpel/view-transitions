@@ -336,9 +336,10 @@ details>summary::-webkit-details-marker {
   @media (prefers-reduced-motion: no-preference) {
     /* 1. adding a sticky position to the heading when it's stuck to the top */
     /* position: sticky;
-      top: 0;
-      z-index: 1; */
+    top: 0;
+    z-index: 2; */
   }
+
   /* 2. adding container name and type for style queries */
   /* container-name: sticky-heading;
     container-type: scroll-state; */
@@ -365,6 +366,7 @@ details>summary::-webkit-details-marker {
       transform-origin: left top;
     } */
   }
+
   details {
     @media (prefers-reduced-motion: no-preference) {
       /* 5. adding a sticky position to the details */
@@ -389,6 +391,7 @@ details>summary::-webkit-details-marker {
     /* 6. allow discrete transitions for the details content (animating to height auto) */
     /* transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete; */
   }
+
   /* height: 0;
   overflow: clip; */
 }
@@ -404,4 +407,3 @@ details>summary::-webkit-details-marker {
     height: auto;
   }
 } */
-
