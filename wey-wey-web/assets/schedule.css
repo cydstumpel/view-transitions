@@ -14,15 +14,7 @@
 
   .schedule-header {
     overflow: hidden;
-    container-name: sticky-heading;
-    container-type: scroll-state;
     white-space: nowrap;
-
-    @media (prefers-reduced-motion: no-preference) {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
 
     padding-left: var(--padding);
     pointer-events: none;
@@ -44,14 +36,7 @@
     }
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    @container sticky-heading scroll-state(stuck: top) {
-      h2 {
-        transition: transform 0.5s var(--ease);
-        transform: scale(0.3);
-      }
-    }
-  }
+
 
   .schedule-day {
 
@@ -134,16 +119,6 @@
   --accent: var(--color);
   color: var(--background-color);
   transition: background 0.5s var(--ease), color 0.5s var(--ease);
-
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: --schedule-items) {
-      animation-timeline: view();
-      animation-name: scale-in;
-      animation-range: entry entry 10vh;
-      animation-fill-mode: both;
-      transform-origin: left top;
-    }
-  }
 
   &[data-type="talk"] {
     --accent: var(--accent-color-main);
@@ -287,11 +262,6 @@
   }
 
   details {
-    @media (prefers-reduced-motion: no-preference) {
-      position: sticky;
-      top: 3.25rem;
-    }
-
     color: var(--color);
     background: var(--background-color);
     border-radius: 0.25rem;
@@ -338,7 +308,7 @@
       font-size: 0.8rem;
       font-variation-settings:
         'wght' 600;
-        margin-top: 1em;
+      margin-top: 1em;
     }
 
     p {
@@ -360,30 +330,49 @@ details>summary::-webkit-details-marker {
   display: none;
 }
 
-::details-content {
+/* Hier! */
+
+.schedule-header {
+  /* 1. adding container name and type for style queries */
+  /* container-name: sticky-heading;
+    container-type: scroll-state; */
+
   @media (prefers-reduced-motion: no-preference) {
-    transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete;
+    /* 2. adding a sticky position to the heading when it's stuck to the top */
+    /* position: sticky;
+      top: 0;
+      z-index: 1; */
   }
-
-  height: 0;
-  overflow: clip;
+  /* 3. adding a transform to the heading when it's stuck to the top */
+  /* @media (prefers-reduced-motion: no-preference) {
+    @container sticky-heading scroll-state(stuck: top) {
+      h2 {
+        transition: transform 0.5s var(--ease);
+        transform: scale(0.3);
+      }
+    }
+  } */
 }
 
-/* Browser supports interpolate-size */
-@supports (interpolate-size: allow-keywords) {
-  :root {
-    interpolate-size: allow-keywords;
+.schedule-item {
+  @media (prefers-reduced-motion: no-preference) {
+    /* 4. Scroll driven animations */
+    /* @supports (animation-timeline: --schedule-items) {
+      animation-timeline: view();
+      animation-name: scale-in;
+      animation-range: entry entry 10vh;
+      animation-fill-mode: both;
+      transform-origin: left top;
+    } */
   }
-
-  [open]::details-content {
-    height: auto;
+  details {
+    @media (prefers-reduced-motion: no-preference) {
+      /* 5. adding a sticky position to the details */
+      /* position: sticky;
+      top: 3.25rem; */
+    }
   }
 }
-
-
-
-
-
 
 @keyframes scale-in {
   from {
@@ -394,3 +383,25 @@ details>summary::-webkit-details-marker {
     transform: scale(1);
   }
 }
+
+::details-content {
+  @media (prefers-reduced-motion: no-preference) {
+    /* 6. allow discrete transitions for the details content (animating to height auto) */
+    /* transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete; */
+  }
+  height: 0;
+  overflow: clip;
+}
+
+/* Browser supports interpolate-size */
+/* 7. interpolate-size: allow-keywords */
+/* @supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  [open]::details-content {
+    height: auto;
+  }
+} */
+
