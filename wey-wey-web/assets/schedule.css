@@ -334,7 +334,7 @@ details>summary::-webkit-details-marker {
 
 .schedule-header {
   @media (prefers-reduced-motion: no-preference) {
-    /* 1. adding a sticky position to the heading when it's stuck to the top */
+    /* 1. adding a sticky position to the heading when it's hits the top of the viewport */
     /* position: sticky;
     top: 0;
     z-index: 2; */
