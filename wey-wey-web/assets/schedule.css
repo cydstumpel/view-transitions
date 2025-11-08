@@ -386,24 +386,24 @@ details>summary::-webkit-details-marker {
   }
 }
 
-::details-content {
-  @media (prefers-reduced-motion: no-preference) {
-    /* 6. allow discrete transitions for the details content (animating to height auto) */
-    /* transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete; */
-  }
-
-  /* height: 0;
-  overflow: clip; */
-}
 
 /* Browser supports interpolate-size */
-/* 7. interpolate-size: allow-keywords */
-/* @supports (interpolate-size: allow-keywords) {
-  :root {
+@supports (interpolate-size: allow-keywords) {
+  /* 6. interpolate-size: allow-keywords */
+  /* :root {
     interpolate-size: allow-keywords;
+  } */
+  ::details-content {
+    @media (prefers-reduced-motion: no-preference) {
+      /* 7. allow discrete transitions for the details content (animating to height auto) */
+      /* transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete; */
+    }
+    /* 8. hide the details content */
+    /* height: 0;
+    overflow: clip; */
   }
-
-  [open]::details-content {
+  /* 9. show the details content when the details is open */
+  /* [open]::details-content {
     height: auto;
-  }
-} */
+  } */
+}
