@@ -330,7 +330,6 @@ details>summary::-webkit-details-marker {
   display: none;
 }
 
-/* Hier! */
 
 .schedule-header {
   @media (prefers-reduced-motion: no-preference) {
