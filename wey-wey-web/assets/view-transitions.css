@@ -54,11 +54,7 @@ html {
       animation-delay: 0s;
       overflow: hidden;
     } */
-    /* 9. we're removing the delay of the group for animating from speaker to index page */
-    /* &::view-transition-group(.speaker-image) {
-      animation-duration: 0.6s;
-      animation-delay: 0s;
-    } */
+
   }
   /* 10. Let's animate all items that are not clicked out to scale 0 */
   /* &::view-transition-old(.speaker-image):only-child {
@@ -123,4 +119,12 @@ html {
     animation-duration: 0.6s;
     animation-delay: 0.2s;
   }
+  &.index {
+    /* 9. we're removing the delay of the group for animating from speaker to index page */
+    &::view-transition-group(.speaker-image) {
+      animation-duration: 0.6s;
+      animation-delay: 0s;
+    }
+  }
 }
+
