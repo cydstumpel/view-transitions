@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'BM Gaudi';
+  src: url('./fonts/BMgaudiA22.woff2') format(woff2);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('./fonts/Geist-VariableFont_wght.woff2') format(woff2);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.geist {
+  font-family: 'Geist', sans-serif;
+}
+
+.xlarge-heading {
+  --font-size: max(calc(var(--vw) * 400), calc(var(--rem) * 120));
+  font-size: var(--font-size);
+  &.has-vertical-max {
+    font-size: min(40svh, var(--font-size));
+  }
+}
+
+.large-heading {
+  --font-size: max(calc(var(--vw) * 280), calc(var(--rem) * 100));
+  font-size: var(--font-size);
+  &.has-vertical-max {
+    font-size: min(25svh, var(--font-size));
+  }
+  @media (max-width: 350px) {
+    --font-size: calc(var(--rem) * 80);
+  }
+}
+
+.mediumlarge-heading {
+  font-size: max(calc(var(--vw) * 200), calc(var(--rem) * 80));
+  line-height: 1.001;
+}
+
+.medium-heading {
+  --font-size: max(calc(var(--vw) * 64), calc(var(--rem) * 40));
+  font-size: var(--font-size);
+  &.has-vertical-max {
+    font-size: min(5svh, var(--font-size));
+  }
+}
+
+.small-heading {
+  font-size: max(calc(var(--vw) * 40), calc(var(--rem) * 32));
+}
+
+.large-body {
+  font-size: max(calc(var(--vw) * 24), calc(var(--rem) * 20));
+}
+
+.small-body {
+  font-size: max(calc(var(--vw) * 16), calc(var(--rem) * 16));
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+
+strong {
+  font-variation-settings:
+    'wght' 600;
+}
