@@ -9,6 +9,7 @@ import { mkdirSync } from 'node:fs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const speakerImg = (firstName) => `./assets/img/${firstName}.png`
+const speakerMask = (firstName) => `./assets/img/masks/${firstName}-mask.png`
 
 export const conference = {
   name: 'JSHeroes',
@@ -31,6 +32,7 @@ export const speakers = [
     topic: 'JavaScript',
     bio: 'With a passion for browser technologies, and the empowering properties of the web, Phil loves seeking out ingenuity and simplicity, especially in places where over-engineering is common.\n\nAfter 25 years of building web applications for companies such as Google, Apple, Nike, R/GA, and The London Stock Exchange, Phil has worked to challenge traditional technical architectures in favour of simplicity and effectiveness.\n\nPhil is co-author of “Modern Web Development on the Jamstack” (O’Reilly, 2019)',
     media: speakerImg('phil'),
+    mask: speakerMask('phil'),
     talk: {
       title: "The time traveller's guide to JavaScript",
       date: 'Thursday 14 May',
@@ -51,6 +53,7 @@ export const speakers = [
     topic: 'Human Intelligence',
     bio: 'Suz Hinton is a senior software engineer, most recently at CrowdStrike where she developed advanced threat hunting technologies on their research team. Suz has been in the industry for over 15 years holding positions at Microsoft, Stripe, and Kickstarter. She’s also an advocate for accessibility, privacy, security, and prioritizing the user experience.',
     media: speakerImg('suz'),
+    mask: speakerMask('suz'),
     talk: {
       title: 'Digital preservation and cyberpunk for front-end developers',
       date: 'Friday 15 May',
@@ -69,6 +72,7 @@ export const speakers = [
     topic: 'Devtools',
     bio: 'Daniel leads the Nuxt core team. Previously, he was CTO of a SaaS startup and founder of a creative agency focusing on clarity of vision and message.\n\nHe is part of the team at Vercel where he is employed to work full-time on Nuxt.\n\nHis open source work has a focus in the Vue.js and Nuxt ecosystems. He’s a keynote speaker at conferences around the world, particularly around frontend, web performance, serverless and software architecture.',
     media: speakerImg('daniel'),
+    mask: speakerMask('daniel'),
     talk: {
       title: 'Working backwards',
       date: 'Thursday 14 May',
@@ -89,6 +93,7 @@ export const speakers = [
     topic: 'Maintainability',
     bio: 'Dominik is a frontend engineer and open-source maintainer from Vienna, Austria. He is a core maintainer of TanStack Query and blogs about all things React & Typescript at tkdodo.eu.',
     media: speakerImg('dominik'),
+    mask: speakerMask('dominik'),
     talk: {
       title: "Dead Code Shouldn't Exist: How We Removed 28k Lines of Code, One Knip at a Time",
       date: 'Thursday 14 May',
@@ -108,6 +113,7 @@ export const speakers = [
     topic: 'CSS',
     bio: 'Cyd creates accessible, creative, award winning websites for individuals and companies.\n\nSharing knowledge is big part of what she likes about being a developer. She does that by blogging, at meetups, conferences and by teaching the next generation of web developers at the Amsterdam University of Applied Sciences at the Associate Degree Frontend Design & Development and the Minor Web Design & Development.',
     media: speakerImg('cyd'),
+    mask: speakerMask('cyd'),
     talk: {
       title: 'You might not need JS',
       date: 'Thursday 14 May',
@@ -127,6 +133,7 @@ export const speakers = [
     topic: 'Performance',
     bio: 'Ryan is a Principal Product Manager on Cloudflare’s Speed team, working on RUM & Web Analytics. He’s worked with the web for over 20 years, including 10 as a SaaS CTO in ecommerce, his mission being to make the web faster, more enjoyable and more accessible for everyone.\n\nHe also publishes videos and articles at LessonsofaCTO.com',
     media: speakerImg('ryan'),
+    mask: speakerMask('ryan'),
     talk: {
       title: 'Faster navigations than React',
       date: 'Friday 15 May',
@@ -148,6 +155,7 @@ export const speakers = [
     topic: 'Career Development',
     bio: 'A chronically curious teacher-turned-developer, Anjana is an independent software engineer & educator, an alumna of the Recurse Center & Outreachy, and an avid karaoke enthusiast.',
     media: speakerImg('anjana'),
+    mask: speakerMask('anjana'),
     talk: {
       title: 'TBD',
       date: 'Friday 15 May',
@@ -165,6 +173,7 @@ export const speakers = [
     topic: 'Accessibility',
     bio: 'Craig is a Principal Accessibility Consultant at TetraLogical and the former Head of Accessibility at the Department for Work and Pensions (DWP) in the UK Government. He has over 15 years’ experience designing and building user-centred products, previously working as a UX Designer and Design Manager. He specialises in sustainable accessibility, developing policies and processes that help teams develop the capabilities needed to consistently deliver accessible products and services.',
     media: speakerImg('craig'),
+    mask: speakerMask('craig'),
     talk: {
       title: 'AI and human-centred accessibility',
       date: 'Thursday 14 May',
@@ -184,6 +193,7 @@ export const speakers = [
     topic: 'JavaScript',
     bio: 'Software engineer of over 12 years, currently occupied with all the things about front-end infrastructure and developer happiness. Talk to me about the Web Platform, browser guts and specialty coffee!',
     media: speakerImg('misha'),
+    mask: speakerMask('misha'),
     talk: {
       title: 'Reverse-engineering JavaScript to get rid of trust issues',
       date: 'Thursday 14 May',
@@ -206,6 +216,7 @@ export const speakers = [
     topic: 'Architecture',
     bio: 'Typescript developer. Interested in architecture, or “how to write code that doesn’t make you think too much”.',
     media: speakerImg('bogdan'),
+    mask: speakerMask('bogdan'),
     talk: {
       title: 'The power of managed effects',
       date: 'Friday 15 May',
@@ -225,6 +236,7 @@ export const speakers = [
     topic: 'Performance',
     bio: 'Faris Aziz is a Staff Frontend Engineer specializing in React, Next.js, monetization systems, and resilient web architecture. He’s led teams in early-stage startups and scaling companies, built career ladders from scratch, and shipped systems used by millions.\n\nHis work spans greenfield builds and legacy refactors across Fintech, SaaS, Fitness, and Connected TV, with companies like Smallpdf, Fiit, Discovery, GCN, and Navro. He focuses on building performant, user-centric applications with solid observability and maintainability.\n\nFaris co-organizes ZurichJS, contributes to tools like Raycast, and spends time contemplating life’s great questions, like why the build works on his machine but nowhere else.',
     media: speakerImg('faris'),
+    mask: speakerMask('faris'),
     talk: {
       title: 'Caching payloads and other dark arts: optimizing UX in suboptimal conditions',
       date: 'Friday 15 May',
@@ -246,6 +258,7 @@ export const speakers = [
     topic: 'Web Components',
     bio: 'Cassondra Roberts is a design systems architect and W3C CSS Working Group invited expert specializing in web component architecture. She founded PatternFly Elements at Red Hat—the open source design system now used across organizations like Google, IBM, and Fidelity—and spent four years advancing Adobe’s Spectrum Design System, where she led CSS architecture and AI integration.\n\nWith over a decade building component libraries at enterprise scale, Cassondra focuses on the critical architectural decisions that make design systems scalable, maintainable, and accessible. She’s passionate about web standards, component design, and helping teams choose the right architecture for their specific needs. Through Allons-y Consulting, she helps organizations build design systems that actually work.',
     media: speakerImg('cassondra'),
+    mask: speakerMask('cassondra'),
     talk: {
       title: 'Sisyphus Had It Easy: Navigating the Web Component Styling Landscape',
       date: 'Thursday 14 May',
@@ -267,6 +280,7 @@ export const speakers = [
     topic: 'Node.js',
     bio: 'Andrei is an eclectic code designer, developing websites and web apps since 2000. Currently working as a Platform Engineer, his everyday battles revolve around Clean Code Design, User & Developer Experience, Performance, and fighting software entropy through constant Refactoring, Automated Testing, and Code Reviews.',
     media: speakerImg('andrei'),
+    mask: speakerMask('andrei'),
     talk: {
       title: 'Retired dependencies',
       date: 'Thursday 14 May',
@@ -287,6 +301,7 @@ export const speakers = [
     topic: 'DX',
     bio: 'Siddharth Dayalwal is a developer community and ecosystem builder with an experience in designing and scaling global developer programs, hackathons, and ambassador initiatives. He   has worked closely with product, growth, and developer experience teams to drive adoption, gather feedback, and support builders at scale. Outside of his professional role, he runs Hack This Fall, one of India’s most active builder communities, and is deeply passionate about empowering developers through learning, collaboration, and community-led growth.',
     media: speakerImg('siddharth'),
+    mask: speakerMask('siddharth'),
     talk: {
       title: 'The cognitive load crisis: how modern web systems burn out teams',
       date: 'Friday 15 May',
@@ -312,6 +327,7 @@ export const speakers = [
     topic: 'Code Quality',
     bio: 'Richard Gross is an IT archaeologist at MaibornWolff with more than ten years of modernization experience. His focus is on hexagonal architectures, hypermedia APIs, TestDSLs and the expressive and unambiguous modelling of the domain as code. He enjoys mastering TDD, BDD, DDD, decoupled design and even practices that don’t include two D’s. He also shaped the open source project CodeCharta, which lets even non-developers grasp the quality of their software.',
     media: speakerImg('richard'),
+    mask: speakerMask('richard'),
     talk: {
       title: 'Making sense of frontend code with forensic techniques',
       date: 'Friday 15 May',
@@ -334,6 +350,7 @@ export const speakers = [
     topic: 'Creative Coding',
     bio: 'JavaScript and Web enthusiast, pushing web security to the limit building LavaMoat and Endo. Started using Node.js at v0.8 and never stopped. Enjoys innovating and teaching security, diagnostics and maintainability. One of the oldest members of meet.js Poland community - both as a speaker and organizer. Hacking JavaScript since his teenage years.',
     media: speakerImg('zbyszek'),
+    mask: speakerMask('zbyszek'),
     talk: {
       title: '25 years of embracing the weird',
       date: 'Friday 15 May',
@@ -399,7 +416,9 @@ const generateIndexPage = () => {
           </a>
         </h3>
         <div class="speaker-image">
-          <p class="medium-heading caps" style="--vt: ${speaker.id}-topic">${speaker.topic}</p>
+          <div class="speaker-topic-container" style="--mask-image: url(${speaker.mask}); --vt: ${speaker.id}-topic">
+            <p class="medium-heading caps">${speaker.topic}</p>
+          </div>
           <img src="${speaker.media}" alt="${speaker.name}">
         </div>
       </li>
@@ -440,9 +459,10 @@ const generateSpeakerPages = () => {
       .replace(/{ speaker media }/g, `../../${speaker.media}`)
       .replace(/{ speaker name replace spaces with dash }/g, speaker.id)
       .replace(/{ speaker talk title }/g, speaker.talk.title)
-      .replace(/{ speaker talk date }/g, speaker.talk.isoStart)
+      .replace(/{ speaker talk date }/g, new Date(speaker.talk.isoStart).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }))
       .replace(/{ speaker talk time }/g, speaker.talk.startTime)
       .replace(/{ speaker talk description }/g, speaker.talk.description)
+      .replace(/{ speaker mask }/g, `../../${speaker.mask}`)
 
     const outputPath = join(__dirname, 'js-heroes', 'speakers', speaker.id, 'index.html')
     mkdirSync(join(__dirname, 'js-heroes', 'speakers', speaker.id), { recursive: true })

@@ -19,7 +19,7 @@
 }
 
 .xlarge-heading {
-  --font-size: max(calc(var(--vw) * 400), calc(var(--rem) * 120));
+  --font-size: clamp(calc(var(--rem) * 120), calc(var(--vw) * 400), calc(var(--max-rem) * 400));
   font-size: var(--font-size);
   &.has-vertical-max {
     font-size: min(40svh, var(--font-size));
@@ -27,7 +27,7 @@
 }
 
 .large-heading {
-  --font-size: max(calc(var(--vw) * 280), calc(var(--rem) * 100));
+  --font-size: clamp(calc(var(--rem) * 100), calc(var(--vw) * 280), calc(var(--max-rem) * 280));
   font-size: var(--font-size);
   &.has-vertical-max {
     font-size: min(25svh, var(--font-size));
@@ -38,28 +38,30 @@
 }
 
 .mediumlarge-heading {
-  font-size: max(calc(var(--vw) * 200), calc(var(--rem) * 80));
+  font-size: clamp(calc(var(--rem) * 80), calc(var(--vw) * 200), calc(var(--max-rem) * 200));
   line-height: 1.001;
 }
 
 .medium-heading {
-  --font-size: max(calc(var(--vw) * 64), calc(var(--rem) * 40));
+  --font-size: clamp(calc(var(--rem) * 40), calc(var(--vw) * 64), calc(var(--max-rem) * 64));
   font-size: var(--font-size);
+  line-height: 1.001;
   &.has-vertical-max {
     font-size: min(5svh, var(--font-size));
   }
 }
 
 .small-heading {
-  font-size: max(calc(var(--vw) * 40), calc(var(--rem) * 32));
+  font-size: clamp(calc(var(--rem) * 32), calc(var(--vw) * 40), calc(var(--max-rem) * 40));
+  line-height: 1.001;
 }
 
 .large-body {
-  font-size: max(calc(var(--vw) * 24), calc(var(--rem) * 20));
+  font-size: clamp(calc(var(--rem) * 20), calc(var(--vw) * 24), calc(var(--max-rem) * 24));
 }
 
 .small-body {
-  font-size: max(calc(var(--vw) * 16), calc(var(--rem) * 16));
+  font-size: clamp(calc(var(--rem) * 16), calc(var(--vw) * 16), calc(var(--max-rem) * 16));
 }
 
 .caps {
@@ -70,4 +72,25 @@
 strong {
   font-variation-settings:
     'wght' 600;
+}
+
+
+
+.p {
+  div + div {
+    margin-top: 1em;
+  }
+  p + p {
+    margin-top: 1em;
+  }
+  p {
+    & + * {
+      margin-top: 1em;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    & + * {
+      margin-top: 1em;
+    }
+  }
 }
