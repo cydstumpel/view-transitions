@@ -6,3 +6,5 @@
 [https://cydstumpel.github.io/view-transitions/css-day/](https://cydstumpel.github.io/view-transitions/css-day/)
 ## Wey Wey Web
 [https://cydstumpel.github.io/view-transitions/wey-wey-web/](https://cydstumpel.github.io/view-transitions/wey-wey-web/)
+## JSHeroes
+[https://cydstumpel.github.io/view-transitions/js-heroes/](https://cydstumpel.github.io/view-transitions/js-heroes/)
