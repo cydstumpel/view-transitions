@@ -5,11 +5,13 @@
   inherits: true;
   initial-value: 7;
 }
+
 @property --sibling-index {
   syntax: '<number>';
   inherits: true;
   initial-value: 0;
 }
+
 @property --sibling-count {
   syntax: '<number>';
   inherits: true;
@@ -19,7 +21,11 @@
 /* Variables: */
 :root {
   --design-size: 1440;
+  --max-width-size: 1920;
+  --max-width: 1920px;
   --rem: 0.0625rem;
+  --max-rem: var(--max-width)/var(--design-size);
+
   --vw: 100 / var(--design-size) * 1vw;
   --padding-inline: max(calc(var(--vw) * 12), calc(var(--rem) * 12));
   --padding-block: max(calc(var(--vw) * 80), calc(var(--rem) * 48));
@@ -173,7 +179,7 @@ body {
 
 /* Page header */
 .page-header {
-  min-height: 150svh;
+  min-height: 200svh;
   view-timeline-name: --page-header;
   animation: fade-in 1s 0.1s both var(--ease-back);
 
@@ -230,6 +236,7 @@ body {
     @media (max-width: 768px) {
       animation-range: entry 100svh exit 50%;
     }
+
     svg {
       transition: rotate 0s ease-out;
       transform-box: fill-box;
@@ -341,6 +348,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--padding-inline);
+
     @media (prefers-reduced-motion: no-preference) {
       animation-name: move-up;
       animation-timeline: --page-header;
@@ -504,6 +512,7 @@ body {
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-50%);
   }
@@ -539,37 +548,35 @@ body {
 
 .speakers,
 .crew {
+  max-width: calc(var(--max-width-size) * var(--rem));
+  margin: 0 auto;
   padding: var(--padding-block) var(--padding-inline) 0;
 }
 
 .speaker-grid,
 .support-grid {
   view-timeline-name: --speaker-grid;
+  grid-template-columns: repeat(3, 1fr);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: var(--gap);
   list-style: none;
   padding: var(--vertical-gap) 0 0;
 }
 
 .speaker-grid {
-  @media (max-width: 1440px) {
-    grid-template-columns: repeat(3, 1fr);
-
-    .speaker:nth-child(3n + 1),
-    .speaker:nth-child(3n + 3) {
-      @media (prefers-reduced-motion: no-preference) {
-        animation-name: grid-scroll-speed;
-        animation-timeline: --speaker-grid;
-        animation-range: entry 100lvh contain;
-        animation-fill-mode: both;
-      }
+  .speaker:nth-child(3n + 1),
+  .speaker:nth-child(3n + 3) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: grid-scroll-speed;
+      animation-timeline: --speaker-grid;
+      animation-range: entry 100lvh contain;
+      animation-fill-mode: both;
     }
+  }
 
-    .speaker:last-child {
-      grid-column: 2;
-      animation: none;
-    }
+  .speaker:last-child {
+    grid-column: 2;
+    animation: none;
   }
 
   @media (max-width: 768px) {
@@ -674,14 +681,18 @@ body {
     }
   }
 
-  p {
-    white-space: nowrap;
+  .speaker-topic-container {
     position: absolute;
-    z-index: 0;
     top: 0;
     left: 0;
-    padding: calc(var(--rem) * 14);
+    right: 0;
+    bottom: 0;
+    z-index: 0;
 
+    p {
+      white-space: nowrap;
+      padding: calc(var(--rem) * 14);
+    }
   }
 
   .speaker-image {
@@ -729,7 +740,7 @@ body {
     height: 100%;
     object-fit: cover;
     filter: grayscale(1);
-    transition: transform 0.4s ease-out;
+    transition: transform 0.2s ease-out;
     transform: translateY(10%);
     will-change: transform;
     border-radius: var(--padding-inline);
@@ -749,7 +760,8 @@ body {
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
   padding: var(--padding-block) var(--padding-inline);
-
+  max-width: calc(var(--max-width-size) * var(--rem));
+  margin: 0 auto;
   h2 {
     grid-column: 1 / -1;
   }
