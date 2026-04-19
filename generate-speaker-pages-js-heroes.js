@@ -9,7 +9,7 @@ import { mkdirSync } from 'node:fs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const speakerImg = (firstName) => `./assets/img/${firstName}.png`
-const speakerMask = (firstName) => `./assets/img/masks/temp/${firstName}-mask.png`
+const speakerMask = (firstName) => `./assets/img/masks/${firstName}-mask.png`
 
 export const conference = {
   name: 'JSHeroes',
