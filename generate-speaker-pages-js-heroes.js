@@ -440,7 +440,7 @@ const generateSpeakerPages = () => {
       .replace(/{ speaker media }/g, `../../${speaker.media}`)
       .replace(/{ speaker name replace spaces with dash }/g, speaker.id)
       .replace(/{ speaker talk title }/g, speaker.talk.title)
-      .replace(/{ speaker talk date }/g, speaker.talk.isoStart)
+      .replace(/{ speaker talk date }/g, new Date(speaker.talk.isoStart).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }))
       .replace(/{ speaker talk time }/g, speaker.talk.startTime)
       .replace(/{ speaker talk description }/g, speaker.talk.description)
 
