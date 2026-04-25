@@ -47,13 +47,6 @@
 
 
 
-
-/*
-html {
-  container-name: scroller;
-  container-type: scroll-state;
-} */
-
 /* .marquee {
   @media (prefers-reduced-motion: no-preference) {
     position: sticky;
@@ -62,6 +55,13 @@ html {
     transition: transform 0.3s ease-out;
   }
 } */
+
+/*
+html {
+  container-name: scroller;
+  container-type: scroll-state;
+} */
+
 
 /* @container scroller scroll-state(scrolled: block-end) {
   .marquee {
