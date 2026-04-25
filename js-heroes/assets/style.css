@@ -1,22 +1,6 @@
+@import 'live';
 @import 'typography.css';
 
-@property --multiplier {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 7;
-}
-
-@property --sibling-index {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --sibling-count {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
 
 /* Variables: */
 :root {
@@ -64,27 +48,6 @@
   clip: rect(0 0 0 0);
   /* for IE only */
   clip-path: inset(50%);
-}
-
-html {
-  container-name: scroller;
-  container-type: scroll-state;
-}
-
-@container scroller scroll-state(scrolled: block-end) {
-  .marquee {
-    transform: translateY(-100%);
-  }
-
-  nav.nav {
-    translate: 0 0;
-  }
-}
-
-@container scroller scroll-state(scrolled: block-start) {
-  .rocket svg {
-    rotate: -180deg;
-  }
 }
 
 body {
@@ -143,15 +106,12 @@ body {
 }
 
 .marquee {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+
   overflow: clip;
   padding: 0.5em 0 0.4em;
   background-color: var(--color-text);
   color: var(--color-background);
   width: 100%;
-  transition: transform 0.3s ease-out;
 
   .marquee-inner {
     width: max-content;
@@ -162,8 +122,6 @@ body {
     }
   }
 }
-
-
 
 @keyframes marquee {
   0% {
@@ -179,14 +137,9 @@ body {
 
 /* Page header */
 .page-header {
-  min-height: 200svh;
-  view-timeline-name: --page-header;
   animation: fade-in 1s 0.1s both var(--ease-back);
 
-
   .page-header__inner {
-    position: sticky;
-    top: 0;
 
     display: grid;
     grid-template-columns: var(--grid-columns);
@@ -199,12 +152,7 @@ body {
     width: 100%;
     overflow-x: clip;
 
-    @media (prefers-reduced-motion: no-preference) {
-      animation-name: scroll-multiplier;
-      animation-timeline: --page-header;
-      animation-range: entry 100svh cover;
-      animation-fill-mode: both;
-    }
+
 
     @media (max-width: 768px) {
       grid-template-rows: auto auto auto;
@@ -224,14 +172,6 @@ body {
     aspect-ratio: 1;
     transform-origin: center 120vh;
     overflow: visible;
-
-    @media (prefers-reduced-motion: no-preference) {
-      animation-name: rocket-fly;
-      animation-timing-function: ease-in-out;
-      animation-timeline: --page-header;
-      animation-range: entry 100svh contain;
-      animation-fill-mode: both;
-    }
 
     @media (max-width: 768px) {
       animation-range: entry 100svh exit 50%;
@@ -256,26 +196,7 @@ body {
       grid-row: 1;
     }
 
-    span {
-      --sibling-index: sibling-index();
-      --sibling-count: sibling-count();
-      --i: calc((var(--sibling-index) - 1) / (var(--sibling-count) - 1));
-      --start-angle: 30deg;
-      --angle: calc(180deg - var(--start-angle) * 2);
 
-      --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
-      --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
-
-      display: inline-block;
-
-      @supports (transform: rotate(calc(var(--cos-calc) * 1deg))) {
-        @media (prefers-reduced-motion: no-preference) {
-          animation:
-            breathe 10s var(--ease-in-out) infinite,
-            expand 1.5s both var(--ease-back);
-        }
-      }
-    }
   }
 
   .black-hole {
@@ -299,14 +220,6 @@ body {
       translate: 0 0;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      animation-name: up-out;
-      animation-timeline: --page-header;
-      animation-range: entry 100svh contain;
-      animation-timing-function: ease-out;
-      animation-fill-mode: both;
-    }
-
   }
 
   .circle {
@@ -321,14 +234,6 @@ body {
     .bear-container {
       width: 100%;
       height: 100%;
-
-      @media (prefers-reduced-motion: no-preference) {
-        animation-name: rotate-bear;
-        animation-timing-function: ease-in-out;
-        animation-timeline: --page-header;
-        animation-range: entry 100svh contain;
-        animation-fill-mode: both;
-      }
 
       @media (max-width: 768px) {
         animation-range: entry 100svh exit;
@@ -348,13 +253,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--padding-inline);
-
-    @media (prefers-reduced-motion: no-preference) {
-      animation-name: move-up;
-      animation-timeline: --page-header;
-      animation-range: entry 100svh contain;
-      animation-fill-mode: both;
-    }
 
     @media (max-width: 768px) {
       grid-row: 3;
@@ -387,18 +285,10 @@ body {
     transform: translateZ(100px);
 
     @media (prefers-reduced-motion: no-preference) {
-      animation-name: world-orbit;
-      transform-style: preserve-3d;
-      animation-timeline: --page-header;
-      animation-timing-function: ease-out;
-      animation-range: entry 100svh cover;
-      animation-fill-mode: both;
-
       @media (max-width: 768px) {
         --max-y: 22svh;
       }
     }
-
   }
 
   .world {
@@ -419,27 +309,6 @@ body {
 
   100% {
     scale: 1;
-  }
-}
-
-@keyframes breathe {
-  50% {
-    translate: calc(var(--cos-calc) * 0.1vw) calc(var(--sin-calc) * 0.1vw);
-  }
-}
-
-
-@keyframes expand {
-  0% {
-    transform: translateX(calc(var(--cos-calc) * -10%)) translateY(calc(var(--sin-calc) * -4%));
-  }
-
-  60% {
-    transform: translateX(calc(var(--cos-calc) * 0.6%)) rotate(calc(var(--cos-calc) * 1deg)) translateY(calc(var(--sin-calc) * 4%)) translateY(20%);
-  }
-
-  100% {
-    transform: translateX(calc(var(--cos-calc) * 5%)) rotate(calc(var(--cos-calc) * 3deg)) translateY(calc(var(--sin-calc) * 10%)) translateY(50%);
   }
 }
 
@@ -497,27 +366,6 @@ body {
 }
 
 
-@keyframes rocket-fly {
-  0% {
-    transform: translate(-50%, 0) rotate(-60deg);
-  }
-
-  100% {
-    transform: translate(-50%, 0) rotate(150deg);
-  }
-}
-
-
-@keyframes move-up {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(-50%);
-  }
-}
-
 @keyframes world-rotate {
   0% {
     rotate: 0deg;
@@ -535,16 +383,7 @@ body {
 }
 
 
-@keyframes rotate-bear {
-  0% {
-    rotate: 0deg;
-  }
 
-  100% {
-    rotate: 360deg;
-    scale: 0;
-  }
-}
 
 .speakers,
 .crew {
@@ -555,7 +394,6 @@ body {
 
 .speaker-grid,
 .support-grid {
-  view-timeline-name: --speaker-grid;
   grid-template-columns: repeat(3, 1fr);
   display: grid;
   gap: var(--gap);
@@ -564,15 +402,6 @@ body {
 }
 
 .speaker-grid {
-  .speaker:nth-child(3n + 1),
-  .speaker:nth-child(3n + 3) {
-    @media (prefers-reduced-motion: no-preference) {
-      animation-name: grid-scroll-speed;
-      animation-timeline: --speaker-grid;
-      animation-range: entry 100lvh contain;
-      animation-fill-mode: both;
-    }
-  }
 
   .speaker:last-child {
     grid-column: 2;
@@ -607,17 +436,6 @@ body {
 
   @media (max-width: 350px) {
     grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-
-@keyframes grid-scroll-speed {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(calc(100% + var(--gap)));
   }
 }
 
@@ -803,56 +621,11 @@ footer {
 }
 
 
-@keyframes scroll-multiplier {
-  0% {
-    --multiplier: 7;
-  }
 
-  100% {
-    --multiplier: 20;
-  }
-}
 
-@keyframes up-out {
-  0% {
-    transform: translateY(0);
-  }
 
-  100% {
-    scale: 0;
-    transform: translateY(-100%);
-  }
-}
 
-@keyframes world-orbit {
-  5% {
-    translate: 5vw -2svh;
-    transform: translateZ(100px);
 
-  }
-
-  35% {
-    transform: translateZ(-200px);
-  }
-
-  40% {
-    translate: -65vw var(--max-y, 35svh);
-  }
-
-  45% {
-    transform: translateZ(100px);
-  }
-
-  90% {
-    translate: -15vw 5svh;
-    transform: translateZ(100px);
-  }
-
-  100% {
-    translate: 50vw -10svh;
-    transform: translateZ(100px);
-  }
-}
 
 .speaker-header {
   display: grid;
