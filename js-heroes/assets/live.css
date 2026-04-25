@@ -1,122 +1,29 @@
-@property --multiplier {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 7;
-}
+.page-header span {
+  /* For safari we need to declare sibling index and count as properties, or the animation will break 🤷🏻‍♀️ */
+  --sibling-index: sibling-index();
+  --sibling-count: sibling-count();
+  /*
+    Creates a number from 0 - 1 based on amount of spans and the index of the current span
+  */
+  --i: calc((var(--sibling-index) - 1) / (var(--sibling-count) - 1));
 
-@property --sibling-index {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
+  /*
+    Makes the arc less prominent by starting at 30 degrees and ending at 150 degrees.
+  */
+  --start-angle: 30deg;
+  --angle: calc(180deg - var(--start-angle) * 2);
 
-@property --sibling-count {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
+  /*
+    Calculates the sine and cosine of the angle based on the start angle, angle, and index.
+  */
+  --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
+  --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
 
-.speaker-grid {
-  /* use the speaker-grid container as the trigger for the animation */
-  /* view-timeline-name: --speaker-grid; */
-
-  /* animate the first and third items in a loop of three */
-  /* .speaker:nth-child(3n + 1),
-  .speaker:nth-child(3n + 3) {
-    @supports (animation-timeline: --speaker-grid) {
-      @media (prefers-reduced-motion: no-preference) {
-        animation-timeline: --speaker-grid;
-        animation-name: grid-scroll-speed;
-        animation-range: entry 100lvh contain;
-        animation-fill-mode: both;
-      }
-    }
-  } */
-}
-
-
-@keyframes grid-scroll-speed {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(calc(100% + var(--gap)));
-  }
-}
-
-
-
-/* .marquee {
-  @media (prefers-reduced-motion: no-preference) {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    transition: transform 0.3s ease-out;
-  }
-} */
-
-/*
-html {
-  container-name: scroller;
-  container-type: scroll-state;
-} */
-
-
-/* @container scroller scroll-state(scrolled: block-end) {
-  .marquee {
-    transform: translateY(-100%);
-  }
-
-  nav.nav {
-    translate: 0 0;
-  }
-} */
-
-/* @container scroller scroll-state(scrolled: block-start) {
-  .rocket svg {
-    rotate: -180deg;
-  }
-} */
-
-.page-header {
-  view-timeline-name: --page-header;
-
-  /* @media (prefers-reduced-motion: no-preference) {
-    min-height: 200svh;
-
-    .page-header__inner {
-      position: sticky;
-      top: 0;
-    }
-  } */
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation-name: scroll-multiplier;
-    animation-timeline: --page-header;
-    animation-range: entry 100svh cover;
-    animation-fill-mode: both;
-  }
-
-  span {
-    --sibling-index: sibling-index();
-    --sibling-count: sibling-count();
-    --i: calc((var(--sibling-index) - 1) / (var(--sibling-count) - 1));
-    --start-angle: 30deg;
-    --angle: calc(180deg - var(--start-angle) * 2);
-
-    --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
-    --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
-
-    display: inline-block;
-
-    @supports (transform: rotate(calc(var(--cos-calc) * 1deg))) {
-      @media (prefers-reduced-motion: no-preference) {
-        /* animation: expand 1.5s both var(--ease-back); */
-      }
+  @supports (transform: rotate(calc(cos() * 1deg))) {
+    @media (prefers-reduced-motion: no-preference) {
+      /* animation: expand 1.5s both var(--ease-back); */
     }
   }
-
 }
 
 @keyframes expand {
@@ -133,6 +40,33 @@ html {
   }
 }
 
+.page-header {
+  /*
+    Allows us to use a different element's position for the start and end trigger of the animation
+  */
+  /* view-timeline-name: --page-header; */
+
+  /*
+    Makes the header sticky so the animation has time to play out while the user scrolls
+  */
+  /* @media (prefers-reduced-motion: no-preference) {
+    min-height: 200svh;
+
+    .page-header__inner {
+      position: sticky;
+      top: 0;
+    }
+  } */
+  /*
+    Animates the --multiplier property with a scroll driven animation so it grows as the user scrolls
+  */
+  /* @media (prefers-reduced-motion: no-preference) {
+    animation-name: scroll-multiplier;
+    animation-timeline: --page-header;
+    animation-range: entry 100svh cover;
+    animation-fill-mode: both;
+  } */
+}
 
 @keyframes scroll-multiplier {
   0% {
@@ -144,7 +78,7 @@ html {
   }
 }
 
-/* .black-hole {
+/* .page-header .black-hole {
   @media (prefers-reduced-motion: no-preference) {
     animation-name: up-out;
     animation-timeline: --page-header;
@@ -165,7 +99,7 @@ html {
   }
 }
 
-/* .bear-container {
+/* .page-header .bear-container {
    @media (prefers-reduced-motion: no-preference) {
      animation-name: rotate-bear;
      animation-timing-function: ease-in-out;
@@ -186,28 +120,6 @@ html {
   }
 }
 
-
-/* .rocket {
-  @media (prefers-reduced-motion: no-preference) {
-    animation-name: rocket-fly;
-    animation-timing-function: ease-in-out;
-    animation-timeline: --page-header;
-    animation-range: entry 100svh contain;
-    animation-fill-mode: both;
-  }
-} */
-
-@keyframes rocket-fly {
-  0% {
-    transform: translate(-50%, 0) rotate(-60deg);
-  }
-
-  100% {
-    transform: translate(-50%, 0) rotate(150deg);
-  }
-}
-
-
 /* .page-header-bottom {
   @media (prefers-reduced-motion: no-preference) {
     animation-name: move-up;
@@ -226,6 +138,7 @@ html {
     transform: translateY(-50%);
   }
 }
+
 
 /*
 .world-container {
@@ -267,3 +180,84 @@ html {
     transform: translateZ(100px);
   }
 }
+
+/* .page-header .rocket {
+  @media (prefers-reduced-motion: no-preference) {
+    animation-name: rocket-fly;
+    animation-timing-function: ease-in-out;
+    animation-timeline: --page-header;
+    animation-range: entry 100svh contain;
+    animation-fill-mode: both;
+  }
+} */
+
+@keyframes rocket-fly {
+  0% {
+    transform: translate(-50%, 0) rotate(-60deg);
+  }
+
+  100% {
+    transform: translate(-50%, 0) rotate(150deg);
+  }
+}
+
+
+/* .marquee {
+  @media (prefers-reduced-motion: no-preference) {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: transform 0.3s ease-out;
+  }
+} */
+
+
+/* html {
+  container-name: scroller;
+  container-type: scroll-state;
+} */
+
+
+/* @container scroller scroll-state(scrolled: block-end) {
+  .marquee {
+    transform: translateY(-100%);
+  }
+} */
+
+/* @container scroller scroll-state(scrolled: block-start) {
+  .rocket svg {
+    rotate: -180deg;
+  }
+} */
+
+
+.speaker-grid {
+  /* use the speaker-grid container as the trigger for the animation */
+  /* view-timeline-name: --speaker-grid; */
+
+  /* animate the first and third items in a loop of three */
+  /* .speaker:nth-child(3n + 1),
+  .speaker:nth-child(3n + 3) {
+    @supports (animation-timeline: --speaker-grid) {
+      @media (prefers-reduced-motion: no-preference) {
+        animation-timeline: --speaker-grid;
+        animation-range: entry 100lvh contain;
+        animation-name: grid-scroll-speed;
+        animation-fill-mode: both;
+      }
+    }
+  } */
+}
+
+
+@keyframes grid-scroll-speed {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(100% + var(--gap)));
+  }
+}
+
+
