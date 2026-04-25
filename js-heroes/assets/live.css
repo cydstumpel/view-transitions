@@ -18,7 +18,7 @@
 
 .speaker-grid {
   /* use the speaker-grid container as the trigger for the animation */
-  view-timeline-name: --speaker-grid;
+  /* view-timeline-name: --speaker-grid; */
 
   /* animate the first and third items in a loop of three */
   /* .speaker:nth-child(3n + 1),
