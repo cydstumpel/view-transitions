@@ -23,11 +23,13 @@
   /* animate the first and third items in a loop of three */
   /* .speaker:nth-child(3n + 1),
   .speaker:nth-child(3n + 3) {
-    @media (prefers-reduced-motion: no-preference) {
-      animation-timeline: --speaker-grid;
-      animation-name: grid-scroll-speed;
-      animation-range: entry 100lvh contain;
-      animation-fill-mode: both;
+    @supports (animation-timeline: --speaker-grid) {
+      @media (prefers-reduced-motion: no-preference) {
+        animation-timeline: --speaker-grid;
+        animation-name: grid-scroll-speed;
+        animation-range: entry 100lvh contain;
+        animation-fill-mode: both;
+      }
     }
   } */
 }
