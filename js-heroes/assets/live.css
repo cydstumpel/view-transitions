@@ -19,7 +19,7 @@
   --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
   --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
 
-  @supports (transform: rotate(calc(cos() * 1deg))) {
+  @supports (transform: rotate(calc(var(--cos-calc) * 1deg))) {
     @media (prefers-reduced-motion: no-preference) {
       /* animation: expand 1.5s both var(--ease-back); */
     }
