@@ -8,7 +8,7 @@ const multiplier = 7
 spans.forEach((span, index) => {
   // --i: calc((var(--sibling-index) - 1) / (var(--sibling-count) - 1));
   const i = index / (spans.length - 1)
-  // console.log(span.innerText, i)
+  console.log(span.innerText, i)
 
   // --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
   const sinCalc = (Math.sin(startAngle + angle * i) * -1 - 0.5) * multiplier
