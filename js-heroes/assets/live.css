@@ -27,23 +27,24 @@
   --start-angle: 0deg;
   --angle: 180deg;
 
-  /* Make the arc less prominent by starting at 30 degrees and ending at 150 degrees.
-
-  --start-angle: 30deg;
-  --angle: 180deg - var(--start-angle) * 2;
-  */
 
   /*
-    Calculates the sine and cosine of the angle based on the start angle, angle, and index.
+  Calculates the sine and cosine of the angle based on the start angle, angle, and index.
   */
   --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
 
   --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
+
   /* Transform the letters
   transform: translateY(calc(var(--sin-calc) * 5%));
   transform: rotate(calc(var(--cos-calc) * 3deg));
   transform: translateX(calc(var(--cos-calc) * 5%));
   transform: translateY(calc(var(--sin-calc) * 10%)) translateY(50%) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%));
+  */
+
+  /* Make the arc less prominent by starting at 30 degrees and ending at 150 degrees.
+  --start-angle: 30deg;
+  --angle: 180deg - var(--start-angle) * 2;
   */
 
   @supports (transform: rotate(calc(var(--cos-calc) * 1deg))) {
