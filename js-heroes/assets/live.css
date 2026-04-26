@@ -75,6 +75,7 @@
   /* add a view timeline name to the page header so we can use it for the triggers of the animation
   view-timeline-name: --page-header; */
 
+
   @media (prefers-reduced-motion: no-preference) {
     min-height: 200svh;
 
@@ -107,7 +108,6 @@
     --multiplier: 20;
   }
 }
-
 
 /* .black-hole {
   @media (prefers-reduced-motion: no-preference) {
@@ -228,12 +228,15 @@
 
 
 html {
+
   /* Add Container Queries 🔥 to the page so we can use them for scroll state queries
   container-name: scroller;
   container-type: scroll-state;
  */
   /* Scroll state queries are only supported in chrome and edge right now  */
+  @media (prefers-reduced-motion: no-preference) {
 
+  }
 }
 
 
@@ -244,13 +247,6 @@ html {
   }
 } */
 
-
-/* Turn the rocket around based on scroll direction
-@container scroller scroll-state(scrolled: block-start) {
-  .rocket svg {
-    rotate: -180deg;
-  }
-} */
 
 
 .speaker-grid {
