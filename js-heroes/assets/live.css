@@ -257,7 +257,6 @@ html {
   /* Use the speaker-grid container as the trigger for the animation
     view-timeline-name: --speaker-grid;
   */
-  view-timeline-name: --speaker-grid;
 
   /* Animate the first and third items in a loop of three (dont forget @supports & prefers reduced motion)
   .speaker:nth-child(3n + 1),
@@ -270,16 +269,7 @@ html {
       }
     }
   } */
-  .speaker:nth-child(3n + 1),
-  .speaker:nth-child(3n + 3) {
-    @supports (animation-timeline: --speaker-grid) {
-      @media (prefers-reduced-motion: no-preference) {
-        animation-timeline: --speaker-grid;
-        animation-range: entry 100lvh contain;
-        animation-name: grid-scroll-speed;
-      }
-    }
-  }
+
 }
 
 
