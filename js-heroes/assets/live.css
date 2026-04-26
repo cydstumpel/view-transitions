@@ -49,23 +49,22 @@
   /*
     Makes the header sticky so the animation has time to play out while the user scrolls
   */
-  /* @media (prefers-reduced-motion: no-preference) {
-    min-height: 200svh;
+  @media (prefers-reduced-motion: no-preference) {
+    /* min-height: 200svh; */
 
     .page-header__inner {
-      position: sticky;
-      top: 0;
+      /* position: sticky;
+      top: 0; */
+      @media (prefers-reduced-motion: no-preference) {
+        /* animation-name: scroll-multiplier;
+        animation-timeline: --page-header;
+        animation-range: entry 100svh cover; */
+      }
     }
-  } */
+  }
   /*
     Animates the --multiplier property with a scroll driven animation so it grows as the user scrolls
   */
-  /* @media (prefers-reduced-motion: no-preference) {
-    animation-name: scroll-multiplier;
-    animation-timeline: --page-header;
-    animation-range: entry 100svh cover;
-    animation-fill-mode: both;
-  } */
 }
 
 @keyframes scroll-multiplier {
@@ -78,15 +77,13 @@
   }
 }
 
-/* .page-header .black-hole {
+.black-hole {
   @media (prefers-reduced-motion: no-preference) {
-    animation-name: up-out;
+    /* animation-name: up-out;
     animation-timeline: --page-header;
-    animation-range: entry 100svh contain;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+    animation-range: entry 100svh contain; */
   }
-} */
+}
 
 @keyframes up-out {
   0% {
@@ -95,19 +92,17 @@
 
   100% {
     scale: 0;
-    transform: translateY(-100%);
+    transform: translateY(-300%);
   }
 }
 
-/* .page-header .bear-container {
+.page-header .bear-container {
    @media (prefers-reduced-motion: no-preference) {
-     animation-name: rotate-bear;
-     animation-timing-function: ease-in-out;
+     /* animation-name: rotate-bear;
      animation-timeline: --page-header;
-     animation-range: entry 100svh contain;
-     animation-fill-mode: both;
+     animation-range: entry 100svh contain; */
    }
- } */
+ }
 
 @keyframes rotate-bear {
   0% {
@@ -120,14 +115,14 @@
   }
 }
 
-/* .page-header-bottom {
+.page-header-bottom {
   @media (prefers-reduced-motion: no-preference) {
-    animation-name: move-up;
+    /* animation-name: move-up;
     animation-timeline: --page-header;
     animation-range: entry 100svh contain;
-    animation-fill-mode: both;
+    animation-fill-mode: both; */
   }
-} */
+}
 
 @keyframes move-up {
   0% {
@@ -140,17 +135,15 @@
 }
 
 
-/*
+
 .world-container {
   @media (prefers-reduced-motion: no-preference) {
-    animation-name: world-orbit;
-    transform-style: preserve-3d;
+    /* animation-name: world-orbit;
     animation-timeline: --page-header;
-    animation-timing-function: ease-out;
     animation-range: entry 100svh cover;
-    animation-fill-mode: both;
+    animation-fill-mode: both; */
   }
-} */
+}
 
 @keyframes world-orbit {
   5% {
@@ -184,10 +177,8 @@
 /* .page-header .rocket {
   @media (prefers-reduced-motion: no-preference) {
     animation-name: rocket-fly;
-    animation-timing-function: ease-in-out;
     animation-timeline: --page-header;
     animation-range: entry 100svh contain;
-    animation-fill-mode: both;
   }
 } */
 
@@ -243,7 +234,6 @@
         animation-timeline: --speaker-grid;
         animation-range: entry 100lvh contain;
         animation-name: grid-scroll-speed;
-        animation-fill-mode: both;
       }
     }
   } */
