@@ -108,6 +108,12 @@ body {
 }
 
 .marquee {
+  @media (prefers-reduced-motion: no-preference) {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: transform 0.3s ease-out;
+  }
 
   overflow: clip;
   padding: 0.5em 0 0.4em;
@@ -263,6 +269,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--padding-inline);
+    animation-fill-mode: both;
 
     @media (max-width: 768px) {
       grid-row: 3;
@@ -295,6 +302,7 @@ body {
     transform: translateZ(100px);
     transform-style: preserve-3d;
     animation-timing-function: ease-out;
+    animation-fill-mode: both;
 
 
     @media (prefers-reduced-motion: no-preference) {
