@@ -2,23 +2,7 @@
 @import 'typography.css';
 
 
-@property --multiplier {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 7;
-}
 
-@property --sibling-index {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --sibling-count {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
 
 /* Variables: */
 :root {

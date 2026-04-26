@@ -1,3 +1,21 @@
+@property --multiplier {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 7;
+}
+
+@property --sibling-index {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --sibling-count {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
 .page-header span {
   /* For safari we need to declare sibling index and count as properties, or the animation will break 🤷🏻‍♀️ */
   --sibling-index: sibling-index();
@@ -6,22 +24,33 @@
     Creates a number from 0 - 1 based on amount of spans and the index of the current span
   */
   --i: calc((var(--sibling-index) - 1) / (var(--sibling-count) - 1));
+  --start-angle: 0deg;
+  --angle: 180deg;
 
-  /*
-    Makes the arc less prominent by starting at 30 degrees and ending at 150 degrees.
-  */
+  /* Make the arc less prominent by starting at 30 degrees and ending at 150 degrees.
+
   --start-angle: 30deg;
-  --angle: calc(180deg - var(--start-angle) * 2);
+  --angle: 180deg - var(--start-angle) * 2;
+  */
 
   /*
     Calculates the sine and cosine of the angle based on the start angle, angle, and index.
   */
   --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
+
   --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
+  /* Transform the letters
+  transform: translateY(calc(var(--sin-calc) * 5%));
+  transform: rotate(calc(var(--cos-calc) * 3deg));
+  transform: translateX(calc(var(--cos-calc) * 5%));
+  transform: translateY(calc(var(--sin-calc) * 10%)) translateY(50%) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%));
+  */
 
   @supports (transform: rotate(calc(var(--cos-calc) * 1deg))) {
     @media (prefers-reduced-motion: no-preference) {
-      /* animation: expand 1.5s both var(--ease-back); */
+      /* do the transforms in the animation
+      animation: expand 1.5s both var(--ease-back); */
+
     }
   }
 }
@@ -44,27 +73,29 @@
   /*
     Allows us to use a different element's position for the start and end trigger of the animation
   */
-  /* view-timeline-name: --page-header; */
+  /* add a view timeline name to the page header so we can use it for the triggers of the animation
+  view-timeline-name: --page-header; */
 
-  /*
-    Makes the header sticky so the animation has time to play out while the user scrolls
-  */
   @media (prefers-reduced-motion: no-preference) {
-    /* min-height: 200svh; */
+    /* Make the header sticky so the animation has time to play out while you scroll down the page
+      min-height: 200svh;
+      .page-header__inner {
+        position: sticky;
+        top: 0;
+      }
+    */
 
     .page-header__inner {
-      /* position: sticky;
-      top: 0; */
+
       @media (prefers-reduced-motion: no-preference) {
-        /* animation-name: scroll-multiplier;
+        /* make the --multiplier property grow as you scroll down the page
+
+        animation-name: scroll-multiplier;
         animation-timeline: --page-header;
         animation-range: entry 100svh cover; */
       }
     }
   }
-  /*
-    Animates the --multiplier property with a scroll driven animation so it grows as the user scrolls
-  */
 }
 
 @keyframes scroll-multiplier {
@@ -79,7 +110,8 @@
 
 .black-hole {
   @media (prefers-reduced-motion: no-preference) {
-    /* animation-name: up-out;
+    /* Animate the black hole out as you scroll down the page
+    animation-name: up-out;
     animation-timeline: --page-header;
     animation-range: entry 100svh contain; */
   }
@@ -97,12 +129,13 @@
 }
 
 .page-header .bear-container {
-   @media (prefers-reduced-motion: no-preference) {
-     /* animation-name: rotate-bear;
+  @media (prefers-reduced-motion: no-preference) {
+    /* Animate the bear separately from the black hole as you scroll down the page
+     animation-name: rotate-bear;
      animation-timeline: --page-header;
      animation-range: entry 100svh contain; */
-   }
- }
+  }
+}
 
 @keyframes rotate-bear {
   0% {
@@ -117,7 +150,8 @@
 
 .page-header-bottom {
   @media (prefers-reduced-motion: no-preference) {
-    /* animation-name: move-up;
+    /* Move the bottom text up as you scroll down the page
+    animation-name: move-up;
     animation-timeline: --page-header;
     animation-range: entry 100svh contain;
     animation-fill-mode: both; */
@@ -138,7 +172,8 @@
 
 .world-container {
   @media (prefers-reduced-motion: no-preference) {
-    /* animation-name: world-orbit;
+    /* Orbit the world around the bottom text as you scroll down the page
+    animation-name: world-orbit;
     animation-timeline: --page-header;
     animation-range: entry 100svh cover;
     animation-fill-mode: both; */
@@ -174,13 +209,15 @@
   }
 }
 
-/* .page-header .rocket {
+.page-header .rocket {
   @media (prefers-reduced-motion: no-preference) {
+    /* Make the rocket fly across the page as you scroll down the page
+
     animation-name: rocket-fly;
     animation-timeline: --page-header;
-    animation-range: entry 100svh contain;
+    animation-range: entry 100svh contain; */
   }
-} */
+}
 
 @keyframes rocket-fly {
   0% {
@@ -193,29 +230,34 @@
 }
 
 
-/* .marquee {
+.marquee {
   @media (prefers-reduced-motion: no-preference) {
+    /* Make the marquee sticky so the animation has time to play out while you scroll down the page
     position: sticky;
     top: 0;
     z-index: 10;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out; */
   }
-} */
+}
 
 
-/* html {
+html {
+  /* Add Container Queries 🔥 to the page so we can use them for scroll state queries
   container-name: scroller;
   container-type: scroll-state;
-} */
+ */
+}
 
 
-/* @container scroller scroll-state(scrolled: block-end) {
+/* Animate the marquee out as you scroll down the page
+@container scroller scroll-state(scrolled: block-end) {
   .marquee {
     transform: translateY(-100%);
   }
 } */
 
-/* @container scroller scroll-state(scrolled: block-start) {
+/* Turn the rocket around based on scroll direction
+@container scroller scroll-state(scrolled: block-start) {
   .rocket svg {
     rotate: -180deg;
   }
@@ -223,11 +265,12 @@
 
 
 .speaker-grid {
-  /* use the speaker-grid container as the trigger for the animation */
-  /* view-timeline-name: --speaker-grid; */
+  /* Use the speaker-grid container as the trigger for the animation
+    view-timeline-name: --speaker-grid;
+  */
 
-  /* animate the first and third items in a loop of three */
-  /* .speaker:nth-child(3n + 1),
+  /* Animate the first and third items in a loop of three (dont forget @supports & prefers reduced motion)
+  .speaker:nth-child(3n + 1),
   .speaker:nth-child(3n + 3) {
     @supports (animation-timeline: --speaker-grid) {
       @media (prefers-reduced-motion: no-preference) {
@@ -249,5 +292,3 @@
     transform: translateY(calc(100% + var(--gap)));
   }
 }
-
-
