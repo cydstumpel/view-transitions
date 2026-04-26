@@ -417,7 +417,7 @@ const generateIndexPage = () => {
         </h3>
         <div class="speaker-image">
           <div class="speaker-topic-container" style="--mask-image: url(${speaker.mask}); --vt: ${speaker.id}-topic">
-            <p class="medium-heading caps">${speaker.topic}</p>
+            <p class="medium-heading caps"><span class="sr-only">topic: </span>${speaker.topic}</p>
           </div>
           <img src="${speaker.media}" alt="${speaker.name}">
         </div>
