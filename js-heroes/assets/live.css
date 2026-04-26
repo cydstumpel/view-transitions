@@ -28,7 +28,7 @@
   /*
   Calculates the sine and cosine of the angle based on the start angle, angle, and index.
   */
-  --sin-calc: calc((sin(180deg * var(--i)) * -1));
+  --sin-calc: calc((sin(180deg * var(--i)) * -1 - 0.5));
 
   --cos-calc: calc((cos(180deg * var(--i)) * -1));
 
@@ -37,6 +37,7 @@
   transform: translateX(calc(var(--cos-calc) * 5%));
   transform: translateY(calc(var(--sin-calc) * 10%)) translateY(50%) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%));
   */
+  /* transform: translateY(calc(var(--sin-calc) * 5%)) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%)); */
   /* Make the arc less prominent by starting at 30 degrees and ending at 150 degrees.
   --start-angle: 30deg;
   --angle: calc(180deg - var(--start-angle) * 2);
@@ -75,6 +76,7 @@
   view-timeline-name: --page-header; */
 
   @media (prefers-reduced-motion: no-preference) {
+    min-height: 200svh;
 
     /* Make the header sticky so the animation has time to play out while you scroll down the page
       min-height: 200svh;
@@ -84,7 +86,8 @@
       }
     */
     .page-header__inner {
-
+      position: sticky;
+      top: 0;
       /* make the --multiplier property grow as you scroll down the page
 
         animation-name: scroll-multiplier;
@@ -105,8 +108,8 @@
   }
 }
 
-/*
-.black-hole {
+
+/* .black-hole {
   @media (prefers-reduced-motion: no-preference) {
     animation-name: up-out;
     animation-timeline: --page-header;
@@ -130,7 +133,7 @@
     animation-timeline: --page-header;
     animation-name: rotate-bear;
     animation-range: entry 100svh contain;
- }
+  }
 }
 
 @keyframes rotate-bear {
@@ -229,6 +232,8 @@ html {
   container-name: scroller;
   container-type: scroll-state;
  */
+  /* Scroll state queries are only supported in chrome and edge right now  */
+
 }
 
 
@@ -238,6 +243,7 @@ html {
     transform: translateY(-100%);
   }
 } */
+
 
 /* Turn the rocket around based on scroll direction
 @container scroller scroll-state(scrolled: block-start) {
@@ -251,6 +257,7 @@ html {
   /* Use the speaker-grid container as the trigger for the animation
     view-timeline-name: --speaker-grid;
   */
+  view-timeline-name: --speaker-grid;
 
   /* Animate the first and third items in a loop of three (dont forget @supports & prefers reduced motion)
   .speaker:nth-child(3n + 1),
@@ -263,6 +270,16 @@ html {
       }
     }
   } */
+  .speaker:nth-child(3n + 1),
+  .speaker:nth-child(3n + 3) {
+    @supports (animation-timeline: --speaker-grid) {
+      @media (prefers-reduced-motion: no-preference) {
+        animation-timeline: --speaker-grid;
+        animation-range: entry 100lvh contain;
+        animation-name: grid-scroll-speed;
+      }
+    }
+  }
 }
 
 
