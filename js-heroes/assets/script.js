@@ -11,7 +11,7 @@ spans.forEach((span, index) => {
   // console.log(span.innerText, i)
 
   // --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
-  const sinCalc = (Math.sin(startAngle + angle * i) * -1 - 0.5) * multiplier
+  const sinCalc = (Math.sin(startAngle + angle * i) * -1 - 0.5)
   // console.log(span.innerText, sinCalc)
   // --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
   const cosCalc = (Math.cos(startAngle + angle * i) * -1) * multiplier
