@@ -245,7 +245,14 @@ html {
   .marquee {
     transform: translateY(-100%);
   }
-} */
+}
+
+@container scroller scroll-state(scrolled: block-start) {
+  .rocket svg {
+    transform: rotate(180deg);
+  }
+}
+*/
 
 
 
