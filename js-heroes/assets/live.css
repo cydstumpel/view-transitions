@@ -32,19 +32,27 @@
 
   --cos-calc: calc((cos(180deg * var(--i)) * -1));
 
-  /* Transform the letters
+
+  /* 1. Transform the letters
   transform: rotate(calc(var(--cos-calc) * 3deg));
   transform: translateX(calc(var(--cos-calc) * 5%));
   transform: translateY(calc(var(--sin-calc) * 10%)) translateY(50%) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%));
   */
-  /* transform: translateY(calc(var(--sin-calc) * 5%)) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%)); */
-  /* Make the arc less prominent by starting at 30 degrees and ending at 150 degrees.
-  --start-angle: 30deg;
-  --angle: calc(180deg - var(--start-angle) * 2);
-  --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
-  --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
-  */
 
+  /* 1.1 Transform the letters up
+  transform: translateY(calc(var(--sin-calc) * 10%)) translateY(50%); */
+
+  /* 1.1.1 Make the arc less prominent by starting at 30 degrees and ending at 150 degrees.
+    --start-angle: 30deg;
+    --angle: calc(180deg - var(--start-angle) * 2);
+    --sin-calc: calc((sin(var(--start-angle) + var(--angle) * var(--i)) * -1 - .5) * var(--multiplier));
+    --cos-calc: calc((cos(var(--start-angle) + var(--angle) * var(--i)) * -1) * var(--multiplier));
+    */
+
+  /* 1.2 Add a rotate and translateX to the letters
+  transform: translateY(calc(var(--sin-calc) * 5%)) rotate(calc(var(--cos-calc) * 3deg)) translateX(calc(var(--cos-calc) * 10%)); */
+
+  /* 2. Add an animation to the letters (within supports and prefers reduced motion) */
   @supports (transform: rotate(calc(var(--cos-calc) * 1deg))) {
     @media (prefers-reduced-motion: no-preference) {
       /* do the transforms in the animation
@@ -69,31 +77,26 @@
 }
 
 .page-header {
-  /*
-    Allows us to use a different element's position for the start and end trigger of the animation
-  */
-  /* add a view timeline name to the page header so we can use it for the triggers of the animation
+  /* 3. Add a view timeline name to the page header so we can use it for the triggers of the animation
   view-timeline-name: --page-header; */
 
 
   @media (prefers-reduced-motion: no-preference) {
     min-height: 200svh;
 
-    /* Make the header sticky so the animation has time to play out while you scroll down the page
-      min-height: 200svh;
-      .page-header__inner {
-        position: sticky;
-        top: 0;
-      }
-    */
     .page-header__inner {
+      /* 3.1 Make the header sticky so the animation has time to play out while you scroll down the page
+        min-height: 200svh;
+        .page-header__inner {
+          position: sticky;
+          top: 0;
+        }
+      */
       position: sticky;
       top: 0;
       /* make the --multiplier property grow as you scroll down the page
-
         animation-name: scroll-multiplier;
-        animation-timeline: --page-header;
-        animation-range: entry 100svh cover; */
+        animation-timeline: --page-header;*/
 
     }
   }
@@ -110,10 +113,13 @@
 }
 
 /* .black-hole {
-  @media (prefers-reduced-motion: no-preference) {
-    animation-name: up-out;
-    animation-timeline: --page-header;
-    animation-range: entry 100svh contain;
+
+  @supports (animation-timeline: --page-header) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: up-out;
+      animation-timeline: --page-header;
+      animation-range: entry 100svh contain;
+    }
   }
 }
 
@@ -129,10 +135,12 @@
 }
 
 .page-header .bear-container {
-  @media (prefers-reduced-motion: no-preference) {
-    animation-timeline: --page-header;
-    animation-name: rotate-bear;
-    animation-range: entry 100svh contain;
+  @supports (animation-timeline: --page-header) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-timeline: --page-header;
+      animation-name: rotate-bear;
+      animation-range: entry 100svh contain;
+    }
   }
 }
 
@@ -148,10 +156,12 @@
 }
 
 .page-header-bottom {
-  @media (prefers-reduced-motion: no-preference) {
-    animation-timeline: --page-header;
-    animation-name: move-up;
-    animation-range: entry 100svh contain;
+  @supports (animation-timeline: --page-header) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-timeline: --page-header;
+      animation-name: move-up;
+      animation-range: entry 100svh contain;
+    }
   }
 }
 
@@ -168,11 +178,13 @@
 
 
 .world-container {
-  @media (prefers-reduced-motion: no-preference) {
-    animation-timeline: --page-header;
-    animation-name: world-orbit;
-    animation-range: entry 100svh cover;
-    animation-fill-mode: both;
+  @supports (animation-timeline: --page-header) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-timeline: --page-header;
+      animation-name: world-orbit;
+      animation-range: entry 100svh cover;
+      animation-fill-mode: both;
+    }
   }
 }
 
@@ -206,10 +218,12 @@
 }
 
 .page-header .rocket {
-  @media (prefers-reduced-motion: no-preference) {
-    animation-timeline: --page-header;
-    animation-name: rocket-fly;
-    animation-range: entry 100svh contain;
+  @supports (animation-timeline: --page-header) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-timeline: --page-header;
+      animation-name: rocket-fly;
+      animation-range: entry 100svh contain;
+    }
   }
 }
 
@@ -229,24 +243,25 @@
 
 html {
 
-  /* Add Container Queries 🔥 to the page so we can use them for scroll state queries
+  /* 4. Add Container Queries 🔥 to the page so we can use them for scroll state queries (within prefers reduced motion)
   container-name: scroller;
   container-type: scroll-state;
  */
   /* Scroll state queries are only supported in chrome and edge right now  */
-  @media (prefers-reduced-motion: no-preference) {
-
-  }
+  @media (prefers-reduced-motion: no-preference) {}
 }
 
 
-/* Animate the marquee out as you scroll down the page
+/* 4.1 Animate the marquee out as you scroll down the page
 @container scroller scroll-state(scrolled: block-end) {
   .marquee {
     transform: translateY(-100%);
   }
 }
+*/
 
+
+/* 4.2 Animate the rocket as you scroll down the page
 @container scroller scroll-state(scrolled: block-start) {
   .rocket svg {
     transform: rotate(180deg);
@@ -257,11 +272,11 @@ html {
 
 
 .speaker-grid {
-  /* Use the speaker-grid container as the trigger for the animation
+  /* 5. Use the speaker-grid container as the trigger for the animation
     view-timeline-name: --speaker-grid;
   */
 
-  /* Animate the first and third items in a loop of three (dont forget @supports & prefers reduced motion)
+  /* 5.1 Animate the first and third items in a loop of three (@supports & prefers reduced motion)
   .speaker:nth-child(3n + 1),
   .speaker:nth-child(3n + 3) {
     @supports (animation-timeline: --speaker-grid) {
