@@ -80,24 +80,25 @@
   /* 3. Add a view timeline name to the page header so we can use it for the triggers of the animation
   view-timeline-name: --page-header; */
 
+  @supports (animation-timeline: --page-header) {
+    @media (prefers-reduced-motion: no-preference) {
+      min-height: 200svh;
 
-  @media (prefers-reduced-motion: no-preference) {
-    min-height: 200svh;
-
-    .page-header__inner {
-      /* 3.1 Make the header sticky so the animation has time to play out while you scroll down the page
+      .page-header__inner {
+        /* 3.1 Make the header sticky so the animation has time to play out while you scroll down the page
         min-height: 200svh;
         .page-header__inner {
           position: sticky;
           top: 0;
         }
       */
-      position: sticky;
-      top: 0;
-      /* make the --multiplier property grow as you scroll down the page
+        position: sticky;
+        top: 0;
+        /* 3.2 Make the --multiplier property grow as you scroll down the page
         animation-name: scroll-multiplier;
         animation-timeline: --page-header;*/
 
+      }
     }
   }
 }
@@ -248,7 +249,9 @@ html {
   container-type: scroll-state;
  */
   /* Scroll state queries are only supported in chrome and edge right now  */
-  @media (prefers-reduced-motion: no-preference) {}
+  @media (prefers-reduced-motion: no-preference) {
+
+  }
 }
 
 
