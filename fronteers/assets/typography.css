@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Fabrik';
+  src: url('./fonts/Fabrik-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fabrik';
+  src: url('./fonts/Fabrik-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: 'Fabrik', sans-serif;
+}
+
+.medium-heading {
+  font-size: clamp(calc(var(--rem) * 18), calc(var(--vw) * 24), calc(var(--max-rem) * 24));
+  line-height: 1.2;
+}
+
+.large-body {
+  font-size: clamp(calc(var(--rem) * 16), calc(var(--vw) * 18), calc(var(--max-rem) * 18));
+  line-height: 1.5;
+}
+.medium-body {
+  font-size: clamp(calc(var(--rem) * 14), calc(var(--vw) * 16), calc(var(--max-rem) * 16));
+  line-height: 1.5;
+}
+
+
+.caps {
+  text-transform: uppercase;
+}

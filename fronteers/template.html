@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" class="index">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fronteers Dark Mode 2026</title>
+  <link rel="expect" blocking="render" href="#link">
+  <link rel="stylesheet" href="./assets/view-transitions.css" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script src="./assets/script.js" defer></script>
+</head>
+
+<body id="top">
+  <header class="header">
+    <div class="dark-mode-switch">
+      <input type="checkbox" id="dark-mode-switch">
+      <label for="dark-mode-switch">
+        <span class="light-mode-active">
+          Darker mode
+        </span>
+        <span class="dark-mode-active">
+          Lighter mode
+        </span>
+      </label>
+    </div>
+  </header>
+  <main class="main">
+    <section class="page-header">
+      <div class="page-header-shadow"></div>
+      <picture class="page-header-sun">
+        <source srcset="./assets/img/sun.avif" type="image/avif">
+        <img src="./assets/img/sun.png" alt="The sun" width="100%" height="100%">
+      </picture>
+      <picture class="page-header-moon">
+        <source srcset="./assets/img/moon.avif" type="image/avif">
+        <img src="./assets/img/moon.png" alt="The moon" width="100%" height="100%">
+      </picture>
+      <h1 class="sr-only">
+        Fronteers Dark Mode
+      </h1>
+      <div aria-hidden="true" class="dark-svg">
+        {DarkSVG}
+      </div>
+      <div aria-hidden="true" class="mode-svg">
+        {ModeSVG}
+      </div>
+      <p class="medium-heading page-header-date page-header-text-animation--left">
+        {conferenceDate}
+      </p>
+      <p class="medium-heading page-header-venue page-header-text-animation--right">
+        {conferenceVenue}
+      </p>
+      <p class="medium-body page-header-location page-header-text-animation--left">
+        {conferenceLocation}
+      </p>
+      <p class="medium-body page-header-country page-header-text-animation--right">
+        {conferenceCountry}
+      </p>
+      <p class="medium-body page-header-tagline1 page-header-text-animation--left">
+        {tagline1}
+      </p>
+      <p class="medium-body page-header-tagline2 page-header-text-animation--right">
+        {tagline2}
+      </p>
+      <p class="large-body page-header-intro">
+        {conferenceIntroText}
+      </p>
+    </section>
+    <section class="filler">
+
+    </section>
+
+  </main>
+  <footer>
+    <p class="small-body geist">
+      🔨 Demo made by <a href="https://cydstumpel.nl">Cyd Stumpel</a> for <a href="{conferenceWebsite}">{conferenceName}
+        2026</a>
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -8,7 +8,8 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "generate": "node generate-speaker-pages-js-heroes.js"
+    "generate:js-heroes": "node generate-speaker-pages-js-heroes.js",
+    "generate:fronteers": "node generate-speaker-pages-fronteers.js"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

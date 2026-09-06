@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" class="speaker-detail">
+<style>
+  :root {
+    --speaker-mask: url({ speaker mask });
+  }
+  ::view-transition-group(.speaker-topic) {
+    mask-image: url({ speaker mask });
+  }
+</style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{ speaker name } | JS Heroes 2026</title>
+  <link rel="expect" blocking="render" href="#link">
+  <link rel="stylesheet" href="../../assets/view-transitions.css" />
+  <link rel="stylesheet" href="../../assets/style.css" />
+  <script src="../../assets/script.js" defer></script>
+</head>
+
+<body id="top">
+  <div class="marquee large-body caps" style="--count: 5;">
+    <div class="marquee-inner">
+      <span>
+        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
+      </span>
+      <span aria-hidden="true">
+        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
+      </span>
+      <span aria-hidden="true">
+        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
+      </span>
+      <span aria-hidden="true">
+        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
+      </span>
+      <span aria-hidden="true">
+        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
+      </span>
+    </div>
+  </div>
+  <main class="main">
+    <section class="speaker-header">
+      <div class="speaker-header-image" style="--vt: { speaker name replace spaces with dash }">
+        <div class="speaker-header-image-inner">
+          <img src="{ speaker media }" alt="{ speaker name }">
+        </div>
+      </div>
+      <div class="speaker-header-text p">
+        <h1 class="title mediumlarge-heading caps">
+          { speaker name }
+        </h1>
+        <h2 class="medium-heading caps">{ speaker title }</h2>
+        <p class="speaker-bio large-body geist">
+          { speaker bio }
+        </p>
+
+        <h3 class="talk-title small-heading caps">
+          { speaker talk title }
+        </h3>
+        <div class="talk-details">
+          <p class="small-heading caps">
+            { speaker talk date } - { speaker talk time }h
+          </p>
+        </div>
+        <div class="large-body geist">
+          { speaker talk description }
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p class="small-body geist">
+      🔨 Demo made by <a href="https://cydstumpel.nl">Cyd Stumpel</a> for <a href="https://jsheroes.io">JS Heroes 2026</a>
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+
+.page-header {
+  --darker-difference: 405 / 754;
+  --scale-to: 0.5;
+  --first-row-scale: 0.75;
+  --moon-width: clamp(calc(var(--rem) * 250), calc(var(--vw) * 534), calc(var(--max-rem) * 534));
+  /* background-color: var(--color-background); */
+
+  timeline-scope: --page-header-svg, --page-header-intro;
+  overflow-x: clip;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: calc(var(--moon-width) * var(--first-row-scale)) auto auto auto auto auto 1fr;
+  grid-template-areas:
+    ". ."
+    "dark-svg mode-svg"
+    "date venue"
+    "location country"
+    "tagline1 tagline2"
+    "intro intro";
+  gap: 0.5em var(--gap);
+  min-height: 100vw;
+  padding-inline: var(--padding-inline);
+
+  .page-header-moon {
+    display: none;
+    transition: display allow-discrete 0.3s ease-in;
+
+    img {
+      translate: 0 -100%;
+      transition: translate 0.3s ease-in;
+    }
+    @starting-style {
+      img {
+        translate: 0 -100%;
+      }
+    }
+  }
+
+  .page-header-shadow,
+  .page-header-sun,
+  .page-header-moon {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    aspect-ratio: 1;
+    width: var(--moon-width);
+
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        --start-range: exit calc(var(--moon-width) * var(--first-row-scale) * -1 + var(--gap));
+        --end-range: exit calc(var(--moon-width) * -0.5 + var(--gap) * 2);
+        animation-name: scale-celestial-down, move-celestial-up;
+        animation-timeline: --page-header-svg, --page-header-intro;
+        animation-timing-function: ease-out;
+        animation-range: var(--start-range) var(--end-range), var(--start-range) exit;
+        animation-fill-mode: both, both;
+        transform-origin: left top;
+      }
+    }
+  }
+  .page-header-shadow {
+    content: '';
+    top: calc(var(--vw) * 20);
+    z-index: 1;
+    background: var(--shadow-color);
+    border-radius: 50%;
+    filter: blur(calc(var(--vw) * 50));
+    mix-blend-mode: var(--mix-blend-mode);
+    transition: background 0.3s ease-in-out;
+  }
+
+
+  .dark-svg,
+  .page-header-text-animation--left {
+    justify-self: end;
+    --translate-x: calc(var(--moon-width) * var(--scale-to) * 0.5 + var(--gap));
+  }
+
+  .mode-svg,
+  .page-header-text-animation--right {
+    --translate-x: calc(var(--moon-width) * var(--scale-to) * -0.5 - var(--gap));
+  }
+
+  .dark-svg,
+  .mode-svg,
+  .page-header-text-animation--left,
+  .page-header-text-animation--right {
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        --start-range: calc(var(--moon-width) * var(--first-row-scale) * -1 - var(--gap) - 2rem);
+        --end-range: calc(var(--start-range) + var(--moon-width) * var(--scale-to) + var(--element-height, 0) * 1.5 + var(--gap) + 4rem);
+
+        animation-name: around-celestial;
+        animation-timeline: view();
+        animation-timing-function: var(--ease-in-out-circ);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+        animation-range: exit var(--start-range) exit var(--end-range);
+      }
+    }
+  }
+
+
+  .dark-svg,
+  .mode-svg {
+    --element-height: clamp(calc(var(--rem) * 32), calc(var(--vw) * 100), calc(var(--max-rem) * 100));
+    margin-top: 2rem;
+    height: var(--element-height);
+    svg {
+      width: auto;
+      height: 100%;
+    }
+    margin-bottom: 1rem;
+  }
+
+  .dark-svg {
+    overflow: clip;
+    width: calc(var(--darker-difference) * 100%);
+    transition: width 0.3s ease-in-out;
+    .e, .r {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+  }
+
+  .page-header-text-animation--left,
+  .page-header-text-animation--right {
+    --element-height: 2em;
+
+  }
+
+  .dark-svg {
+    grid-area: dark-svg;
+    view-timeline-name: --page-header-svg;
+  }
+
+  .mode-svg {
+    grid-area: mode-svg;
+  }
+
+  .page-header-date {
+    grid-area: date;
+  }
+
+  .page-header-venue {
+    grid-area: venue;
+  }
+
+  .page-header-location {
+    grid-area: location;
+  }
+
+  .page-header-country {
+    grid-area: country;
+  }
+
+  .page-header-tagline1 {
+    grid-area: tagline1;
+  }
+
+  .page-header-tagline2 {
+    grid-area: tagline2;
+  }
+
+  .page-header-intro {
+    view-timeline-name: --page-header-intro;
+    grid-area: intro;
+    text-align: center;
+    position: sticky;
+    top: calc(var(--moon-width) * var(--first-row-scale));
+    margin-top: 1rem;
+    max-width: calc(var(--rem) * 470);
+    margin-inline: auto;
+  }
+}
+
+.filler {
+  height: 100vh;
+}
+
+@keyframes around-celestial {
+  50% {
+    transform: translateX(calc(var(--translate-x) * -1));
+  }
+}
+
+@keyframes move-celestial-up {
+  100% {
+    transform: translate(-50%, -250%)
+  }
+}
+
+@keyframes scale-celestial-down {
+  50%, 100% {
+    scale: var(--scale-to);
+    translate: 0 calc(var(--moon-width) * var(--scale-to));
+  }
+}
