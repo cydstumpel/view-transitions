@@ -1,58 +1,147 @@
 <!doctype html>
 <html lang="en" class="speaker-detail">
-<style>
-  :root {
-    --speaker-mask: url(../../undefined);
-  }
-  ::view-transition-group(.speaker-topic) {
-    mask-image: url(../../undefined);
-  }
-</style>
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harry Roberts | JS Heroes 2026</title>
+  <title>Harry Roberts | Fronteers Dark Mode 2026</title>
   <link rel="expect" blocking="render" href="#link">
   <link rel="stylesheet" href="../../assets/view-transitions.css" />
   <link rel="stylesheet" href="../../assets/style.css" />
   <script src="../../assets/script.js" defer></script>
+  <link rel="expect" href="#speaker-header" blocking="render" />
 </head>
 
 <body id="top">
-  <div class="marquee large-body caps" style="--count: 5;">
-    <div class="marquee-inner">
-      <span>
-        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
-      </span>
-      <span aria-hidden="true">
-        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
-      </span>
-      <span aria-hidden="true">
-        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
-      </span>
-      <span aria-hidden="true">
-        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
-      </span>
-      <span aria-hidden="true">
-        2 days – 16 talks – 350+ attendees – in the heart of Transylvania ❤️ –
-      </span>
-    </div>
-  </div>
-  <main class="main">
-    <section class="speaker-header">
-      <div class="speaker-header-image" style="--vt: harry-roberts">
-        <div class="speaker-header-image-inner">
-          <img src="../.././assets/img/speakers/harry.png" alt="Harry Roberts">
-        </div>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/fronteers/" class="fronteers-icon-logo">
+        <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M16 0L16 19.1156C16 20.2563 15.0222 20.8267 13.6178 20.8267L9.95556 20.8267C9.44 20.8267 8.56889 20.8919 8.40889 22H7.55556C7.39556 20.8919 6.52444 20.8267 6.00889 20.8267H2.38222C0.96 20.8267 0 20.2563 0 19.1156L0 0L16 0Z"
+            fill="#FFCE2E" />
+          <path
+            d="M6.20128 15.7616H4L4 5.11133L11.811 5.11133V6.93936L6.20128 6.93936L6.20128 9.46682H10.7991V11.2631H6.20128L6.20128 15.7616Z"
+            fill="#111111" />
+        </svg>
+        <span class="sr-only">
+          Home
+        </span>
+      </a>
+      <a href="https://fronteersconf.org/tickets/" class="button">
+        Get tickets
+      </a>
+      <div class="dark-mode-switch">
+        <input type="checkbox" id="dark-mode-switch">
+        <label for="dark-mode-switch">
+          <span class="light-mode-active">
+            Darker mode
+          </span>
+          <span class="dark-mode-active">
+            Lighter mode
+          </span>
+        </label>
       </div>
-      <div class="speaker-header-text p">
-        <h1 class="title mediumlarge-heading caps">
+    </div>
+    <a href="/fronteers/" class="fronteers-logo-link">
+      <span class="sr-only">
+        Go to the home page
+      </span>
+      <svg class="fronteers-logo" width="22" height="136" viewBox="0 0 22 136" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g class="letter-container">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M21.3887 15.5556L2.8041 15.5556C1.69505 15.5556 1.14052 14.6049 1.14052 13.2395L1.14052 9.67901C1.14052 9.17778 1.07715 8.33086 -0.000217823 8.17531L-0.000217787 7.34568C1.07715 7.19012 1.14052 6.34321 1.14052 5.84197L1.14052 2.31605C1.14052 0.933332 1.69505 -8.60836e-07 2.8041 -8.12357e-07L21.3887 0L21.3887 15.5556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M6.0645 6.02905L6.0645 3.88892L16.4189 3.88892L16.4189 11.4829L14.6417 11.4829L14.6417 6.02905L12.1844 6.02905L12.1844 10.4992L10.4381 10.4992L10.4381 6.02905L6.0645 6.02905Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path
+            d="M2.99644 30.5556L21.3887 30.5556L21.3886 15L2.99644 15C-0.999102 19.2691 -0.999102 26.2864 2.99644 30.5556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M6.04729 24.4648L9.60395 22.4775V20.6392L6.04729 20.6392V18.5194L16.4209 18.5194V22.494C16.4209 23.6422 16.0603 24.6193 15.3391 25.4253C14.6179 26.2313 13.7435 26.6343 12.716 26.6343C12.1628 26.6342 11.6194 26.4466 11.0859 26.0712C10.5524 25.6958 10.1473 25.199 9.8707 24.5807L6.04729 26.7833V24.4648ZM14.6574 20.6392L11.3823 20.6392V23.7361C11.7281 24.2329 12.2072 24.4813 12.8198 24.4813C13.3533 24.4813 13.7929 24.2826 14.1387 23.8851C14.4845 23.4877 14.6574 23.024 14.6574 22.494V20.6392Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path d="M2.7337 45.5556L21.3885 45.5556L21.3887 30L2.7337 30L-0.000217778 37.7778L2.7337 45.5556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M7.38142 41.4046C6.34899 40.3683 5.83277 39.1137 5.83277 37.6411C5.83277 36.1684 6.34899 34.9138 7.38143 33.8775C8.4236 32.8412 9.68493 32.323 11.1654 32.323C12.6459 32.323 13.9023 32.8412 14.9348 33.8775C15.977 34.9138 16.498 36.1684 16.498 37.6411C16.498 39.1137 15.9818 40.3683 14.9494 41.4046C13.917 42.4409 12.6556 42.9591 11.1654 42.9591C9.68493 42.9591 8.4236 42.4409 7.38142 41.4046ZM8.69632 35.4157C8.00478 36.0047 7.65901 36.7465 7.65901 37.6411C7.65901 38.5356 8.00478 39.2774 8.69632 39.8665C9.3976 40.4555 10.2206 40.7501 11.1654 40.7501C12.1102 40.7501 12.9283 40.4555 13.6199 39.8665C14.3212 39.2774 14.6718 38.5356 14.6718 37.6411C14.6718 36.7465 14.3212 36.0047 13.6199 35.4157C12.9283 34.8266 12.1102 34.532 11.1654 34.532C10.2206 34.532 9.3976 34.8266 8.69632 35.4157Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path d="M-0.000217438 60.5554L21.3887 60.5554L21.3887 45.0003L-0.000217438 44.9999L-0.000217438 60.5554Z"
+            fill="#FFCE2E" />
+          <path
+            d="M16.4189 50.306L9.57265 54.9315L16.4189 54.9315V56.9335L6.0645 56.9335V54.9315L12.8953 50.306L6.0645 50.306V48.304L16.4189 48.304V50.306Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M21.3887 75.5556L2.8041 75.5556C1.69505 75.5556 1.14052 74.6049 1.14052 73.2395V69.679C1.14052 69.1778 1.07715 68.3309 -0.000217466 68.1753L-0.000217466 67.3457C1.07715 67.1901 1.14052 66.3432 1.14052 65.842V62.316C1.14052 60.9333 1.69505 60 2.8041 60L21.3887 60L21.3887 75.5556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M14.6417 66.5442V63.2822L16.4189 63.2822V71.9118L14.6417 71.9118V68.6498L6.0645 68.6498V66.5442L14.6417 66.5442Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path
+            d="M2.99644 90.5556L21.3887 90.5556L21.3886 75L2.99644 75C-0.999102 79.2691 -0.999102 86.2864 2.99644 90.5556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M10.4381 85.4223V80.9521L7.8263 80.9521V86.406L6.0645 86.406V78.812L16.4189 78.812V86.2334L14.6417 86.2334V80.9521L12.1844 80.9521V85.4223L10.4381 85.4223Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path d="M2.7337 105.556L21.3885 105.556L21.3887 90.0001L2.7337 90.0001L-0.000217438 97.7779L2.7337 105.556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M10.4381 100.4V95.9294L7.8263 95.9294V101.383L6.0645 101.383V93.7893L16.4189 93.7893V101.211L14.6417 101.211V95.9294L12.1844 95.9294V100.4L10.4381 100.4Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path d="M-0.000217438 120.556L21.3887 120.556L21.3887 105L-0.000217438 105L-0.000217438 120.556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M6.04729 114.329L9.60395 112.342V110.504L6.04729 110.504V108.384L16.4209 108.384V112.359C16.4209 113.507 16.0603 114.484 15.3391 115.29C14.6179 116.096 13.7435 116.499 12.716 116.499C12.1628 116.499 11.6194 116.311 11.0859 115.936C10.5524 115.56 10.1473 115.064 9.8707 114.445L6.04729 116.648V114.329ZM14.6574 110.504L11.3823 110.504V113.601C11.7281 114.098 12.2072 114.346 12.8198 114.346C13.3533 114.346 13.7929 114.147 14.1387 113.75C14.4845 113.352 14.6574 112.889 14.6574 112.359V110.504Z"
+            fill="#111111" />
+        </g>
+        <g class="letter-container">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M21.3887 135.556L2.8041 135.556C1.69505 135.556 1.14052 134.605 1.14052 133.24V129.679C1.14052 129.178 1.07715 128.331 -0.000217466 128.175L-0.000217466 127.346C1.07715 127.19 1.14052 126.343 1.14052 125.842V122.316C1.14052 120.933 1.69505 120 2.8041 120L21.3887 120L21.3887 135.556Z"
+            fill="#FFCE2E" />
+          <path
+            d="M13.9465 126.455C13.591 126.455 13.3283 126.662 13.0192 127.266L12.061 129.199C11.3038 130.735 10.5156 131.667 8.9856 131.667C7.27016 131.667 5.87926 129.803 5.87926 127.507C5.87926 124.884 7.57925 123.676 8.19742 123.331L9.10923 125.229C8.19742 125.954 7.64106 126.817 7.64106 127.801C7.64106 128.629 8.16651 129.458 8.97014 129.458C9.55741 129.458 9.95922 128.957 10.361 128.146L11.3347 126.23C11.8601 125.177 12.4628 124.159 13.8692 124.159C15.2755 124.159 16.5273 125.592 16.5273 127.628C16.5273 129.837 15.0283 130.7 15.0283 130.7L14.1628 128.871C14.3483 128.629 14.781 128.146 14.781 127.559C14.781 126.886 14.3328 126.455 13.9465 126.455Z"
+            fill="#111111" />
+        </g>
+      </svg>
+    </a>
+  </header>
+  <main class="main">
+    <section class="speaker-header" id="speaker-header">
+      <div class="speaker-header__inner">
+        <a class="speaker-header-image prev-speaker" style="--vt: cyd-stumpel"
+          href="/fronteers/speakers/cyd-stumpel">
+          <img src="../../assets/img/speakers/cyd.jpg" alt="Cyd Stumpel">
+        </a>
+        <div class="speaker-header-image" style="--vt: harry-roberts">
+          <img src="../../assets/img/speakers/harry.jpg" alt="Harry Roberts">
+        </div>
+        <a class="speaker-header-image next-speaker" style="--vt: heydon-pickering"
+          href="/fronteers/speakers/heydon-pickering">
+          <img src="../../assets/img/speakers/heydon.jpg" alt="Heydon Pickering">
+        </a>
+        <h1 class="title xlarge-heading pixel" style="--vt: harry-roberts-title">
           Harry Roberts
         </h1>
-        <h2 class="medium-heading caps">undefined</h2>
-        <p class="speaker-bio large-body geist">
-          
+      </div>
+    </section>
+    <section class="speaker-text page-content">
+      <div class="speaker-bio large-body">
+        
     <p>
       Harry is an independent Consultant Web Performance Engineer from the UK. He helps some of the world’s largest and most respected organisations find and fix their site-speed issues.
     </p>
@@ -63,18 +152,16 @@
       When not doing client work, he writes, teaches, and speaks about the entire gamut of front-end performance. When not doing work at all, he’s probably out on his bike.
     </p>
     
-        </p>
+      </div>
 
-        <h3 class="talk-title small-heading caps">
-          Build for the web, build on the web, build with the web
-        </h3>
-        <div class="talk-details">
-          <p class="small-heading caps">
-            Invalid Date - undefinedh
-          </p>
-        </div>
-        <div class="large-body geist">
-          
+      <div class="label pixel caps large-body">
+        talk
+      </div>
+      <h2 class="talk-title large-heading caps pixel">
+        Build for the web, build on the web, build with the web
+      </h2>
+      <div class="large-body">
+        
         <p>
           Every layer of abstraction made in the browser moves you further from the platform, ties you further into framework lock-in, and moves you further away from fast.
         </p>
@@ -85,13 +172,13 @@
           The beauty of opting into web platform features as they become available is that your site becomes contextual. The same codebase adapts into its environment, playing to its strengths, rather than trying to build and ship your own environment from the ground up. Meet your users where they are.
         </p>
       
-        </div>
       </div>
     </section>
   </main>
   <footer>
-    <p class="small-body geist">
-      🔨 Demo made by <a href="https://cydstumpel.nl">Cyd Stumpel</a> for <a href="https://jsheroes.io">JS Heroes 2026</a>
+    <p class="small-body">
+      🔨 Demo made by <a href="https://cydstumpel.nl">Cyd Stumpel</a> for <a href="{conferenceWebsite}">Fronteers Dark Mode
+        2026</a>
     </p>
   </footer>
 </body>

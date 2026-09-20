@@ -1,0 +1,190 @@
+.speakers-overview {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  overflow: clip;
+  --jump-out-size: clamp(calc(var(--rem) * 32), calc(var(--vw) * 90), calc(var(--max-rem) * 90));
+  padding-top: clamp(8rem, calc(var(--vw) * 320), calc(var(--max-rem) * 320));
+  .speaker-image {
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.speakers-overview-list {
+  display: grid;
+  grid-template-columns: var(--grid-columns);
+  grid-template-rows: var(--jump-out-size) auto var(--jump-out-size) auto auto var(--jump-out-size) auto;
+  @media (max-width: 480px) {
+    grid-template-rows: auto var(--jump-out-size) auto var(--jump-out-size) auto auto var(--jump-out-size) auto;
+  }
+  gap: var(--gap);
+  padding-inline: var(--padding-inline);
+  list-style: none;
+  .speaker {
+    position: relative;
+
+
+    &::before {
+      content: '';
+      background: var(--speaker-overlay-color);
+      mix-blend-mode: multiply;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
+  .speaker-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: grid;
+    align-items: end;
+    padding: var(--gap);
+    color: var(--c-light);
+    text-decoration: none;
+  }
+}
+
+.speaker,
+.speakers-overview-text {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: click-into-place 0.5s var(--ease-back) both;
+    timeline-trigger:
+      --t
+      view()
+      entry 10% scroll 100% / entry 0% scroll 100%;
+    animation-trigger: --t play-forwards play-backwards;
+  }
+}
+
+.speakers-overview-text {
+  --from-x: calc(var(--gap) * 3);
+  --from-y: 0;
+  grid-column: span 4 / -1 ;
+  grid-row: 3 / span 2;
+  display: grid;
+  gap: 0.125rem;
+  align-content: center;
+  @media (max-width: 768px) {
+    grid-column: span 3;
+    grid-row: 6 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+    margin-bottom: var(--vertical-gap);
+  }
+}
+
+.speaker-anjana-vakil,
+.speaker-cyd-stumpel,
+.speaker-heydon-pickering {
+  --from-x: calc(var(--gap) * 3);
+  --from-y: calc(var(--gap) * 3);
+}
+
+.speaker-barry-pollard,
+.speaker-harry-roberts,
+.speaker-jake-archibald {
+  --from-x: calc(var(--gap) * -3);
+  --from-y: calc(var(--gap) * 3);
+}
+
+
+.speaker-anjana-vakil {
+  grid-column: 6 / span 4;
+  grid-row: 1 / span 2;
+  @media (max-width: 768px) {
+    grid-column: span 3 / -1;
+    grid-row: 1 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-row: 2 / span 2;
+  }
+}
+
+.speaker-barry-pollard {
+  grid-column: 3 / span 3;
+  grid-row: 2 / span 2;
+  @media (max-width: 768px) {
+    grid-column: 2 /span 2;
+    grid-row: 2 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-row: 3 / span 2;
+  }
+}
+
+.speaker-cyd-stumpel {
+  grid-column: 6 / span 3;
+  grid-row: 3 / span 2;
+  @media (max-width: 768px) {
+    grid-column: span 2 / -2;
+    grid-row: 3 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-row: 4 / span 2;
+  }
+}
+
+.speaker-harry-roberts {
+  grid-column: 2 / span 4;
+  grid-row: 4 / span 2;
+  @media (max-width: 768px) {
+    grid-column: 1 / span 3 ;
+    grid-row: 4 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-row: 5 / span 2;
+  }
+}
+
+.speaker-heydon-pickering {
+  grid-column: 6 / span 5;
+  grid-row: 5 / span 2;
+  @media (max-width: 768px) {
+    grid-column: span 3 / -1;
+    grid-row: 5 / span 1;
+  }
+  @media (max-width: 480px) {
+    grid-row: 5 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-row: 6 / span 2;
+  }
+}
+
+.speaker-jake-archibald {
+  grid-column: 3 / span 3;
+  grid-row: 6 / span 2;
+  @media (max-width: 768px) {
+    grid-column: 2 / span 2;
+    grid-row: 6 / span 2;
+  }
+  @media (max-width: 480px) {
+    grid-column: 1 / span 3;
+    grid-row: 7 / span 2;
+  }
+}
+
+
+@keyframes click-into-place {
+  from {
+    translate: var(--from-x) var(--from-y);
+    opacity: 0;
+  }
+
+}

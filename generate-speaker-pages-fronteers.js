@@ -8,59 +8,17 @@ import { mkdirSync } from 'node:fs'
  */
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const speakerImg = (firstName) => `./assets/img/speakers/${firstName}.png`
+const speakerImg = (firstName) => `./assets/img/speakers/${firstName}.jpg`
 
 export const DarkSVG = `
-<svg width="754" height="140" viewBox="0 0 754 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g class="fronteers-logo">
-  <g class="letter-container">
-    <path class="flag" fill-rule="evenodd" clip-rule="evenodd" d="M21.3887 15.5556L2.8041 15.5556C1.69505 15.5556 1.14052 14.605 1.14052 13.2396L1.14052 9.67907C1.14052 9.17784 1.07715 8.33092 -0.000217823 8.17537L-0.000217787 7.34574C1.07715 7.19018 1.14052 6.34327 1.14052 5.84204L1.14052 2.31611C1.14052 0.933393 1.69505 6.01743e-05 2.8041 6.02228e-05L21.3887 6.10352e-05L21.3887 15.5556Z" fill="#FFCE2E"/>
-    <path class="letter" d="M6.0645 6.02911L6.0645 3.88898L16.4189 3.88898L16.4189 11.483L14.6417 11.483L14.6417 6.02911L12.1844 6.02911L12.1844 10.4992L10.4381 10.4992L10.4381 6.02911L6.0645 6.02911Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" d="M2.99644 31.1113L21.3887 31.1113L21.3886 15.5557L2.99644 15.5557C-0.999102 19.8249 -0.999102 26.8421 2.99644 31.1113Z" fill="#FFCE2E"/>
-    <path class="letter" d="M6.04729 25.0206L9.60395 23.0332L9.60395 21.195L6.04729 21.195L6.04729 19.0752L16.4209 19.0752L16.4209 23.0498C16.4209 24.198 16.0603 25.1751 15.3391 25.9811C14.6179 26.7871 13.7435 27.19 12.716 27.19C12.1628 27.19 11.6194 27.0023 11.0859 26.627C10.5524 26.2516 10.1473 25.7548 9.8707 25.1365L6.04729 27.3391L6.04729 25.0206ZM14.6574 21.195L11.3823 21.195L11.3823 24.2919C11.7281 24.7887 12.2072 25.0371 12.8198 25.0371C13.3533 25.0371 13.7929 24.8384 14.1387 24.4409C14.4845 24.0435 14.6574 23.5798 14.6574 23.0498L14.6574 21.195Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" d="M2.7337 46.6667L21.3885 46.6667L21.3887 31.1111L2.7337 31.1111L-0.000217778 38.8889L2.7337 46.6667Z" fill="#FFCE2E"/>
-    <path class="letter" d="M7.38142 42.5157C6.34899 41.4794 5.83277 40.2249 5.83277 38.7522C5.83277 37.2795 6.34899 36.025 7.38143 34.9887C8.4236 33.9523 9.68493 33.4341 11.1654 33.4341C12.6459 33.4341 13.9023 33.9523 14.9348 34.9887C15.977 36.025 16.498 37.2795 16.498 38.7522C16.498 40.2249 15.9818 41.4794 14.9494 42.5157C13.917 43.5521 12.6556 44.0703 11.1654 44.0703C9.68493 44.0703 8.4236 43.5521 7.38142 42.5157ZM8.69632 36.5268C8.00478 37.1159 7.65901 37.8577 7.65901 38.7522C7.65901 39.6467 8.00478 40.3885 8.69632 40.9776C9.3976 41.5667 10.2206 41.8612 11.1654 41.8612C12.1102 41.8612 12.9283 41.5667 13.6199 40.9776C14.3212 40.3885 14.6718 39.6467 14.6718 38.7522C14.6718 37.8577 14.3212 37.1159 13.6199 36.5268C12.9283 35.9377 12.1102 35.6432 11.1654 35.6432C10.2206 35.6432 9.3976 35.9377 8.69632 36.5268Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" d="M-0.000218118 62.2221L21.3887 62.2221L21.3887 46.6669L-0.000217438 46.6665L-0.000218118 62.2221Z" fill="#FFCE2E"/>
-    <path class="letter" d="M16.4189 51.9726L9.57265 56.598L16.4189 56.598L16.4189 58.6001L6.0645 58.6001L6.0645 56.598L12.8953 51.9726L6.0645 51.9726L6.0645 49.9705L16.4189 49.9705L16.4189 51.9726Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" fill-rule="evenodd" clip-rule="evenodd" d="M21.3887 77.7774L2.8041 77.7774C1.69505 77.7774 1.14052 76.8267 1.14052 75.4613L1.14052 71.9008C1.14052 71.3996 1.07715 70.5527 -0.000217823 70.3971L-0.000217787 69.5675C1.07715 69.4119 1.14052 68.565 1.14052 68.0638L1.14052 64.5379C1.14052 63.1551 1.69505 62.2218 2.8041 62.2218L21.3887 62.2218L21.3887 77.7774Z" fill="#FFCE2E"/>
-    <path class="letter" d="M14.6417 68.7659L14.6417 65.504L16.4189 65.504L16.4189 74.1335L14.6417 74.1335L14.6417 70.8716L6.0645 70.8716L6.0645 68.7659L14.6417 68.7659Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" d="M2.99644 93.3339L21.3887 93.3339L21.3886 77.7783L2.99644 77.7783C-0.999102 82.0475 -0.999102 89.0647 2.99644 93.3339Z" fill="#FFCE2E"/>
-    <path class="letter" d="M10.4381 88.2006L10.4381 83.7305L7.8263 83.7305L7.8263 89.1844L6.0645 89.1844L6.0645 81.5904L16.4189 81.5904L16.4189 89.0118L14.6417 89.0118L14.6417 83.7305L12.1844 83.7305L12.1844 88.2006L10.4381 88.2006Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" d="M2.7337 108.889L21.3885 108.889L21.3887 93.3336L2.7337 93.3336L-0.000217778 101.111L2.7337 108.889Z" fill="#FFCE2E"/>
-    <path class="letter" d="M10.4381 103.733L10.4381 99.263L7.8263 99.263L7.8263 104.717L6.0645 104.717L6.0645 97.1229L16.4189 97.1229L16.4189 104.544L14.6417 104.544L14.6417 99.263L12.1844 99.263L12.1844 103.733L10.4381 103.733Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" d="M-0.000218118 124.445L21.3887 124.445L21.3887 108.889L-0.000217438 108.889L-0.000218118 124.445Z" fill="#FFCE2E"/>
-    <path class="letter" d="M6.04729 118.218L9.60395 116.231L9.60395 114.393L6.04729 114.393L6.04729 112.273L16.4209 112.273L16.4209 116.248C16.4209 117.396 16.0603 118.373 15.3391 119.179C14.6179 119.985 13.7435 120.388 12.716 120.388C12.1628 120.388 11.6194 120.2 11.0859 119.825C10.5524 119.449 10.1473 118.953 9.8707 118.334L6.04729 120.537L6.04729 118.218ZM14.6574 114.393L11.3823 114.393L11.3823 117.49C11.7281 117.987 12.2072 118.235 12.8198 118.235C13.3533 118.235 13.7929 118.036 14.1387 117.639C14.4845 117.241 14.6574 116.778 14.6574 116.248L14.6574 114.393Z" fill="#111111"/>
-  </g>
-  <g class="letter-container">
-    <path class="flag" fill-rule="evenodd" clip-rule="evenodd" d="M21.3887 140L2.8041 140C1.69505 140 1.14052 139.049 1.14052 137.684L1.14052 134.123C1.14052 133.622 1.07715 132.775 -0.000217823 132.62L-0.000217787 131.79C1.07715 131.635 1.14052 130.788 1.14052 130.286L1.14052 126.76C1.14052 125.378 1.69505 124.444 2.8041 124.444L21.3887 124.444L21.3887 140Z" fill="#FFCE2E"/>
-    <path class="letter" d="M13.9465 130.899C13.591 130.899 13.3283 131.106 13.0192 131.71L12.061 133.643C11.3038 135.179 10.5156 136.111 8.9856 136.111C7.27016 136.111 5.87926 134.247 5.87926 131.952C5.87926 129.328 7.57925 128.12 8.19742 127.775L9.10923 129.674C8.19742 130.399 7.64106 131.261 7.64106 132.245C7.64106 133.074 8.16651 133.902 8.97014 133.902C9.55741 133.902 9.95922 133.402 10.361 132.59L11.3347 130.675C11.8601 129.622 12.4628 128.604 13.8692 128.604C15.2755 128.604 16.5273 130.036 16.5273 132.073C16.5273 134.282 15.0283 135.145 15.0283 135.145L14.1628 133.315C14.3483 133.074 14.781 132.59 14.781 132.004C14.781 131.331 14.3328 130.899 13.9465 130.899Z" fill="#111111"/>
-  </g>
-</g>
-<svg width="752" height="140" viewBox="0 0 752 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M723.424 140L699.424 92H677.224V140H651.624V0H699.624C713.491 0 725.291 4.86667 735.024 14.6C744.757 24.3333 749.624 36.1333 749.624 50C749.624 57.4667 747.357 64.8 742.824 72C738.291 79.2 732.291 84.6667 724.824 88.4L751.424 140H723.424ZM677.224 23.8V68H714.624C720.624 63.3333 723.624 56.8667 723.624 48.6C723.624 41.4 721.224 35.4667 716.424 30.8C711.624 26.1333 706.024 23.8 699.624 23.8H677.224Z" fill="currentColor" class="r" />
-<path d="M557.702 116H623.702V140H531.702V0H621.702V24H557.702V57.2H611.702V80.8H557.702V116Z" fill="currentColor" class="e" />
-<path d="M483.749 140L449.949 84.6C442.482 89.2667 435.949 93 430.349 95.8V140H404.749V0H430.349V66.4C446.216 56.8 460.349 44.6667 472.749 30V0H498.749V40C489.816 51.2 480.216 61.0667 469.949 69.6L513.749 140H483.749Z" fill="currentColor"/>
-<path d="M352.721 140L328.721 92H306.521V140H280.921V0H328.921C342.788 0 354.588 4.86667 364.321 14.6C374.054 24.3333 378.921 36.1333 378.921 50C378.921 57.4667 376.654 64.8 372.121 72C367.588 79.2 361.588 84.6667 354.121 88.4L380.721 140H352.721ZM306.521 23.8V68H343.921C349.921 63.3333 352.921 56.8667 352.921 48.6C352.921 41.4 350.521 35.4667 345.721 30.8C340.921 26.1333 335.321 23.8 328.921 23.8H306.521Z" fill="currentColor"/>
-<path d="M234.89 140L223.89 106.8H173.89L162.89 140H134.89L182.89 0H214.89L262.89 140H234.89ZM181.89 83.2H215.89L198.89 31.8L181.89 83.2Z" fill="currentColor"/>
-<path d="M62.96 0C82.0266 0 98.0933 6.93333 111.16 20.8C124.36 34.6667 130.96 52.2 130.96 73.4C130.96 88.4667 127.427 101.933 120.36 113.8C113.293 125.533 103.893 134.267 92.16 140H20.96V0H62.96ZM82.96 116.2C88.96 111.8 93.96 105.6 97.96 97.6C101.96 89.6 103.96 81.5333 103.96 73.4C103.96 60.8667 99.76 49.4667 91.36 39.2C82.96 28.9333 73.4933 23.8 62.96 23.8H46.96V116.2H82.96Z" fill="currentColor"/>
+<svg width="762" height="146" viewBox="0 0 762 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="r" d="M732.569 146L707.541 95.9429H684.389V146H657.692V0H707.749C722.21 0 734.516 5.07524 744.667 15.2257C754.817 25.3762 759.892 37.6819 759.892 52.1429C759.892 59.9295 757.528 67.5771 752.801 75.0857C748.073 82.5943 741.816 88.2952 734.029 92.1886L761.769 146H732.569ZM684.389 24.82V70.9143H723.392C729.649 66.0476 732.778 59.3038 732.778 50.6829C732.778 43.1743 730.275 36.9867 725.269 32.12C720.264 27.2533 714.424 24.82 707.749 24.82H684.389Z" fill="currentColor"/>
+<path class="e" d="M559.746 120.971H628.575V146H532.632V0H626.489V25.0286H559.746V59.6514H616.06V84.2629H559.746V120.971Z" fill="currentColor"/>
+<path d="M482.622 146L447.373 88.2257C439.587 93.0924 432.773 96.9857 426.933 99.9057V146H400.236V0H426.933V69.2457C443.48 59.2343 458.219 46.581 471.151 31.2857V0H498.265V41.7143C488.949 53.3943 478.937 63.6838 468.231 72.5829L513.908 146H482.622Z" fill="currentColor"/>
+<path d="M345.978 146L320.949 95.9429H297.798V146H271.101V0H321.158C335.619 0 347.924 5.07524 358.075 15.2257C368.225 25.3762 373.301 37.6819 373.301 52.1429C373.301 59.9295 370.937 67.5771 366.209 75.0857C361.481 82.5943 355.224 88.2952 347.438 92.1886L375.178 146H345.978ZM297.798 24.82V70.9143H336.801C343.058 66.0476 346.186 59.3038 346.186 50.6829C346.186 43.1743 343.683 36.9867 338.678 32.12C333.672 27.2533 327.832 24.82 321.158 24.82H297.798Z" fill="currentColor"/>
+<path d="M223.096 146L211.625 111.377H159.482L148.011 146H118.811L168.868 0H202.239L252.296 146H223.096ZM167.825 86.7657H203.282L185.553 33.1629L167.825 86.7657Z" fill="currentColor"/>
+<path d="M43.8 0C63.6838 0 80.439 7.23048 94.0656 21.6914C107.831 36.1524 114.714 54.4372 114.714 76.5457C114.714 92.2581 111.029 106.302 103.66 118.677C96.2904 130.913 86.4875 140.021 74.2514 146H0V0H43.8ZM64.6571 121.18C70.9142 116.591 76.1285 110.126 80.2999 101.783C84.4714 93.44 86.5571 85.0276 86.5571 76.5457C86.5571 63.4752 82.1771 51.5867 73.4171 40.88C64.6571 30.1733 54.7847 24.82 43.8 24.82H27.1143V121.18H64.6571Z" fill="currentColor"/>
 </svg>
-
-</svg>
-
 `
 
 const ModeSVG = `
@@ -203,11 +161,12 @@ export const speakers = [
     <p>
       Heydon has spent 20 or so years working with the web. They've authored and illustrated multiple books, designed some experimental variable fonts, and produced some ambitious, often contentious videos. They love to design with black and currentColor. Colors are confusing.
     </p>`,
+    media: speakerImg('heydon'),
     talk: {
       title: 'The web is a canvas',
       description: `
         <p>
-          The &lt;img&gt; element was available in 1995. We had to wait another 15 years &lt;audio&gt;. . There’s still little we can do with sound in HTML, except play, or stop, something already recorded. Actually sampling, signal processing, and sequencing sound means either raw-dogging the Web Audio API or using a monolithic library like Tone.js.
+          The &lt;img&gt; element was available in 1995. We had to wait another 15 years &lt;audio&gt;. There’s still little we can do with sound in HTML, except play, or stop, something already recorded. Actually sampling, signal processing, and sequencing sound means either raw-dogging the Web Audio API or using a monolithic library like Tone.js.
         </p>
         <p>
           In any case, you find yourself writing a lot of JavaScript and not much music. Heydon wants to be able to design sound like they write prose: hypertextually. Pursuing this has become a multi-year obsession, and it’s revived their 20-year-long passion for the web. Along the way, they've discovered that a 2KB custom element can do as much as £200 of hardware. This way to the rabbit hole!
@@ -219,6 +178,7 @@ export const speakers = [
     id: 'jake-archibald',
     name: 'Jake Archibald',
     type: 'MC',
+    media: speakerImg('jake'),
     bio: `
     <p>
     Jake is a developer of sorts working at Mozilla on web standards and developer relations.
@@ -248,16 +208,11 @@ const generateIndexPage = () => {
 
   const speakersList = speakers.map(speaker => {
     return `
-      <li class="speaker" style="--vt: ${speaker.id}; --vt-before: ${speaker.id}-before">
-        <h3 class="small-heading caps">
-          <a href="speakers/${speaker.id}" style="--vt: ${speaker.id}-speaker-name">
-            ${speaker.name}
-          </a>
-        </h3>
+      <li class="speaker speaker-${speaker.id}" style="--vt: ${speaker.id};">
+        <a class="speaker-name medium-heading pixel" href="speakers/${speaker.id}" style="--vt: ${speaker.id}-name;">
+          ${speaker.name}
+        </a>
         <div class="speaker-image">
-          <div class="speaker-topic-container" style="--mask-image: url(${speaker.mask}); --vt: ${speaker.id}-topic">
-            <p class="medium-heading caps"><span class="sr-only">topic: </span>${speaker.topic}</p>
-          </div>
           <img src="${speaker.media}" alt="${speaker.name}">
         </div>
       </li>
@@ -270,8 +225,8 @@ const generateIndexPage = () => {
     .replace(/{speakers}/g, speakersList)
     .replace(/{conferenceWebsite}/g, conference.website)
     .replace(/{conferenceName}/g, conference.name)
-    .replace(/{DarkSVG}/g, DarkSVG)
-    .replace(/{ModeSVG}/g, ModeSVG)
+    .replace(/{DarkSVG}/g, '<span class="svg">'+DarkSVG+'</span>')
+    .replace(/{ModeSVG}/g, '<span class="svg">'+ModeSVG+'</span>')
     .replace(/{conferenceDate}/g, new Date(conference.dates.start).toLocaleDateString('en-GB', { month: 'long', day: 'numeric', year: 'numeric' }))
     .replace(/{conferenceVenue}/g, conference.venue)
     .replace(/{conferenceLocation}/g, conference.city)
@@ -289,18 +244,23 @@ const generateSpeakerPages = () => {
   const templatePath = join(__dirname, 'fronteers', 'speakers', 'template.html')
   const speakers = fronteers2026.speakers
   const template = readFileSync(templatePath, 'utf8')
-  speakers.forEach(speaker => {
+  speakers.forEach((speaker, index) => {
+    const prevSpeaker = index != 0 ? speakers[index - 1] : speakers[speakers.length - 1]
+    const nextSpeaker = index != speakers.length - 1 ? speakers[index + 1] : speakers[0]
     const content = template
-      .replace(/{ speaker name }/g, speaker.name)
-      .replace(/{ speaker title }/g, speaker.title)
-      .replace(/{ speaker bio }/g, speaker.bio)
-      .replace(/{ speaker media }/g, `../../${speaker.media}`)
-      .replace(/{ speaker name replace spaces with dash }/g, speaker.id)
-      .replace(/{ speaker talk title }/g, speaker.talk.title)
-      .replace(/{ speaker talk date }/g, new Date(speaker.talk.isoStart).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }))
-      .replace(/{ speaker talk time }/g, speaker.talk.startTime)
-      .replace(/{ speaker talk description }/g, speaker.talk.description)
-      .replace(/{ speaker mask }/g, `../../${speaker.mask}`)
+      .replace(/{conferenceName}/g, conference.name)
+      .replace(/{speakerId}/g, speaker.id)
+      .replace(/{prevSpeakerId}/g, prevSpeaker.id)
+      .replace(/{prevSpeakerMedia}/g, prevSpeaker.media.replace(/^\.\//, '../../'))
+      .replace(/{prevSpeakerName}/g, prevSpeaker.name)
+      .replace(/{nextSpeakerId}/g, nextSpeaker.id)
+      .replace(/{nextSpeakerMedia}/g, nextSpeaker.media.replace(/^\.\//, '../../'))
+      .replace(/{nextSpeakerName}/g, nextSpeaker.name)
+      .replace(/{speakerName}/g, speaker.name)
+      .replace(/{speakerBio}/g, speaker.bio)
+      .replace(/{speakerMedia}/g, speaker.media.replace(/^\.\//, '../../'))
+      .replace(/{speakerTalkTitle}/g, speaker.talk.title)
+      .replace(/{speakerTalkDescription}/g, speaker.talk.description)
 
     const outputPath = join(__dirname, 'fronteers', 'speakers', speaker.id, 'index.html')
     mkdirSync(join(__dirname, 'fronteers', 'speakers', speaker.id), { recursive: true })

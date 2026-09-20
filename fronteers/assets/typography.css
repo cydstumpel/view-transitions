@@ -14,25 +14,64 @@
   font-display: swap;
 }
 
-* {
+@font-face {
+  font-family: 'Pixel Operator';
+  src: url('./fonts/PixelOperator-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.pixel {
+  font-family: 'Pixel Operator', 'Courier New', monospace;
+}
+
+body {
   font-family: 'Fabrik', sans-serif;
 }
 
+.xlarge-heading {
+  font-size: clamp(calc(var(--rem) * 64), calc(var(--vw) * 100), calc(var(--max-rem) * 100));
+  line-height: 1;
+}
+
+
+.large-heading {
+  font-size: clamp(calc(var(--rem) * 48), calc(var(--vw) * 64), calc(var(--max-rem) * 64));
+  line-height: 1;
+}
+
 .medium-heading {
-  font-size: clamp(calc(var(--rem) * 18), calc(var(--vw) * 24), calc(var(--max-rem) * 24));
-  line-height: 1.2;
+  font-size: clamp(calc(var(--rem) * 32), calc(var(--vw) * 40), calc(var(--max-rem) * 40));
+  line-height: 1;
 }
 
 .large-body {
-  font-size: clamp(calc(var(--rem) * 16), calc(var(--vw) * 18), calc(var(--max-rem) * 18));
+  font-size: clamp(calc(var(--rem) * 20), calc(var(--vw) * 24), calc(var(--max-rem) * 24));
   line-height: 1.5;
 }
+
 .medium-body {
-  font-size: clamp(calc(var(--rem) * 14), calc(var(--vw) * 16), calc(var(--max-rem) * 16));
+  font-size: clamp(calc(var(--rem) * 16), calc(var(--vw) * 20), calc(var(--max-rem) * 20));
   line-height: 1.5;
 }
 
 
 .caps {
   text-transform: uppercase;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+
+@font-face {
+	font-family: "Courier New";
+	src: local("Courier New");
+	size-adjust: 70%;
+}
+
+
+a {
+  color: inherit;
 }

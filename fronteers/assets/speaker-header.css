@@ -1,0 +1,126 @@
+.speaker-header {
+  overflow: clip;
+
+  .speaker-header__inner {
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap);
+
+    min-height: 80vh;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-block: var(--padding-block) var(--vertical-gap);
+
+    @media (max-width: 768px) {
+      min-height: auto;
+    }
+  }
+
+  .speaker-header-image {
+    position: relative;
+    --prev-next-translate: -250;
+    display: block;
+    width: min(calc(var(--vw) * 400), calc(var(--max-rem) * 400));
+    margin-inline: auto;
+    aspect-ratio: 3/4;
+    transform: rotate(calc(var(--transform-direction) * 10deg)) scale(0.8);
+
+    @media (max-width: 768px) {
+      width: calc(50vw);
+      --prev-next-translate: -500;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 0.3s var(--ease-back);
+    }
+
+    &:hover {
+      transform: rotate(calc(var(--transform-direction) * 8deg)) scale(0.8) translateX(calc(var(--transform-direction) * 4vw));
+    }
+
+    &::before {
+      content: '';
+      background: var(--speaker-overlay-color);
+      mix-blend-mode: multiply;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+
+    &.prev-speaker {
+      --transform-direction: 1;
+      position: absolute;
+      left: calc(max(var(--vw) * var(--prev-next-translate), var(--max-rem) * var(--prev-next-translate)));
+      top: 50%;
+      translate: 0 -80%;
+    }
+
+    &.next-speaker {
+      --transform-direction: -1;
+      position: absolute;
+      right: calc(max(var(--vw) * var(--prev-next-translate), var(--max-rem) * var(--prev-next-translate)));
+      top: 50%;
+      translate: 0 -80%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+
+.speaker-text {
+  display: grid;
+  grid-template-columns: var(--grid-columns);
+  grid-template-rows: auto auto auto;
+  gap: var(--gap);
+  padding-inline: var(--padding-inline);
+
+  &>* {
+    grid-column: 4 / -4;
+
+    @media (max-width: 768px) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  * {
+
+    &+h1,
+    &+h2,
+    &+h3,
+    &+h4,
+    &+h5,
+    &+h6 {
+      margin-top: 0.5em;
+    }
+  }
+
+  .label+h1,
+  .label+h2,
+  .label+h3,
+  .label+h4,
+  .label+h5,
+  .label+h6 {
+    margin-top: -0.25em;
+  }
+
+  .label {
+    margin-top: 1em;
+  }
+
+  p+p {
+    margin-top: 1em;
+  }
+}

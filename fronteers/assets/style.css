@@ -1,25 +1,37 @@
 @import 'typography.css';
 @import 'page-header.css';
+@import 'speakers-overview.css';
+@import 'speaker-header.css';
 
 /* Variables: */
 :root {
-  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --mode: light;
+
+  @media (prefers-color-scheme: dark) {
+    --mode: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    --mode: light;
+  }
+
   --design-size: 1440;
   --max-width-size: 1920;
   --max-width: 1920px;
+  --vw: 100 / var(--design-size) * 1vw;
   --rem: 0.0625rem;
   --max-rem: var(--max-width)/var(--design-size);
   --column-count: 12;
   --grid-columns: repeat(var(--column-count), 1fr);
 
-  --vw: 100 / var(--design-size) * 1vw;
-  --padding-inline: max(calc(var(--vw) * 24), calc(var(--rem) * 24));
-  --padding-block: max(calc(var(--vw) * 80), calc(var(--rem) * 48));
-  --grid-columns: repeat(12, 1fr);
-  --gap: max(calc(var(--vw) * 20), calc(var(--rem) * 8));
-  --vertical-gap: max(calc(var(--vw) * 40), calc(var(--rem) * 32));
 
-  --font-family: 'BM Gaudi', impact, sans-serif;
+  --padding-inline: clamp(calc(var(--rem) * 8), calc(var(--vw) * 24), calc(var(--max-rem) * 24));
+  --padding-block: clamp(calc(var(--rem) * 60), calc(var(--vw) * 120), calc(var(--max-rem) * 120));
+  --gap: clamp(calc(var(--rem) * 8), calc(var(--vw) * 20), calc(var(--max-rem) * 20));
+  --vertical-gap: clamp(calc(var(--rem) * 32), calc(var(--vw) * 40), calc(var(--max-rem) * 40));
+
+  --font-family: 'BM Gaudi',
+  impact,
+  sans-serif;
 
 
   --c-dark: #111;
@@ -27,25 +39,25 @@
   --c-yellow: #FFCE2E;
 
 
+
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-back: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+
   --color-background: var(--c-dark);
   --color-text: var(--c-dark);
   --shadow-color: radial-gradient(circle at center, red, #F49201);
+  --speaker-overlay-color: radial-gradient(circle at 10% 0%, red, #F49201 50%);
   --mix-blend-mode: lighten;
-  --color-background: #b7b7fd;
+  --color-background: #E0E0FF;
 
-  /* @supports (color: color-mix(in srgb, red, green)) {
-    --color-background: color-mix(in oklch, var(--c-dark) 85%, var(--c-yellow));
-  } */
 
-  --ease-back: cubic-bezier(0.34, 1.3, 0.64, 1);
-  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  interpolate-size: allow-keywords;
 
   @media (max-width: 768px) {
     --grid-columns: repeat(6, 1fr);
   }
-
-  interpolate-size: allow-keywords;
-
 }
 
 * {
@@ -70,78 +82,66 @@ html {
   container-name: scroller;
   container-type: scroll-state;
   overscroll-behavior: none;
+
+}
+body {
   background-color: var(--color-background);
   color: var(--color-text);
   transition: background-color 0.3s ease-out, color 0.3s ease-out;
-}
-
-@media (prefers-color-scheme: dark) {
-  /* :root {
+  @container style(--mode: dark) {
     --color-background: var(--c-dark);
     --mix-blend-mode: darken;
+
     @supports (color: color-mix(in srgb, red, green)) {
       --color-text: color-mix(in oklch, var(--c-light) 85%, var(--c-dark));
     }
-  } */
 
+    .page-header {
+      .page-header-moon {
+        display: block;
+        transition: display allow-discrete 0.3s var(--ease-back);
 
-  .page-header-moon {
-    display: block;
-    transition: display allow-discrete 0.3s var(--ease-back);
+        img {
+          translate: 0 0;
+          opacity: 1;
+          transition: translate 0.3s var(--ease-back), opacity 0.1s var(--ease-back);
 
-    img {
-      translate: 0 0;
-      transition: translate 0.3s var(--ease-back);
+          @starting-style {
+            opacity: 0;
+            translate: 0 -100%;
+          }
+        }
+      }
+      .dark-svg {
+        .svg {
+          clip-path: inset(0 0 0 0);
+          transform: translateX(0) !important;
+        }
 
-      @starting-style {
-        translate: 0 -100%;
+        .e,
+        .r {
+          opacity: 1;
+        }
       }
     }
+
   }
 
-  .dark-svg {
-    width: auto;
-
-    .e,
-    .r {
-      opacity: 0.75;
-    }
-  }
 }
 
 html:has(#dark-mode-switch:checked) {
-  --color-background: var(--c-dark);
-  --mix-blend-mode: darken;
-  @supports (color: color-mix(in srgb, red, green)) {
-    --color-text: color-mix(in oklch, var(--c-light) 85%, var(--c-dark));
-  }
-
-  .page-header-moon {
-    display: block;
-    transition: display allow-discrete 0.3s var(--ease-back);
-
-    img {
-      translate: 0 0;
-      transition: translate 0.3s var(--ease-back);
-
-      @starting-style {
-        translate: 0 -100%;
-      }
-    }
-  }
-
-  .dark-svg {
-    width: auto;
-
-    .e,
-    .r {
-      opacity: 0.5;
-    }
-  }
+  --mode: dark;
+  color-scheme: dark;
 }
 
+html:not(:has(#dark-mode-switch:checked)) {
+  --mode: light;
+  color-scheme: light;
+}
+
+
 .filler {
-  height: 100vh;
+  height: 300vh;
 }
 
 .header {
@@ -151,20 +151,45 @@ html:has(#dark-mode-switch:checked) {
 
   pointer-events: none;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-
   width: 100%;
 
   padding-inline: var(--padding-inline);
   padding-block: 0.75rem;
-  justify-content: space-between;
-  align-items: center;
   color: var(--color-text);
 
+  .header-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--gap);
+
+    .button {
+      border: 1px solid var(--color-text);
+      padding: 0.5em 1em;
+      border-radius: 0.25em;
+      text-decoration: none;
+      text-transform: uppercase;
+      width: max-content;
+      max-width: 100%;
+      color: var(--color-text);
+      transition: background-color 0.3s ease-out, color 0.3s ease-out;
+
+      &:hover {
+        background-color: var(--color-text);
+        color: var(--color-background);
+      }
+    }
+  }
+  .fronteers-icon-logo {
+    line-height: 0;
+    height: 100%;
+    svg {
+      height: 100%;
+      width: auto;
+    }
+  }
+
   .dark-mode-switch {
-    grid-column: 2;
     justify-self: end;
     position: relative;
 
@@ -219,7 +244,7 @@ html:has(#dark-mode-switch:checked) {
         border-radius: 50%;
         display: block;
         z-index: 1;
-        translate: 0 -175%;
+        translate: 0 -250%;
         transition: translate 0.3s var(--ease-back);
       }
 
@@ -235,15 +260,23 @@ html:has(#dark-mode-switch:checked) {
   label {
     pointer-events: auto;
   }
-}
 
+  .fronteers-logo-link {
+    position: fixed;
+    width: max(calc(var(--rem) * 32), calc(var(--vw) * 32));
+    top: 50%;
+    right: -2px;
+    transform: translateY(-50%);
+    z-index: 10;
+    @media (max-width: 768px) {
+      display: none !important;
+    }
 
+    svg {
+      width: 100%;
+      height: auto;
+    }
 
-
-
-
-.dark-svg {
-  .fronteers-logo {
     .letter-container {
       --translate-x: 100%;
       transform-box: fill-box;
@@ -265,4 +298,10 @@ html:has(#dark-mode-switch:checked) {
   to {
     transform: translateX(0);
   }
+}
+
+
+footer {
+  margin-top: clamp(calc(var(--rem) * 32), calc(var(--vw) * 32), calc(var(--max-rem) * 32));
+  padding: var(--padding-inline);
 }

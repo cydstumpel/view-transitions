@@ -1,39 +1,40 @@
 
 .page-header {
-  --darker-difference: 405 / 754;
-  --scale-to: 0.5;
+  --dark-svg-ratio: 762/146;
+  --mode-svg-ratio: 530/146;
+  --svg-height: max(calc(var(--rem) * 32), calc(var(--vw) * 100));
+  --darker-difference-ratio: 405 / 754;
   --first-row-scale: 0.75;
-  --moon-width: clamp(calc(var(--rem) * 250), calc(var(--vw) * 534), calc(var(--max-rem) * 534));
-  /* background-color: var(--color-background); */
+  --moon-width: max(calc(var(--rem) * 125), calc(var(--vw) * 400));
+  --extra-space: calc(var(--gap) * 2);
+  --celestial-up: -8vw;
 
-  timeline-scope: --page-header-svg, --page-header-intro;
   overflow-x: clip;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: calc(var(--moon-width) * var(--first-row-scale)) auto auto auto auto auto 1fr;
-  grid-template-areas:
-    ". ."
-    "dark-svg mode-svg"
-    "date venue"
-    "location country"
-    "tagline1 tagline2"
-    "intro intro";
-  gap: 0.5em var(--gap);
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: calc(var(--gap) * 0.5);
+  padding-top: calc(100vh - var(--svg-height) - 10em);
+
   min-height: 100vw;
-  padding-inline: var(--padding-inline);
+  view-timeline-name: --page-header;
+  timeline-scope: --last-svg-line;
 
   .page-header-moon {
     display: none;
     transition: display allow-discrete 0.3s ease-in;
 
     img {
+      opacity: 0;
       translate: 0 -100%;
-      transition: translate 0.3s ease-in;
+      transition: translate 0.3s ease-in, opacity 0.2s 0.1s ease-in;
     }
+
     @starting-style {
       img {
-        translate: 0 -100%;
+        opacity: 1;
+        translate: 0;
       }
     }
   }
@@ -43,28 +44,42 @@
   .page-header-moon {
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: calc(50% + var(--celestial-up));
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     aspect-ratio: 1;
     width: var(--moon-width);
 
+    transform-origin: left top;
+
     @media (prefers-reduced-motion: no-preference) {
+      --end-range: calc(225% + ((50vh + var(--moon-width) * -0.5) - var(--extra-space)) * -1 - var(--celestial-up) - 10vw);
       @supports (animation-timeline: view()) {
-        --start-range: exit calc(var(--moon-width) * var(--first-row-scale) * -1 + var(--gap));
-        --end-range: exit calc(var(--moon-width) * -0.5 + var(--gap) * 2);
-        animation-name: scale-celestial-down, move-celestial-up;
-        animation-timeline: --page-header-svg, --page-header-intro;
+        animation-name: move-celestial-up-scoll-driven;
+        animation-timeline: --last-svg-line;
         animation-timing-function: ease-out;
-        animation-range: var(--start-range) var(--end-range), var(--start-range) exit;
-        animation-fill-mode: both, both;
-        transform-origin: left top;
+        animation-fill-mode: both;
+        animation-range: exit -50% var(--end-range);
+      }
+
+      @supports (animation-trigger: --t play-forwards play-backwards) {
+        animation-name: move-celestial-up;
+        timeline-trigger-name: --t;
+        timeline-trigger-source: --last-svg-line;
+        timeline-trigger-activation-range: scroll exit var(--end-range);
+        animation-trigger: --t play-forwards play-backwards;
+        animation-duration: 0.4s;
+        animation-fill-mode: both;
+
+        animation-range: unset;
+        animation-timeline: unset;
       }
     }
   }
+
   .page-header-shadow {
     content: '';
-    top: calc(var(--vw) * 20);
+    width: calc(var(--moon-width) * 1.5);
     z-index: 1;
     background: var(--shadow-color);
     border-radius: 50%;
@@ -73,16 +88,92 @@
     transition: background 0.3s ease-in-out;
   }
 
+  .page-header-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .svg-container {
+    max-width: 100vw;
+    height: var(--svg-height);
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    justify-content: center;
+    gap: var(--gap);
+    &:last-of-type {
+      view-timeline-name: --last-svg-line;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &~.svg-container {
+        display: none;
+      }
+    }
+  }
+
+  .dark-svg,
+  .mode-svg {
+    display: flex;
+    gap: calc(var(--gap) * 2);
+    height: var(--svg-height);
+    width: auto;
+    .svg {
+      width: auto;
+      height: 100%;
+    }
+    svg {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  .dark-svg {
+    min-width: max-content;
+    --darker-difference-ratio: 0.68;
+    padding-block: max(calc(var(--rem) * 2), calc(var(--vw) * 2));
+
+    .e,
+    .r {
+      opacity: 0;
+      transition: opacity 0.4s var(--ease-in-out-circ);
+    }
+
+    .svg {
+      display: block;
+      overflow: clip;
+      height: 100%;
+      clip-path: inset(0 calc(100% - var(--darker-difference-ratio) * 100%) 0 0);
+      transform: translateX(calc(100% - var(--darker-difference-ratio) * 100%));
+      transition: transform 0.4s var(--ease-in-out-circ), clip-path 0.4s var(--ease-in-out-circ);
+    }
+
+    .svg:first-of-type {
+      opacity: 0.5;
+      transform: translateX(calc((100% - var(--darker-difference-ratio) * 100%) * 2));
+    }
+  }
+
+  .mode-svg {
+    .svg:last-of-type {
+      opacity: 0.5;
+    }
+  }
 
   .dark-svg,
   .page-header-text-animation--left {
     justify-self: end;
-    --translate-x: calc(var(--moon-width) * var(--scale-to) * 0.5 + var(--gap));
+    text-align: right;
+    --translate-x: calc(var(--moon-width) * 0.5);
   }
 
   .mode-svg,
   .page-header-text-animation--right {
-    --translate-x: calc(var(--moon-width) * var(--scale-to) * -0.5 - var(--gap));
+    --translate-x: calc(var(--moon-width) * -0.5);
   }
 
   .dark-svg,
@@ -91,95 +182,28 @@
   .page-header-text-animation--right {
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
-        --start-range: calc(var(--moon-width) * var(--first-row-scale) * -1 - var(--gap) - 2rem);
-        --end-range: calc(var(--start-range) + var(--moon-width) * var(--scale-to) + var(--element-height, 0) * 1.5 + var(--gap) + 4rem);
+        --start-range: calc(-125% + ((50vh + var(--moon-width) * 0.5) + var(--extra-space)) * -1 - var(--celestial-up));
+        --end-range: calc(225% + ((50vh + var(--moon-width) * -0.5) - var(--extra-space)) * -1 - var(--celestial-up));
+
 
         animation-name: around-celestial;
         animation-timeline: view();
         animation-timing-function: var(--ease-in-out-circ);
-        animation-timing-function: ease-in-out;
         animation-fill-mode: both;
         animation-range: exit var(--start-range) exit var(--end-range);
       }
     }
   }
 
-
-  .dark-svg,
-  .mode-svg {
-    --element-height: clamp(calc(var(--rem) * 32), calc(var(--vw) * 100), calc(var(--max-rem) * 100));
-    margin-top: 2rem;
-    height: var(--element-height);
-    svg {
-      width: auto;
-      height: 100%;
-    }
-    margin-bottom: 1rem;
-  }
-
-  .dark-svg {
-    overflow: clip;
-    width: calc(var(--darker-difference) * 100%);
-    transition: width 0.3s ease-in-out;
-    .e, .r {
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-  }
-
   .page-header-text-animation--left,
   .page-header-text-animation--right {
-    --element-height: 2em;
-
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        --start-range: calc(-300% + ((50vh + var(--moon-width) * 0.5) + var(--extra-space)) * -1 - var(--celestial-up));
+        --end-range: calc(400% + ((50vh + var(--moon-width) * -0.5) - var(--extra-space)) * -1 - var(--celestial-up));
+      }
+    }
   }
-
-  .dark-svg {
-    grid-area: dark-svg;
-    view-timeline-name: --page-header-svg;
-  }
-
-  .mode-svg {
-    grid-area: mode-svg;
-  }
-
-  .page-header-date {
-    grid-area: date;
-  }
-
-  .page-header-venue {
-    grid-area: venue;
-  }
-
-  .page-header-location {
-    grid-area: location;
-  }
-
-  .page-header-country {
-    grid-area: country;
-  }
-
-  .page-header-tagline1 {
-    grid-area: tagline1;
-  }
-
-  .page-header-tagline2 {
-    grid-area: tagline2;
-  }
-
-  .page-header-intro {
-    view-timeline-name: --page-header-intro;
-    grid-area: intro;
-    text-align: center;
-    position: sticky;
-    top: calc(var(--moon-width) * var(--first-row-scale));
-    margin-top: 1rem;
-    max-width: calc(var(--rem) * 470);
-    margin-inline: auto;
-  }
-}
-
-.filler {
-  height: 100vh;
 }
 
 @keyframes around-celestial {
@@ -189,14 +213,15 @@
 }
 
 @keyframes move-celestial-up {
-  100% {
-    transform: translate(-50%, -250%)
+  from {
+    translate: 0 -150vh;
+    opacity: 0;
   }
 }
 
-@keyframes scale-celestial-down {
-  50%, 100% {
-    scale: var(--scale-to);
-    translate: 0 calc(var(--moon-width) * var(--scale-to));
+@keyframes move-celestial-up-scoll-driven {
+  to {
+    translate: 0 -150vh;
+    opacity: 0;
   }
 }
