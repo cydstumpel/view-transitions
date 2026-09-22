@@ -86,7 +86,7 @@ html {
 }
 
 html {
-  background: var(--c-dark);
+  background: var(--c-background);
   container-name: scroller;
   container-type: scroll-state;
   @container style(--mode: dark) {
