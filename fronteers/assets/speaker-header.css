@@ -59,7 +59,7 @@
       position: absolute;
       left: calc(max(var(--vw) * var(--prev-next-translate), var(--max-rem) * var(--prev-next-translate)));
       top: 50%;
-      translate: 0 -80%;
+      translate: 0 -70%;
     }
 
     &.next-speaker {
@@ -67,7 +67,7 @@
       position: absolute;
       right: calc(max(var(--vw) * var(--prev-next-translate), var(--max-rem) * var(--prev-next-translate)));
       top: 50%;
-      translate: 0 -80%;
+      translate: 0 -70%;
     }
 
     img {

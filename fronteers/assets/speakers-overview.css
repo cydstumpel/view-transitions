@@ -3,7 +3,7 @@
   margin: 0 auto;
   overflow: clip;
   --jump-out-size: clamp(calc(var(--rem) * 32), calc(var(--vw) * 90), calc(var(--max-rem) * 90));
-  padding-top: clamp(8rem, calc(var(--vw) * 320), calc(var(--max-rem) * 320));
+  padding-top: var(--celestial-width);
   .speaker-image {
     width: 100%;
     height: 100%;
@@ -19,7 +19,7 @@
 .speakers-overview-list {
   display: grid;
   grid-template-columns: var(--grid-columns);
-  grid-template-rows: var(--jump-out-size) auto var(--jump-out-size) auto auto var(--jump-out-size) auto;
+  grid-template-rows: var(--jump-out-size) auto var(--jump-out-size) auto auto auto var(--jump-out-size);
   @media (max-width: 480px) {
     grid-template-rows: auto var(--jump-out-size) auto var(--jump-out-size) auto auto var(--jump-out-size) auto;
   }
@@ -64,7 +64,7 @@
     timeline-trigger:
       --t
       view()
-      entry 10% scroll 100% / entry 0% scroll 100%;
+      entry 10% scroll 100% / entry 0% scroll 120%;
     animation-trigger: --t play-forwards play-backwards;
   }
 }

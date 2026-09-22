@@ -15,8 +15,8 @@
     view-transition-name: var(--vt);
   }
 
-  .header {
-    view-transition-name: header;
+  .fronteers-logo-link {
+    view-transition-name: fronteers-logo-link;
   }
 }
 
@@ -27,6 +27,7 @@
     view-transition-class: speaker-name;
   }
 }
+
 .speaker-header .title {
   view-transition-class: speaker-name-title;
 }
@@ -72,7 +73,8 @@
 }
 
 ::view-transition-new(root),
-::view-transition-new(.speaker-image):only-child {
+::view-transition-new(.speaker-image):only-child,
+::view-transition-new(fronteers-logo-link) {
   --order: 1;
 }
 
@@ -116,22 +118,24 @@
   object-fit: cover;
 }
 
-::view-transition-group(header) {
-  z-index: 10;
+::view-transition-group(fronteers-logo-link) {
+  z-index: 2;
 }
 
-::view-transition-old(header) {
-  opacity: 1;
-  animation-name: none;
+
+::view-transition-old(fronteers-logo-link) {
+  animation-name: slide-out;
 }
-::view-transition-new(header) {
-  opacity: 0;
-  animation-name: none;
+
+::view-transition-new(fronteers-logo-link) {
+  animation-name: slide-in;
 }
+
 
 
 /* direction: index to detail */
 html.speaker-detail {
+
   &::view-transition-old(.speaker-image),
   &::view-transition-old(.speaker-image-next),
   &::view-transition-old(.speaker-image-prev) {
@@ -155,19 +159,21 @@ html.speaker-detail {
   &::view-transition-old(.speaker-image):only-child {
     animation-name: scale-down;
   }
+
   &::view-transition-new(.speaker-image-prev):only-child,
   &::view-transition-new(.speaker-image-next):only-child {
-    animation-name: next-prev-slide-in;
+    animation-name: slide-in;
   }
 
   &::view-transition-old(.speaker-image-prev):only-child,
   &::view-transition-old(.speaker-image-next):only-child {
-    animation-name: next-prev-slide-out;
+    animation-name: slide-out;
   }
 }
 
 /* direction: detail to index */
 html.index {
+
   &::view-transition-old(.speaker-image),
   &::view-transition-old(.speaker-image-next),
   &::view-transition-old(.speaker-image-prev) {
@@ -208,13 +214,13 @@ html.index {
 }
 
 
-@keyframes next-prev-slide-in {
+@keyframes slide-in {
   from {
     transform: translateX(calc(var(--direction, 1) * 101%));
   }
 }
 
-@keyframes next-prev-slide-out {
+@keyframes slide-out {
   to {
     transform: translateX(calc(var(--direction, 1) * 101%));
   }

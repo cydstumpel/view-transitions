@@ -1,14 +1,10 @@
-
 .page-header {
   --dark-svg-ratio: 762/146;
   --mode-svg-ratio: 530/146;
   --svg-height: max(calc(var(--rem) * 32), calc(var(--vw) * 100));
   --darker-difference-ratio: 405 / 754;
   --first-row-scale: 0.75;
-  --moon-width: max(calc(var(--rem) * 125), calc(var(--vw) * 400));
-  --extra-space: calc(var(--gap) * 2);
   --celestial-up: -8vw;
-
   overflow-x: clip;
   position: relative;
   display: grid;
@@ -16,10 +12,23 @@
   align-content: start;
   gap: calc(var(--gap) * 0.5);
   padding-top: calc(100vh - var(--svg-height) - 10em);
-
   min-height: 100vw;
   view-timeline-name: --page-header;
   timeline-scope: --last-svg-line;
+
+  .celestial picture {
+    display: contents;
+  }
+
+  .celestial :is(img, canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .celestial--3d picture {
+    display: none;
+  }
 
   .page-header-moon {
     display: none;
@@ -27,14 +36,16 @@
 
     img {
       opacity: 0;
-      translate: 0 -100%;
-      transition: translate 0.3s ease-in, opacity 0.2s 0.1s ease-in;
-    }
+      transition: opacity 0.2s var(--ease-back);
 
-    @starting-style {
-      img {
-        opacity: 1;
-        translate: 0;
+      @media (prefers-reduced-motion: no-preference) {
+        translate: 0 -100%;
+        transition: translate 0.3s ease-in, opacity 0.2s 0.1s ease-in;
+
+        @starting-style {
+          opacity: 1;
+          translate: 0;
+        }
       }
     }
   }
@@ -42,19 +53,24 @@
   .page-header-shadow,
   .page-header-sun,
   .page-header-moon {
-    position: fixed;
-    z-index: 1;
-    top: calc(50% + var(--celestial-up));
+    position: absolute;
+    top: 0;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    left: 50%;
     aspect-ratio: 1;
-    width: var(--moon-width);
+    width: var(--celestial-width);
 
     transform-origin: left top;
 
     @media (prefers-reduced-motion: no-preference) {
-      --end-range: calc(225% + ((50vh + var(--moon-width) * -0.5) - var(--extra-space)) * -1 - var(--celestial-up) - 10vw);
+      --end-range: calc(100% + -50vh + var(--celestial-width) * 0.5 + var(--gap) * 2 - var(--celestial-up));
+
       @supports (animation-timeline: view()) {
+        position: fixed;
+        top: calc(50% + var(--celestial-up));
+        transform: translateX(-50%) translateY(-50%);
         animation-name: move-celestial-up-scoll-driven;
         animation-timeline: --last-svg-line;
         animation-timing-function: ease-out;
@@ -66,9 +82,9 @@
         animation-name: move-celestial-up;
         timeline-trigger-name: --t;
         timeline-trigger-source: --last-svg-line;
-        timeline-trigger-activation-range: scroll exit var(--end-range);
+        timeline-trigger-activation-range: scroll -10% exit var(--end-range);
         animation-trigger: --t play-forwards play-backwards;
-        animation-duration: 0.4s;
+        animation-duration: 0.2s;
         animation-fill-mode: both;
 
         animation-range: unset;
@@ -79,7 +95,7 @@
 
   .page-header-shadow {
     content: '';
-    width: calc(var(--moon-width) * 1.5);
+    width: calc(var(--celestial-width) * 1.5);
     z-index: 1;
     background: var(--shadow-color);
     border-radius: 50%;
@@ -105,14 +121,9 @@
     grid-template-columns: 50vw 50vw;
     justify-content: center;
     gap: var(--gap);
+
     &:last-of-type {
       view-timeline-name: --last-svg-line;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      &~.svg-container {
-        display: none;
-      }
     }
   }
 
@@ -122,10 +133,12 @@
     gap: calc(var(--gap) * 2);
     height: var(--svg-height);
     width: auto;
+
     .svg {
       width: auto;
       height: 100%;
     }
+
     svg {
       width: auto;
       height: 100%;
@@ -135,12 +148,11 @@
   .dark-svg {
     min-width: max-content;
     --darker-difference-ratio: 0.68;
-    padding-block: max(calc(var(--rem) * 2), calc(var(--vw) * 2));
 
     .e,
     .r {
       opacity: 0;
-      transition: opacity 0.4s var(--ease-in-out-circ);
+      transition: opacity 0.4s ease-out;
     }
 
     .svg {
@@ -149,7 +161,10 @@
       height: 100%;
       clip-path: inset(0 calc(100% - var(--darker-difference-ratio) * 100%) 0 0);
       transform: translateX(calc(100% - var(--darker-difference-ratio) * 100%));
-      transition: transform 0.4s var(--ease-in-out-circ), clip-path 0.4s var(--ease-in-out-circ);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.4s ease-out, clip-path 0.4s ease-out;
+      }
     }
 
     .svg:first-of-type {
@@ -168,12 +183,12 @@
   .page-header-text-animation--left {
     justify-self: end;
     text-align: right;
-    --translate-x: calc(var(--moon-width) * 0.5);
+    --translate-x: calc(var(--celestial-width) * 0.5);
   }
 
   .mode-svg,
   .page-header-text-animation--right {
-    --translate-x: calc(var(--moon-width) * -0.5);
+    --translate-x: calc(var(--celestial-width) * -0.5);
   }
 
   .dark-svg,
@@ -182,25 +197,16 @@
   .page-header-text-animation--right {
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
-        --start-range: calc(-125% + ((50vh + var(--moon-width) * 0.5) + var(--extra-space)) * -1 - var(--celestial-up));
-        --end-range: calc(225% + ((50vh + var(--moon-width) * -0.5) - var(--extra-space)) * -1 - var(--celestial-up));
+        --start-range: calc(-50vh - var(--celestial-width) * 0.5 - var(--gap) * 2 - var(--celestial-up));
+        --end-range: calc(100% + -50vh + var(--celestial-width) * 0.5 + var(--gap) * 2 - var(--celestial-up));
 
 
         animation-name: around-celestial;
         animation-timeline: view();
-        animation-timing-function: var(--ease-in-out-circ);
+        animation-timing-function: ease-out;
+
         animation-fill-mode: both;
         animation-range: exit var(--start-range) exit var(--end-range);
-      }
-    }
-  }
-
-  .page-header-text-animation--left,
-  .page-header-text-animation--right {
-    @media (prefers-reduced-motion: no-preference) {
-      @supports (animation-timeline: view()) {
-        --start-range: calc(-300% + ((50vh + var(--moon-width) * 0.5) + var(--extra-space)) * -1 - var(--celestial-up));
-        --end-range: calc(400% + ((50vh + var(--moon-width) * -0.5) - var(--extra-space)) * -1 - var(--celestial-up));
       }
     }
   }
@@ -209,6 +215,7 @@
 @keyframes around-celestial {
   50% {
     transform: translateX(calc(var(--translate-x) * -1));
+    animation-timing-function: ease-in;
   }
 }
 

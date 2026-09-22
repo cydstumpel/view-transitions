@@ -8,7 +8,16 @@
   <title>Fronteers Dark Mode 2026</title>
   <link rel="stylesheet" href="./assets/view-transitions.css" />
   <link rel="stylesheet" href="./assets/style.css" />
-  <script src="./assets/script.js" defer></script>
+  <!-- favicon -->
+  <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.186.0/build/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="./assets/secrets/celestial.js"></script>
   <link rel="expect" href="#speakers-overview" blocking="render" />
 </head>
 
@@ -31,17 +40,6 @@
       <a href="https://fronteersconf.org/tickets/" class="button">
         Get tickets
       </a>
-      <div class="dark-mode-switch">
-        <input type="checkbox" id="dark-mode-switch">
-        <label for="dark-mode-switch">
-          <span class="light-mode-active">
-            Darker mode
-          </span>
-          <span class="dark-mode-active">
-            Lighter mode
-          </span>
-        </label>
-      </div>
     </div>
     <a href="/fronteers/" class="fronteers-logo-link">
       <span class="sr-only">
@@ -123,10 +121,12 @@
   <main class="main" id="main">
     <section class="page-header">
       <div class="page-header-shadow"></div>
-      <picture class="page-header-sun">
-        <source srcset="./assets/img/sun.avif" type="image/avif">
-        <img src="./assets/img/sun.png" alt="The sun" width="100%" height="100%">
-      </picture>
+      <div class="page-header-sun celestial">
+        <picture>
+          <source srcset="./assets/img/sun.avif" type="image/avif">
+          <img src="./assets/img/sun.png" alt="The sun" width="100%" height="100%">
+        </picture>
+      </div>
       <picture class="page-header-moon">
         <source srcset="./assets/img/moon.avif" type="image/avif">
         <img src="./assets/img/moon.png" alt="The moon" width="100%" height="100%">
@@ -136,7 +136,7 @@
       </h1>
       <p class="page-header-meta medium-heading pixel caps">
         <span class="page-header-text-animation--left">
-          2 October, 2026
+          2 October 2026
         </span>
         <span class="page-header-text-animation--right">
           Cinema De Witt
@@ -259,7 +259,7 @@
             One night
           </p>
           <p class="medium-heading pixel caps">
-            Only in theaters
+            In theaters only
           </p>
         </li>
       </ul>
