@@ -1,0 +1,65 @@
+:root {
+  --mode: light;
+
+  @media (prefers-color-scheme: dark) {
+    --mode: dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    --mode: light;
+  }
+  --color-background: #E0E0FF;
+  --color-text: var(--c-dark);
+}
+
+
+html {
+  /* background: var(--c-background); */
+  /* container-name: scroller;
+  container-type: scroll-state; */
+  @container style(--mode: dark) {
+    body {
+      --color-background: var(--c-dark);
+      --color-text: var(--c-light);
+      --mix-blend-mode: darken;
+    }
+
+    @supports (color: color-mix(in srgb, red, green)) {
+      color: color-mix(in oklch, var(--c-light) 85%, var(--c-dark));
+    }
+
+    .page-header {
+      .page-header-moon {
+        display: block;
+        transition: display allow-discrete 0.3s var(--ease-back);
+
+        img {
+          translate: 0 0;
+          opacity: 1;
+          transition: opacity 0.2s var(--ease-back);
+
+          @media (prefers-reduced-motion: no-preference) {
+            transition: translate 0.3s var(--ease-back), opacity 0.1s var(--ease-back);
+
+            @starting-style {
+              opacity: 0;
+              translate: 0 -100%;
+            }
+          }
+        }
+      }
+
+      .dark-svg {
+        .svg {
+          clip-path: inset(0 0 0 0);
+          transform: translateX(0) !important;
+        }
+
+        .e,
+        .r {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
