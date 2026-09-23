@@ -4,7 +4,7 @@
   --svg-height: max(calc(var(--rem) * 32), calc(var(--vw) * 100));
   --darker-difference-ratio: 405 / 754;
   --first-row-scale: 0.75;
-  --celestial-up: -8vw;
+
   overflow-x: clip;
   position: relative;
   display: grid;
@@ -113,6 +113,9 @@
       margin-bottom: 2rem;
     }
   }
+  .page-header-meta--debug {
+    display: none;
+  }
 
   .svg-container {
     max-width: 100vw;
@@ -183,41 +186,10 @@
   .page-header-text-animation--left {
     justify-self: end;
     text-align: right;
-    --translate-x: calc(var(--celestial-width) * 0.5);
-  }
-
-  .mode-svg,
-  .page-header-text-animation--right {
-    --translate-x: calc(var(--celestial-width) * -0.5);
-  }
-
-  .dark-svg,
-  .mode-svg,
-  .page-header-text-animation--left,
-  .page-header-text-animation--right {
-    @media (prefers-reduced-motion: no-preference) {
-      @supports (animation-timeline: view()) {
-        --start-range: calc(-50vh - var(--celestial-width) * 0.5 - var(--gap) * 2 - var(--celestial-up));
-        --end-range: calc(100% + -50vh + var(--celestial-width) * 0.5 + var(--gap) * 2 - var(--celestial-up));
-
-
-        animation-name: around-celestial;
-        animation-timeline: view();
-        animation-timing-function: ease-out;
-
-        animation-fill-mode: both;
-        animation-range: exit var(--start-range) exit var(--end-range);
-      }
-    }
   }
 }
 
-@keyframes around-celestial {
-  50% {
-    transform: translateX(calc(var(--translate-x) * -1));
-    animation-timing-function: ease-in;
-  }
-}
+
 
 @keyframes move-celestial-up {
   from {
@@ -231,4 +203,11 @@
     translate: 0 -150vh;
     opacity: 0;
   }
+}
+
+.dot {
+  display: block;
+  width: 2px;
+  height: 2px;
+  background: var(--color-text);
 }

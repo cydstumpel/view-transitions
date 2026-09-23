@@ -1,0 +1,255 @@
+@view-transition {
+  navigation: auto;
+}
+
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ease-out quint */
+  --duration: 0.6s;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  [style*='--vt'] {
+    view-transition-name: var(--vt);
+  }
+}
+
+/* Classing things: */
+/* .speaker {
+  view-transition-class: speaker-image;
+
+  .speaker-name {
+    view-transition-class: speaker-name;
+  }
+}
+
+.speaker-header .title {
+  view-transition-class: speaker-name-title;
+}
+
+.speaker-header-image {
+  view-transition-class: speaker-image;
+}
+
+.speaker-header-image.next-speaker {
+  view-transition-class: speaker-image-next;
+}
+
+.speaker-header-image.prev-speaker {
+  view-transition-class: speaker-image-prev;
+} */
+
+/* Setting defaults: */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-fill-mode: both;
+  animation-duration: var(--duration);
+  animation-timing-function: var(--ease);
+  animation-delay: calc(var(--duration) * var(--order, 0));
+}
+
+/* Animate disappearing speakers and old root out first
+*/
+::view-transition-old(root),
+::view-transition-old(.speaker-image):only-child {
+
+}
+
+/* Animate the moving of the speakers second
+::view-transition-group(.speaker-image-prev),
+::view-transition-group(.speaker-image-next),
+::view-transition-group(.speaker-image),
+::view-transition-group(.speaker-name-title) {
+  --order: 0.5;
+}
+*/
+
+::view-transition-group(.speaker-image-prev),
+::view-transition-group(.speaker-image-next),
+::view-transition-group(.speaker-image),
+::view-transition-group(.speaker-name-title) {
+
+}
+
+/* Animate the new root, and speaker image that weren't on the last page third
+::view-transition-new(root),
+::view-transition-new(.speaker-image):only-child {
+  --order: 1;
+}
+*/
+::view-transition-new(root),
+::view-transition-new(.speaker-image):only-child {
+
+}
+
+/* Animate the new speaker name last
+::view-transition-new(.speaker-name) {
+  --order: 1.5;
+}
+*/
+::view-transition-new(.speaker-name) {
+
+}
+/* Fix the aspect ratio change when the speaker image changes */
+/* Great article by Jake: https://jakearchibald.com/2024/view-transitions-handling-aspect-ratio-changes/ */
+::view-transition-group(.speaker-name),
+::view-transition-group(.speaker-image),
+::view-transition-group(.speaker-image-next),
+::view-transition-group(.speaker-image-prev) {
+  overflow: clip;
+}
+
+::view-transition-old(.speaker-image),
+::view-transition-new(.speaker-image),
+::view-transition-old(.speaker-image-prev),
+::view-transition-old(.speaker-image-next),
+::view-transition-new(.speaker-image-prev),
+::view-transition-new(.speaker-image-next) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+::view-transition-group(.speaker-name-title) {
+  /* add a mask to the speaker title group
+    mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+  */
+
+}
+
+::view-transition-old(.speaker-name-title) {
+  /* animate the old speaker title to the bottom of the screen
+  animation-name: to-bottom;
+  */
+
+}
+
+
+::view-transition-new(.speaker-name-title) {
+  /* animate the new speaker title from the top of the screen
+    animation-name: from-top;
+   */
+
+}
+
+
+
+
+::view-transition-old(.speaker-image),
+::view-transition-new(.speaker-image),
+::view-transition-old(.speaker-image-next),
+::view-transition-new(.speaker-image-next),
+::view-transition-old(.speaker-image-prev),
+::view-transition-new(.speaker-image-prev) {
+  /* Remove the animation and set opacity to 1
+  opacity: 1;
+  animation-name: none;
+  */
+
+}
+
+::view-transition-old(.speaker-image):only-child {
+  /* Scale speaker images down when they are the only child of the view-transition-image-pair
+  animation-name: scale-down;
+  */
+
+}
+
+::view-transition-new(.speaker-image):only-child {
+  /* Scale speaker images up when they are the only child of the view-transition-image-pair
+  animation-name: scale-up;
+  */
+
+}
+
+/* Specific animations for going from the homepage to the speaker detail page */
+html.speaker-detail {
+  &::view-transition-new(.speaker-image),
+  &::view-transition-new(.speaker-image-next),
+  &::view-transition-new(.speaker-image-prev) {
+    /* Set z-index to 1 to ensure the speaker image is on top of the old root
+    z-index: 1;
+    */
+
+  }
+
+  &::view-transition-group(.speaker-image-prev) {
+    /* Animate the previous speakers to the left if they disappear
+      --direction: -1;
+    */
+
+  }
+
+  &::view-transition-new(.speaker-image-prev):only-child,
+  &::view-transition-new(.speaker-image-next):only-child {
+    /* animate the new speakers in
+      animation-name: slide-in;
+    */
+
+  }
+
+  &::view-transition-old(.speaker-image-prev):only-child,
+  &::view-transition-old(.speaker-image-next):only-child {
+    /* animate the old speakers out
+    animation-name: slide-out;
+  */
+
+  }
+}
+
+html.index {
+  &::view-transition-old(.speaker-image),
+  &::view-transition-old(.speaker-image-next),
+  &::view-transition-old(.speaker-image-prev) {
+    /* Set z-index to 1 to ensure the speaker image is on top of the new root
+    z-index: 1;
+    */
+
+  }
+}
+
+
+@keyframes scale-down {
+  to {
+    scale: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    scale: 0;
+  }
+}
+
+
+@keyframes slide-in {
+  from {
+    transform: translateX(calc(var(--direction, 1) * 101%));
+  }
+}
+
+@keyframes slide-out {
+  to {
+    transform: translateX(calc(var(--direction, 1) * 101%));
+  }
+}
+
+
+@keyframes from-top {
+  from {
+    transform: translateY(-101%);
+    opacity: 0;
+  }
+}
+
+@keyframes to-bottom {
+  to {
+    transform: translateY(101%);
+    opacity: 0;
+  }
+}

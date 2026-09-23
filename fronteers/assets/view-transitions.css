@@ -1,127 +1,20 @@
-@view-transition {
-  navigation: auto;
-}
-
-
-:root {
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  /* ease-out quint */
-  --duration: 0.6s;
-}
-
-
 @media (prefers-reduced-motion: no-preference) {
-  [style*='--vt'] {
-    view-transition-name: var(--vt);
-  }
-
   .fronteers-logo-link {
     view-transition-name: fronteers-logo-link;
   }
-}
-
-.speaker {
-  view-transition-class: speaker-image;
-
-  .speaker-name {
-    view-transition-class: speaker-name;
-  }
-}
-
-.speaker-header .title {
-  view-transition-class: speaker-name-title;
-}
-
-.speaker-header-image {
-  view-transition-class: speaker-image;
-}
-
-.speaker-header-image.next-speaker {
-  view-transition-class: speaker-image-next;
-}
-
-.speaker-header-image.prev-speaker {
-  view-transition-class: speaker-image-prev;
-}
-
-
-::view-transition-group(*),
-::view-transition-old(*),
-::view-transition-new(*) {
-  animation-fill-mode: both;
-  animation-duration: var(--duration);
-  animation-timing-function: var(--ease);
-  animation-delay: calc(var(--duration) * var(--order));
 }
 
 ::view-transition-group(root) {
   animation-timing-function: ease-out;
 }
 
-/* ::view-transition-old(.speaker-image-next),
-::view-transition-old(.speaker-image-prev)  */
-::view-transition-old(root),
-::view-transition-old(.speaker-image):only-child {
-  --order: 0;
-}
-
-::view-transition-group(.speaker-image-prev),
-::view-transition-group(.speaker-image-next),
-::view-transition-group(.speaker-image),
-::view-transition-group(.speaker-name-title) {
-  --order: 0.5;
-}
-
-::view-transition-new(root),
-::view-transition-new(.speaker-image):only-child,
 ::view-transition-new(fronteers-logo-link) {
   --order: 1;
-}
-
-::view-transition-new(.speaker-name) {
-  --order: 1.5;
-}
-
-
-::view-transition-group(.speaker-image-prev) {
-  --direction: -1;
-}
-
-::view-transition-group(.speaker-name-title) {
-  mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
-}
-
-::view-transition-new(.speaker-name-title) {
-  animation-name: from-top;
-}
-
-::view-transition-old(.speaker-name-title) {
-  animation-name: to-bottom;
-}
-
-
-::view-transition-group(.speaker-name),
-::view-transition-group(.speaker-image),
-::view-transition-group(.speaker-image-next),
-::view-transition-group(.speaker-image-prev) {
-  overflow: clip;
-}
-
-::view-transition-old(.speaker-image),
-::view-transition-new(.speaker-image),
-::view-transition-old(.speaker-image-prev),
-::view-transition-old(.speaker-image-next),
-::view-transition-new(.speaker-image-prev),
-::view-transition-new(.speaker-image-next) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 ::view-transition-group(fronteers-logo-link) {
   z-index: 2;
 }
-
 
 ::view-transition-old(fronteers-logo-link) {
   animation-name: slide-out;
@@ -132,111 +25,16 @@
 }
 
 
-
-/* direction: index to detail */
 html.speaker-detail {
-
-  &::view-transition-old(.speaker-image),
-  &::view-transition-old(.speaker-image-next),
-  &::view-transition-old(.speaker-image-prev) {
-    opacity: 1;
-    animation-name: none;
-  }
-
-  &::view-transition-new(.speaker-image),
-  &::view-transition-new(.speaker-image-next),
-  &::view-transition-new(.speaker-image-prev) {
-    opacity: 1;
-    animation-name: none;
-    z-index: 1;
-  }
-
   &::view-transition-old(.speaker-name-title),
   &::view-transition-new(.speaker-name-title) {
     --order: 0.75;
   }
-
-  &::view-transition-old(.speaker-image):only-child {
-    animation-name: scale-down;
-  }
-
-  &::view-transition-new(.speaker-image-prev):only-child,
-  &::view-transition-new(.speaker-image-next):only-child {
-    animation-name: slide-in;
-  }
-
-  &::view-transition-old(.speaker-image-prev):only-child,
-  &::view-transition-old(.speaker-image-next):only-child {
-    animation-name: slide-out;
-  }
 }
 
-/* direction: detail to index */
 html.index {
-
-  &::view-transition-old(.speaker-image),
-  &::view-transition-old(.speaker-image-next),
-  &::view-transition-old(.speaker-image-prev) {
-    opacity: 1;
-    animation-name: none;
-    z-index: 1;
-  }
-
-  &::view-transition-new(.speaker-image),
-  &::view-transition-new(.speaker-image-next),
-  &::view-transition-new(.speaker-image-prev) {
-    opacity: 1;
-    animation-name: none;
-  }
-
   &::view-transition-old(.speaker-name-title),
   &::view-transition-new(.speaker-name-title) {
     --order: 0;
-  }
-
-  &::view-transition-new(.speaker-image):only-child {
-    animation-name: scale-up;
-  }
-}
-
-
-@keyframes scale-down {
-  to {
-    scale: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes scale-up {
-  from {
-    scale: 0;
-  }
-}
-
-
-@keyframes slide-in {
-  from {
-    transform: translateX(calc(var(--direction, 1) * 101%));
-  }
-}
-
-@keyframes slide-out {
-  to {
-    transform: translateX(calc(var(--direction, 1) * 101%));
-  }
-}
-
-
-@keyframes from-top {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes to-bottom {
-  to {
-    transform: translateY(100%);
-    opacity: 0;
   }
 }

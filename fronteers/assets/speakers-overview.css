@@ -1,8 +1,8 @@
 .speakers-overview {
+  --jump-out-size: clamp(calc(var(--rem) * 32), calc(var(--vw) * 90), calc(var(--max-rem) * 90));
   max-width: var(--max-width);
   margin: 0 auto;
   overflow: clip;
-  --jump-out-size: clamp(calc(var(--rem) * 32), calc(var(--vw) * 90), calc(var(--max-rem) * 90));
   padding-top: var(--celestial-width);
   .speaker-image {
     width: 100%;
@@ -57,18 +57,6 @@
   }
 }
 
-.speaker,
-.speakers-overview-text {
-  @media (prefers-reduced-motion: no-preference) {
-    animation: click-into-place 0.5s var(--ease-back) both;
-    timeline-trigger:
-      --t
-      view()
-      entry 10% scroll 100% / entry 0% scroll 120%;
-    animation-trigger: --t play-forwards play-backwards;
-  }
-}
-
 .speakers-overview-text {
   --from-x: calc(var(--gap) * 3);
   --from-y: 0;
@@ -88,21 +76,6 @@
     margin-bottom: var(--vertical-gap);
   }
 }
-
-.speaker-anjana-vakil,
-.speaker-cyd-stumpel,
-.speaker-heydon-pickering {
-  --from-x: calc(var(--gap) * 3);
-  --from-y: calc(var(--gap) * 3);
-}
-
-.speaker-barry-pollard,
-.speaker-harry-roberts,
-.speaker-jake-archibald {
-  --from-x: calc(var(--gap) * -3);
-  --from-y: calc(var(--gap) * 3);
-}
-
 
 .speaker-anjana-vakil {
   grid-column: 6 / span 4;
@@ -181,10 +154,3 @@
 }
 
 
-@keyframes click-into-place {
-  from {
-    translate: var(--from-x) var(--from-y);
-    opacity: 0;
-  }
-
-}

@@ -1,65 +1,131 @@
 :root {
-  --mode: light;
-
-  @media (prefers-color-scheme: dark) {
-    --mode: dark;
-  }
-
-  @media (prefers-color-scheme: light) {
-    --mode: light;
-  }
-  --color-background: #E0E0FF;
-  --color-text: var(--c-dark);
+  --celestial-width: max(calc(var(--rem) * 125), calc(var(--vw) * 400));
+  --celestial-up: -8vw;
 }
 
 
 html {
-  /* background: var(--c-background); */
-  /* container-name: scroller;
-  container-type: scroll-state; */
-  @container style(--mode: dark) {
-    body {
-      --color-background: var(--c-dark);
-      --color-text: var(--c-light);
-      --mix-blend-mode: darken;
+  /* Set container type on the root scroller
+    container-type: scroll-state;
+  */
+}
+
+/* Animate the fronteers logo out when we scroll down
+
+*/
+@container scroll-state(scrolled: block-end) {
+  @media (prefers-reduced-motion: no-preference) {
+    .header .fronteers-logo-link g.letter-container {
+      --translate-x: 100%;
     }
+  }
+}
 
-    @supports (color: color-mix(in srgb, red, green)) {
-      color: color-mix(in oklch, var(--c-light) 85%, var(--c-dark));
-    }
 
-    .page-header {
-      .page-header-moon {
-        display: block;
-        transition: display allow-discrete 0.3s var(--ease-back);
 
-        img {
-          translate: 0 0;
-          opacity: 1;
-          transition: opacity 0.2s var(--ease-back);
+.page-header {
+  /* Set the --translate-x for the items on the left
+  .page-header-el--left {
+    --translate-x: calc(var(--celestial-width) / -2 + var(--gap) / 2);
+  }
+  */
 
-          @media (prefers-reduced-motion: no-preference) {
-            transition: translate 0.3s var(--ease-back), opacity 0.1s var(--ease-back);
 
-            @starting-style {
-              opacity: 0;
-              translate: 0 -100%;
-            }
-          }
-        }
+  /* Set the --translate-x for the items on the right
+  .page-header-el--right {
+    --translate-x: calc(var(--celestial-width) / 2 - var(--gap) / 2);
+  } */
+
+
+
+
+  .page-header-el--left,
+  .page-header-el--right {
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        /* Add start and end ranges as variables
+        --start-range: calc(-50vh - var(--celestial-width) / 2 - var(--celestial-up));
+        --end-range: calc(100% + -50vh + var(--celestial-width) / 2 - var(--celestial-up));
+        */
+
+
+        /* Set animation name, timeline, timing function and fill mode
+        animation-name: around-celestial;
+        animation-timeline: view();
+        animation-timing-function: ease-out;
+        animation-timing-function: cubic-bezier(0.32, 1, 1, 1);
+        animation-fill-mode: both;
+        */
+
+
+        /* Set the animation range
+          animation-range: exit var(--start-range) exit var(--end-range);
+        */
+
+
       }
-
-      .dark-svg {
-        .svg {
-          clip-path: inset(0 0 0 0);
-          transform: translateX(0) !important;
-        }
-
-        .e,
-        .r {
-          opacity: 1;
-        }
-      }
     }
+  }
+
+  /* Debug the easings: */
+  /* .page-header-meta--debug {
+    display: grid;
+  } */
+}
+
+@keyframes around-celestial {
+  50% {
+    transform: translateX(calc(var(--translate-x)));
+    animation-timing-function: ease-in;
+    animation-timing-function: cubic-bezier(0.68, 0, 1, 1);
+  }
+}
+
+
+.speakers-overview {
+  .speaker,
+  .speakers-overview-text {
+    @media (prefers-reduced-motion: no-preference) {
+      /* Add animation name, duration, timing function and fill mode
+        animation: click-into-place 0.5s var(--ease-back) both;
+      */
+
+
+      /* Set the timeline trigger
+        timeline-trigger:
+          --t view() entry 10% scroll 100% / entry 0% scroll 120%;
+      */
+
+
+      /* Set the animation trigger and animation actions
+        animation-trigger: --t play-forwards play-backwards;
+      */
+
+
+    }
+  }
+
+  /* Set the from-x and -y for the speakers that are on the left */
+  .speaker-anjana-vakil,
+  .speaker-cyd-stumpel,
+  .speaker-heydon-pickering {
+    --from-x: calc(var(--gap) * 3);
+    --from-y: calc(var(--gap) * 3);
+  }
+
+  /* Set the from-x and -y for the speakers that are on the right */
+  .speaker-barry-pollard,
+  .speaker-harry-roberts,
+  .speaker-jake-archibald {
+    --from-x: calc(var(--gap) * -3);
+    --from-y: calc(var(--gap) * 3);
+  }
+}
+
+
+@keyframes click-into-place {
+  from {
+    translate: var(--from-x) var(--from-y);
+    opacity: 0;
   }
 }
