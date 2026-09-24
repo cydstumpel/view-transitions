@@ -4,25 +4,6 @@
 }
 
 
-html {
-  /* Set container type on the root scroller
-    container-type: scroll-state;
-  */
-}
-
-/* Animate the fronteers logo out when we scroll down
-
-*/
-@container scroll-state(scrolled: block-end) {
-  @media (prefers-reduced-motion: no-preference) {
-    .header .fronteers-logo-link g.letter-container {
-      --translate-x: 100%;
-    }
-  }
-}
-
-
-
 .page-header {
   /* Set the --translate-x for the items on the left
   .page-header-el--left {
@@ -127,5 +108,24 @@ html {
   from {
     translate: var(--from-x) var(--from-y);
     opacity: 0;
+  }
+}
+
+
+
+html {
+  /* Set container type on the root scroller
+    container-type: scroll-state;
+  */
+}
+
+/* Animate the fronteers logo out when we scroll down
+
+*/
+@container scroll-state(scrolled: block-end) {
+  @media (prefers-reduced-motion: no-preference) {
+    .header .fronteers-logo-link g.letter-container {
+      --translate-x: 100%;
+    }
   }
 }
