@@ -1,6 +1,4 @@
-@view-transition {
-  navigation: auto;
-}
+/* Add view transition at rule to create view transitions between pages */
 
 :root {
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
