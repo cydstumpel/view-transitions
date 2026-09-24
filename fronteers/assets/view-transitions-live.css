@@ -163,9 +163,7 @@ html.speaker-detail {
 }
 
 html.index {
-  &::view-transition-old(.speaker-image),
-  &::view-transition-old(.speaker-image-next),
-  &::view-transition-old(.speaker-image-prev) {
+  &::view-transition-old(.speaker-image) {
     /* Set z-index to 1 to ensure the speaker image is on top of the new root
     z-index: 1;
     */
