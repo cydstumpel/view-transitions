@@ -5,43 +5,32 @@
 
 
 .page-header {
-  /* Set the --translate-x for the items on the left
   .page-header-el--left {
-    --translate-x: calc(var(--celestial-width) / -2 + var(--gap) / 2);
+    --direction: -1;
   }
-  */
-
-
-  /* Set the --translate-x for the items on the right
-  .page-header-el--right {
-    --translate-x: calc(var(--celestial-width) / 2 - var(--gap) / 2);
-  } */
-
-
-
-
   .page-header-el--left,
   .page-header-el--right {
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
         /* Add start and end ranges as variables
-        --start-range: calc(-50vh - var(--celestial-width) / 2 - var(--celestial-up));
-        --end-range: calc(100% + -50vh + var(--celestial-width) / 2 - var(--celestial-up));
+        --start-range: calc((50vh - 8vw + var(--celestial-width) / 2) * -1);
+        --end-range: calc((50vh - 8vw - var(--celestial-width) / 2) * -1 + 100%);
         */
 
 
-        /* Set animation name, timeline, timing function and fill mode
+        /* Set animation name, timeline and ease
         animation-name: around-celestial;
         animation-timeline: view();
         animation-timing-function: ease-out;
-        animation-timing-function: cubic-bezier(0.32, 1, 1, 1);
-        animation-fill-mode: both;
         */
 
 
         /* Set the animation range
-          animation-range: exit var(--start-range) exit var(--end-range);
+        animation-range: exit var(--start-range) exit var(--end-range);
         */
+
+        /* better easing:
+        animation-timing-function: cubic-bezier(0.32, 1, 1, 1); */
 
 
       }
@@ -56,9 +45,10 @@
 
 @keyframes around-celestial {
   50% {
-    transform: translateX(calc(var(--translate-x)));
+    transform: translateX(calc(var(--celestial-width) / 2 * var(--direction, 1)));
     animation-timing-function: ease-in;
-    animation-timing-function: cubic-bezier(0.68, 0, 1, 1);
+    /* better easing:
+    animation-timing-function: cubic-bezier(0.68, 0, 1, 1); */
   }
 }
 

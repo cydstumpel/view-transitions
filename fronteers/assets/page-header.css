@@ -113,6 +113,7 @@
       margin-bottom: 2rem;
     }
   }
+
   .page-header-meta--debug {
     display: none;
   }
@@ -128,6 +129,11 @@
     &:last-of-type {
       view-timeline-name: --last-svg-line;
     }
+  }
+
+  .page-header-el--left,
+  .page-header-el--right {
+    animation-fill-mode: both;
   }
 
   .dark-svg,
