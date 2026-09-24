@@ -4,6 +4,7 @@
   --svg-height: max(calc(var(--rem) * 32), calc(var(--vw) * 100));
   --darker-difference-ratio: 405 / 754;
   --first-row-scale: 0.75;
+  --celestial-up: -8vw;
 
   overflow-x: clip;
   position: relative;
@@ -65,7 +66,7 @@
     transform-origin: left top;
 
     @media (prefers-reduced-motion: no-preference) {
-      --end-range: calc(100% + -50vh + var(--celestial-width) * 0.5 + var(--gap) * 2 - var(--celestial-up));
+      --end-range: calc((50vh - 8vw - var(--celestial-width) / 2) * -1 + 100%);
 
       @supports (animation-timeline: view()) {
         position: fixed;
