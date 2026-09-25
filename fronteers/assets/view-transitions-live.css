@@ -1,5 +1,11 @@
 /* Add view transition at rule to create view transitions between pages */
 
+@media (prefers-reduced-motion: no-preference) {
+  [style*='--vt'] {
+    view-transition-name: var(--vt);
+  }
+}
+
 :root {
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* ease-out quint */
@@ -7,11 +13,6 @@
 }
 
 
-@media (prefers-reduced-motion: no-preference) {
-  [style*='--vt'] {
-    view-transition-name: var(--vt);
-  }
-}
 
 /* Classing things: */
 /* .speaker {

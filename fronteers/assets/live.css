@@ -4,9 +4,6 @@
 
 
 .page-header {
-  .page-header-el--left {
-    --direction: -1;
-  }
   .page-header-el--left,
   .page-header-el--right {
     @media (prefers-reduced-motion: no-preference) {
@@ -17,10 +14,9 @@
         */
 
 
-        /* Set animation name, timeline and ease
+        /* Set animation name and timeline
         animation-name: around-celestial;
         animation-timeline: view();
-        animation-timing-function: ease-out;
         */
 
 
@@ -34,6 +30,9 @@
 
 
       }
+    }
+    .page-header-el--left {
+      --direction: -1;
     }
   }
 
@@ -49,56 +48,5 @@
 
     /* easing:
     animation-timing-function: cubic-bezier(0.68, 0, 1, 1); */
-  }
-}
-
-
-.speakers-overview {
-  .speaker,
-  .speakers-overview-text {
-    @media (prefers-reduced-motion: no-preference) {
-      /* Add animation name, duration, timing function and fill mode
-        animation: click-into-place 0.5s var(--ease-back) both;
-      */
-
-
-      /* Set the timeline trigger
-        timeline-trigger:
-          --trigger
-          view()
-          entry 10% scroll 100% / entry 0% scroll 120%;
-      */
-
-
-      /* Set the animation trigger and animation actions
-        animation-trigger: --trigger play-forwards play-backwards;
-      */
-
-
-    }
-  }
-
-  /* Set the from-x and -y for the speakers that are on the left */
-  .speaker-anjana-vakil,
-  .speaker-cyd-stumpel,
-  .speaker-heydon-pickering {
-    --from-x: calc(var(--gap) * 3);
-    --from-y: calc(var(--gap) * 3);
-  }
-
-  /* Set the from-x and -y for the speakers that are on the right */
-  .speaker-barry-pollard,
-  .speaker-harry-roberts,
-  .speaker-jake-archibald {
-    --from-x: calc(var(--gap) * -3);
-    --from-y: calc(var(--gap) * 3);
-  }
-}
-
-
-@keyframes click-into-place {
-  from {
-    translate: var(--from-x) var(--from-y);
-    opacity: 0;
   }
 }
