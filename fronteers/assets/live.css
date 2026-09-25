@@ -29,7 +29,7 @@
         */
 
 
-        /* better easing:
+        /* easing:
         animation-timing-function: cubic-bezier(0.32, 1, 1, 1); */
 
 
@@ -46,8 +46,8 @@
 @keyframes around-celestial {
   50% {
     transform: translateX(calc(var(--celestial-width) / 2 * var(--direction, 1)));
-    animation-timing-function: ease-in;
-    /* better easing:
+
+    /* easing:
     animation-timing-function: cubic-bezier(0.68, 0, 1, 1); */
   }
 }
