@@ -37,9 +37,9 @@
   }
 
   /* Debug the easings: */
-  .page-header-meta--debug {
+  /* .page-header-meta--debug {
     display: grid;
-  }
+  } */
 }
 
 @keyframes around-celestial {
