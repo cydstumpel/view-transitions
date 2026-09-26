@@ -7,11 +7,11 @@
 
 
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   [style*='--vt'] {
     view-transition-name: var(--vt);
   }
-}
+} */
 
 
 
