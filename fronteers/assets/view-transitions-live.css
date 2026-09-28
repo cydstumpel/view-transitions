@@ -49,36 +49,35 @@
   animation-delay: calc(var(--duration) * var(--order, 0));
 }
 
-/* Animate disappearing speakers and old root out first */
+
+/* ================================================== */
+/* defaults / [index -> detail] */
+/* ================================================== */
+
+/* Animate disappearing speakers, speaker names and old root out first */
 ::view-transition-old(root),
 ::view-transition-old(.speaker-name),
 ::view-transition-old(.speaker-image):only-child {
-  /* outline: 1px solid red; */
-}
-
-/* Animate the moving of the speakers second
-::view-transition-group(.speaker-image),
-::view-transition-group(.speaker-name-title) {
-  --order: 0.5;
-}
-*/
-::view-transition-group(.speaker-image),
-::view-transition-group(.speaker-name-title) {
 
 }
 
-/* Animate the new root, and speaker image that weren't on the last page third
-::view-transition-new(root),
-::view-transition-new(.speaker-image):only-child {
-  --order: 1;
+/* Animate the active speakers second */
+::view-transition-group(.speaker-image) {
+
 }
-*/
+
+/* Animate the new root, and speaker image that weren't on the last page third */
 ::view-transition-new(root),
 ::view-transition-new(.speaker-image):only-child {
 
 }
 
-/* Animate the new speaker name last
+
+/* ================================================== */
+/* [detail -> index] */
+/* ================================================== */
+
+/* Animate the new speaker name last [detail -> index]
 ::view-transition-new(.speaker-name) {
   --order: 1.5;
 }
@@ -87,22 +86,38 @@
 
 }
 
-/* Scale speaker images down when they are the only child of the view-transition-image-pair
-animation-name: scale-down;
-*/
-::view-transition-old(.speaker-image):only-child {
+/* ================================================== */
+/* [detail -> detail] */
+/* ================================================== */
+
+/* Animate the speaker title on the detail page second */
+::view-transition-group(.speaker-name-title)  {
 
 }
 
-/* Scale speaker images up when they are the only child of the view-transition-image-pair
-animation-name: scale-up;
-*/
+
+/* ================================================== */
+/* Animating the old speakers out [index -> detail] */
+/* ================================================== */
+
+::view-transition-old(.speaker-image):only-child {
+
+
+}
+
+/* ================================================== */
+/* Animating the new speakers in [detail -> index] */
+/* ================================================== */
+
 ::view-transition-new(.speaker-image):only-child {
 
 }
 
+/* ================================================== */
 /* Fix the aspect ratio change when the speaker image changes */
+/* .................................................. */
 /* Great article by Jake: https://jakearchibald.com/2024/view-transitions-handling-aspect-ratio-changes/ */
+/* ================================================== */
 
 /* ::view-transition-group(.speaker-image) {
   overflow: clip;
@@ -115,18 +130,35 @@ animation-name: scale-up;
   object-fit: cover;
 } */
 
+/* ================================================== */
+/* Remove the animation and set opacity to 1 */
+/* ================================================== */
+
 ::view-transition-old(.speaker-image),
 ::view-transition-new(.speaker-image) {
-  /* Remove the animation and set opacity to 1
-  opacity: 1;
-  animation-name: none;
-  */
+  /* opacity: 1;
+  animation-name: none; */
+}
 
+/* ================================================== */
+/* Specific animations for going from the homepage to the speaker detail page */
+/* ================================================== */
+
+html.index {
+  &::view-transition-old(.speaker-image) {
+    /* Set z-index to 1 to ensure the speaker image is on top of the new root
+    z-index: 1;
+    */
+
+  }
 }
 
 
 
+/* ================================================== */
 /* Specific animations for going from the homepage to the speaker detail page */
+/* ================================================== */
+
 html.speaker-detail {
   &::view-transition-new(.speaker-image) {
     /* Set z-index to 1 to ensure the speaker image is on top of the old root
@@ -158,16 +190,6 @@ html.speaker-detail {
 
   }
 }
-
-html.index {
-  &::view-transition-old(.speaker-image) {
-    /* Set z-index to 1 to ensure the speaker image is on top of the new root
-    z-index: 1;
-    */
-
-  }
-}
-
 
 
 ::view-transition-group(.speaker-name-title) {
