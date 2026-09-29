@@ -411,7 +411,7 @@ const generateIndexPage = () => {
     return `
       <li class="speaker" style="--vt: ${speaker.id}; --vt-before: ${speaker.id}-before">
         <h3 class="small-heading caps">
-          <a href="speakers/${speaker.id}" style="--vt: ${speaker.id}-speaker-name">
+          <a href="speakers/${speaker.id}">
             ${speaker.name}
           </a>
         </h3>

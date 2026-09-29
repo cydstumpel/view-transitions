@@ -210,8 +210,10 @@ const generateIndexPage = () => {
   const speakersList = speakers.map(speaker => {
     return `
       <li class="speaker speaker-${speaker.id}" style="--vt: ${speaker.id};">
-        <a class="speaker-name medium-heading pixel" href="speakers/${speaker.id}" style="--vt: ${speaker.id}-name;">
-          ${speaker.name}
+        <a class="speaker-name medium-heading pixel" href="speakers/${speaker.id}">
+          <span style="--vt: ${speaker.id}-name;">
+            ${speaker.name}
+          </span>
         </a>
         <div class="speaker-image">
           <img src="${speaker.media}" alt="${speaker.name}">

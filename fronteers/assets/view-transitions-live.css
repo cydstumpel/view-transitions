@@ -18,7 +18,7 @@
 /* .speaker {
   view-transition-class: speaker-image;
 
-  .speaker-name {
+  .speaker-name span {
     view-transition-class: speaker-name;
   }
 }
