@@ -43,7 +43,6 @@
 ::view-transition-group(*),
 ::view-transition-old(*),
 ::view-transition-new(*) {
-  animation-fill-mode: both;
   animation-duration: var(--duration);
   animation-timing-function: var(--ease);
   animation-delay: calc(var(--duration) * var(--order, 0));
@@ -58,20 +57,20 @@
 ::view-transition-old(root),
 ::view-transition-old(.speaker-name),
 ::view-transition-old(.speaker-image):only-child {
-
+  /* outline: 1px solid red; */
 }
 
 /* Animate the active speakers second */
 /* Animate the speaker title on the detail page second */
 ::view-transition-group(.speaker-name-title),
 ::view-transition-group(.speaker-image) {
-
+  /* outline: 1px solid blue; */
 }
 
 /* Animate the new root, and speaker image that weren't on the last page third */
 ::view-transition-new(root),
 ::view-transition-new(.speaker-image):only-child {
-
+  /* outline: 1px solid green; */
 }
 
 
@@ -85,13 +84,8 @@
 }
 */
 ::view-transition-new(.speaker-name) {
-
+  /* outline: 1px solid orange; */
 }
-
-/* ================================================== */
-/* [detail -> detail] */
-/* ================================================== */
-
 
 
 /* ================================================== */
@@ -99,7 +93,7 @@
 /* ================================================== */
 
 ::view-transition-old(.speaker-image):only-child {
-
+  /* outline: 1px solid purple; */
 
 }
 
@@ -108,10 +102,22 @@
 /* ================================================== */
 
 ::view-transition-new(.speaker-image):only-child {
-
+  /* outline: 1px solid yellow; */
 }
 
 
+@keyframes scale-down {
+  to {
+    scale: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    scale: 0;
+  }
+}
 
 
 
@@ -124,7 +130,7 @@ html.speaker-detail {
     /* Animate the previous speakers to the left if they disappear
       --direction: -1;
     */
-
+    /* outline: 1px solid pink; */
   }
 
   &::view-transition-new(.speaker-image-prev):only-child,
@@ -132,7 +138,7 @@ html.speaker-detail {
     /* animate the new speakers in
       animation-name: slide-in;
     */
-
+    /* outline: 1px solid lightblue; */
   }
 
   &::view-transition-old(.speaker-image-prev):only-child,
@@ -156,6 +162,7 @@ html.speaker-detail {
   /* animate the old speaker title to the bottom of the screen
   animation-name: to-bottom;
   */
+  /* outline: 1px solid rebeccapurple; */
 
 }
 
@@ -164,23 +171,12 @@ html.speaker-detail {
   /* animate the new speaker title from the top of the screen
     animation-name: from-top;
    */
+   /* outline: 1px solid teal; */
 
 }
 
 
 
-@keyframes scale-down {
-  to {
-    scale: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes scale-up {
-  from {
-    scale: 0;
-  }
-}
 
 
 @keyframes slide-in {

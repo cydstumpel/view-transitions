@@ -64,7 +64,6 @@ html.index {
 ::view-transition-old(.speaker-image),
 ::view-transition-new(.speaker-image) {
   opacity: 1;
-  animation-name: none;
 }
 
 /* ================================================== */

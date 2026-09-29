@@ -31,9 +31,9 @@
 
       }
     }
-    .page-header-el--left {
-      --direction: -1;
-    }
+  }
+  .page-header-el--left {
+    --direction: -1;
   }
 
   /* Debug the easings: */

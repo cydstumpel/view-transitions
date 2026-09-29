@@ -177,7 +177,7 @@
     --t
     view()
     entry 10% exit 100%;
-    animation-trigger: --t play-forwards play-backwards;
+    animation-trigger: --t play-once;
 
   }
 }
