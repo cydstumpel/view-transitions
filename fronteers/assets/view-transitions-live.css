@@ -60,7 +60,7 @@
   /* outline: 1px solid red; */
 }
 
-/* Animate the active speakers second */
+/* Animate the movement of the speakers second */
 /* Animate the speaker title on the detail page second */
 ::view-transition-group(.speaker-name-title),
 ::view-transition-group(.speaker-image) {
