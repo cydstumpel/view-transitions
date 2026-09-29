@@ -8,3 +8,5 @@
 [https://cydstumpel.github.io/view-transitions/wey-wey-web/](https://cydstumpel.github.io/view-transitions/wey-wey-web/)
 ## JSHeroes
 [https://cydstumpel.github.io/view-transitions/js-heroes/](https://cydstumpel.github.io/view-transitions/js-heroes/)
+## Fronteers
+[https://cydstumpel.github.io/view-transitions/fronteers/](https://cydstumpel.github.io/view-transitions/fronteers/)
