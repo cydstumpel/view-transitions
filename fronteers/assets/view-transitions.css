@@ -40,22 +40,7 @@ html.index {
 }
 
 
-/* ================================================== */
-/* Fix the aspect ratio change when the speaker image changes */
-/* .................................................. */
-/* Great article by Jake: https://jakearchibald.com/2024/view-transitions-handling-aspect-ratio-changes/ */
-/* ================================================== */
 
-::view-transition-group(.speaker-image) {
-  overflow: clip;
-}
-
-::view-transition-old(.speaker-image),
-::view-transition-new(.speaker-image) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 
 /* ================================================== */
