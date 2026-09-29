@@ -40,7 +40,11 @@ html.index {
 }
 
 
-
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  outline-offset: -1px;
+}
 
 
 /* ================================================== */
