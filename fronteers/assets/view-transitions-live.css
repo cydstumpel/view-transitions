@@ -53,22 +53,18 @@
 /* defaults / [index -> detail] */
 /* ================================================== */
 
-/* Animate disappearing speakers, speaker names and old root out first */
-::view-transition-old(root),
+/* Animate disappearing speakers and speaker names out first */
 ::view-transition-old(.speaker-name),
 ::view-transition-old(.speaker-image):only-child {
   /* outline: 1px solid red; */
 }
 
 /* Animate the movement of the speakers second */
-/* Animate the speaker title on the detail page second */
-::view-transition-group(.speaker-name-title),
 ::view-transition-group(.speaker-image) {
   /* outline: 1px solid blue; */
 }
 
-/* Animate the new root, and speaker image that weren't on the last page third */
-::view-transition-new(root),
+/* Animate speaker images that weren't on the detail page third */
 ::view-transition-new(.speaker-image):only-child {
   /* outline: 1px solid green; */
 }
