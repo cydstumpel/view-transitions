@@ -57,14 +57,6 @@ html.index {
   object-fit: cover;
 }
 
-/* ================================================== */
-/* Remove the animation and set opacity to 1 */
-/* ================================================== */
-
-::view-transition-old(.speaker-image),
-::view-transition-new(.speaker-image) {
-  opacity: 1;
-}
 
 /* ================================================== */
 /* Specific animations for going from the speaker detail page to the homepage */

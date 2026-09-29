@@ -89,9 +89,20 @@
 
 
 /* ================================================== */
-/* Animating the old speakers out [index -> detail] */
+/* Remove fade in/out animation and set opacity to 1 by default for all speaker images */
 /* ================================================== */
 
+/* ::view-transition-old(.speaker-image),
+::view-transition-new(.speaker-image) {
+  opacity: 1;
+  animation-name: none;
+} */
+
+
+
+/* ================================================== */
+/* Animating the old speakers out [index -> detail] */
+/* ================================================== */
 ::view-transition-old(.speaker-image):only-child {
   /* outline: 1px solid purple; */
 
