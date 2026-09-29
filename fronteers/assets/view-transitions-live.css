@@ -152,14 +152,14 @@
 }
 
 
-@keyframes scale-down {
+@keyframes scale-out {
   to {
     scale: 0;
     opacity: 0;
   }
 }
 
-@keyframes scale-up {
+@keyframes scale-in {
   from {
     scale: 0;
   }
