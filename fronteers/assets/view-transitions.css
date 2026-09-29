@@ -45,25 +45,3 @@ html.index {
 ::view-transition-new(*) {
   outline-offset: -1px;
 }
-
-
-/* ================================================== */
-/* Specific animations for going from the speaker detail page to the homepage */
-/* ================================================== */
-
-html.index {
-  &::view-transition-old(.speaker-image) {
-    /* Set z-index to 1 to ensure the speaker image is on top of the new root*/
-    z-index: 1;
-  }
-}
-
-
-
-html.speaker-detail {
-  &::view-transition-new(.speaker-image) {
-    /* Set z-index to 1 to ensure the speaker image is on top of the old root
-    */
-    z-index: 1;
-  }
-}

@@ -120,6 +120,26 @@
 
 
 /* ================================================== */
+/* Specific animations for going from the speaker detail page to the homepage */
+/* ================================================== */
+
+/* Set z-index to 1 to ensure the speaker image is on top of the new root*/
+/* html.index {
+  &::view-transition-old(.speaker-image) {
+    z-index: 1;
+  }
+} */
+
+/* Set z-index to 1 to ensure the speaker image is on top of the old root*/
+/* html.speaker-detail {
+  &::view-transition-new(.speaker-image) {
+    z-index: 1;
+  }
+} */
+
+
+
+/* ================================================== */
 /* Animating the old speakers out [index -> detail] */
 /* ================================================== */
 ::view-transition-old(.speaker-image):only-child {
