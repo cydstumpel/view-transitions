@@ -84,9 +84,6 @@
 }
 
 
-/* ================================================== */
-/* Remove fade in/out animation and set opacity to 1 by default for all speaker images */
-/* ================================================== */
 
 /* ================================================== */
 /* Fix the aspect ratio change when the speaker image changes */
@@ -107,6 +104,9 @@
 
 
 
+/* ================================================== */
+/* Remove fade in/out animation and set opacity to 1 by default for all speaker images */
+/* ================================================== */
 /* ::view-transition-old(.speaker-image),
 ::view-transition-new(.speaker-image) {
   opacity: 1;
