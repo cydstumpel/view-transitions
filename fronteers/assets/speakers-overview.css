@@ -156,37 +156,3 @@
 
 
 
-.speaker:nth-of-type(odd) {
-  --from-x: calc(var(--gap) * 3);
-  --from-y: calc(var(--gap) * 3);
-}
-
-.speaker:nth-of-type(even) {
-  --from-x: calc(var(--gap) * -3);
-  --from-y: calc(var(--gap) * 3);
-}
-
-
-
-.speaker,
-.speakers-overview-text {
-  @media (prefers-reduced-motion: no-preference) {
-    /* set animation */
-    animation: click-into-place 0.5s var(--ease-back) both;
-    timeline-trigger:
-    --t
-    view()
-    entry 10% exit 100%;
-    animation-trigger: --t play-once;
-
-  }
-}
-
-
-
-@keyframes click-into-place {
-  from {
-    translate: var(--from-x) var(--from-y);
-    opacity: 0;
-  }
-}
