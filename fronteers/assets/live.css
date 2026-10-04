@@ -12,21 +12,23 @@
         animation-name: around-celestial;
         animation-timeline: view();
         */
-
+        animation-name: around-celestial;
+        animation-timeline: view();
 
 
         /* Add start and end ranges as variables
+        */
         --start-range: calc((50vh - 8vw + var(--celestial-width) / 2) * -1);
         --end-range: calc((50vh - 8vw - var(--celestial-width) / 2) * -1 + 100%);
-        */
 
         /* Set the animation range
-        animation-range: exit var(--start-range) exit var(--end-range);
         */
-
+        animation-range: exit var(--start-range) exit var(--end-range);
+        animation-timing-function: ease-out;
+        animation-timing-function: cubic-bezier(0.32, 1, 1, 1);
 
         /* easing:
-        animation-timing-function: cubic-bezier(0.32, 1, 1, 1); */
+        */
 
 
       }
@@ -45,11 +47,13 @@
 @keyframes around-celestial {
   50% {
     transform: translateX(calc(var(--celestial-width) / 2 * var(--direction, 1)));
+    animation-timing-function: ease-in;
+    animation-timing-function: cubic-bezier(0.68, 0, 1, 1);
   }
 }
 
 /* easing:
-animation-timing-function: cubic-bezier(0.68, 0, 1, 1); */
+*/
 
 
 

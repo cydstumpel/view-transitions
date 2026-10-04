@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 /* Set to false to keep the original <picture> element. */
-const use3dSun = false
+const use3dSun = true
 
 /* Tweak these hex values to recolor the sun. */
 
